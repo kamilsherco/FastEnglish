@@ -119,13 +119,7 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
                  wordsList.add(map);
                 }
             } else {
-                // no products found
-                // Launch Add New product Activity
-               /* Intent i = new Intent(getApplicationContext(),
-                        NewProductActivity.class);
-                // Closing all previous activities
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);*/
+               
             	System.out.println("ERRRR");
             }
         } catch (JSONException e) {
