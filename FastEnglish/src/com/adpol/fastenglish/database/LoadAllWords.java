@@ -34,7 +34,7 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
     // Creating JSON Parser object
     JSONParser jParser = new JSONParser();
  
-    ArrayList<HashMap<String, String>> wordsList = new ArrayList<HashMap<String, String>>();
+    private ArrayList<HashMap<String, String>> wordsList = new ArrayList<HashMap<String, String>>();
  
     // url to get all products list
     private static String url_all_words = "http://smacznesery.com/android_content/get_all_words.beta";
@@ -77,7 +77,7 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
         JSONObject json = jParser.makeHttpRequest(url_all_words, "GET", params);
 
         // Check your log cat for JSON reponse
-        Log.d("All Words: ", json.toString());
+       // Log.d("All Words: ", json.toString());
 
         try {
             // Checking for SUCCESS TAG
@@ -122,10 +122,12 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
                
             	System.out.println("ERRRR");
             }
+            Log.d("All Words: ", wordsList.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        
+        DatabaseManager.getInstance().getHelper().addWordsFromServer(wordsList);
         return null;
     }
 
@@ -152,5 +154,8 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
         });*/
 
     }
+
+
+
 
 }

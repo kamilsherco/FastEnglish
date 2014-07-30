@@ -28,4 +28,14 @@ public class DatabaseManager {
         return helper;
     }
     
+    public List<Word> getAllWords() {
+        List<Word> wordsList = null;
+        try {
+        	wordsList = getHelper().getWordDao().queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wordsList;
+    }
+    
 }
