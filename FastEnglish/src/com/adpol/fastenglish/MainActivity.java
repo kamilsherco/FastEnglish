@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		DatabaseManager.init(this);	
 		 // Loading products in Background Thread
+		new LoadVersion().execute();
 		new LoadAllWords().execute();
 		Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));
       
