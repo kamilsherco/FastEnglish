@@ -21,22 +21,31 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int btnauka=0x7f020000;
+        public static final int btquiz=0x7f020001;
+        public static final int btstat=0x7f020002;
+        public static final int btustaw=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000c;
-        public static final int widget0=0x7f080000;
-        public static final int widget32=0x7f080001;
-        public static final int widget33=0x7f080002;
-        public static final int widget34=0x7f080003;
-        public static final int widget35=0x7f080004;
-        public static final int widget36=0x7f080005;
-        public static final int widget37=0x7f080006;
-        public static final int widget39=0x7f080007;
-        public static final int widget40=0x7f080008;
-        public static final int widget41=0x7f080009;
-        public static final int widget42=0x7f08000a;
-        public static final int widget43=0x7f08000b;
+        public static final int action_settings=0x7f080011;
+        public static final int iNauka=0x7f080002;
+        public static final int iQuiz=0x7f080001;
+        public static final int iStat=0x7f080003;
+        public static final int iUstawienia=0x7f080004;
+        public static final int lhome=0x7f080000;
+        public static final int widget0=0x7f080005;
+        public static final int widget32=0x7f080006;
+        public static final int widget33=0x7f080007;
+        public static final int widget34=0x7f080008;
+        public static final int widget35=0x7f080009;
+        public static final int widget36=0x7f08000a;
+        public static final int widget37=0x7f08000b;
+        public static final int widget39=0x7f08000c;
+        public static final int widget40=0x7f08000d;
+        public static final int widget41=0x7f08000e;
+        public static final int widget42=0x7f08000f;
+        public static final int widget43=0x7f080010;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
