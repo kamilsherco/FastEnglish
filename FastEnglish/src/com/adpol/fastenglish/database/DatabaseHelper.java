@@ -19,10 +19,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FastEnglish.sqlite";
 
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
     
     // the DAO object we use to access the SimpleData table
     private Dao<Word, Integer> wordDao = null;
+    private Dao<Version, Integer> versionDao = null;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,7 +34,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onCreate(SQLiteDatabase arg0, ConnectionSource arg1) {
 		// TODO Auto-generated method stub
 		 try {
-	            TableUtils.createTable(connectionSource, Word.class);         
+	            TableUtils.createTable(connectionSource, Word.class); 
+	            TableUtils.createTable(connectionSource, Version.class);
+	            createNewVersion(1,1,1);
 	        } catch (SQLException e) {
 	            Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
 	            throw new RuntimeException(e);
@@ -69,10 +72,22 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return wordDao;
     }
 	
+	public Dao<Version, Integer> getVersionDao() {
+        if (null == versionDao) {
+            try {
+            	versionDao = getDao(Version.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return versionDao;
+    }
+	
 	public void addWordsFromServer(ArrayList<HashMap<String, String>> wordsList){
-		for(HashMap<String,String> map : wordsList){
-			createNewWord(Integer.parseInt(map.get("id_word")), map.get("plWord"), map.get("enWord"), Integer.parseInt(map.get("id_category")), 
-					Integer.parseInt(map.get("correctRepeats")), Integer.parseInt(map.get("incorrectRepeats")), Boolean.parseBoolean(map.get("isLearned")));
+		int numberOfWords = DatabaseManager.getInstance().getAllWords().size();
+		for(int i=numberOfWords;i<wordsList.size();i++){
+			createNewWord(Integer.parseInt(wordsList.get(i).get("id_word")), wordsList.get(i).get("plWord"), wordsList.get(i).get("enWord"), Integer.parseInt(wordsList.get(i).get("id_category")), 
+					Integer.parseInt(wordsList.get(i).get("correctRepeats")), Integer.parseInt(wordsList.get(i).get("incorrectRepeats")), Boolean.parseBoolean(wordsList.get(i).get("isLearned")));
 		}
 	}
 	
@@ -81,6 +96,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		Word word = new Word(id_word, plWord, enWord, id_category, correctRepeats, incorrectRepeats, isLearned);
         try {
         	getWordDao().create(word);
+		} catch (java.sql.SQLException e) {
+			e.printStackTrace();
+		}
+    }
+	
+	private void createNewVersion(int id_version, int ver, int lastWord) {		
+		Version version = new Version(id_version, ver, lastWord);
+        try {
+        	getVersionDao().create(version);
 		} catch (java.sql.SQLException e) {
 			e.printStackTrace();
 		}

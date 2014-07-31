@@ -17,11 +17,13 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		DatabaseManager.init(this);	
+		//DatabaseManager.getInstance().updateVersion(0);
 		 // Loading products in Background Thread
 		new LoadVersion().execute();
-		new LoadAllWords().execute();
+		//new LoadAllWords().execute();
 		Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));
-      
+		//Log.d("Wielkosc bazy wersji: ", Integer.toString(DatabaseManager.getInstance().getAllVersions().get(0).getVersion()));
+		Log.d("Wersja: ", Integer.toString(DatabaseManager.getInstance().getVersionById(1).getVersion()));
 	}
 
 	@Override

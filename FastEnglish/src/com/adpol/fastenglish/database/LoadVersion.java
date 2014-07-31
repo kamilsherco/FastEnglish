@@ -37,6 +37,8 @@ public class LoadVersion extends AsyncTask<String, String, String> {
     private static final String TAG_ID_VERSION = "version";
     private static final String TAG_lastWord = "lastWord";
     
+    private final int VERSION_ID = 1;
+    
  
     // products JSONArray
     JSONArray versionJSON = null;
@@ -65,7 +67,7 @@ public class LoadVersion extends AsyncTask<String, String, String> {
         JSONObject json = jParser.makeHttpRequest(url_check_version, "GET", params);
 
         // Check your log cat for JSON reponse
-       // Log.d("All Words: ", json.toString());
+        //Log.d("Version: ", json.toString());
 
         try {
             // Checking for SUCCESS TAG
@@ -98,11 +100,18 @@ public class LoadVersion extends AsyncTask<String, String, String> {
                     // adding HashList to ArrayList
                  versionArray.add(map);
                 }
-            } else {
-               
+                if(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)) == DatabaseManager.getInstance().getVersionById(VERSION_ID).getVersion()){
+                	Log.d("Version : ", "To samo, nie aktualizujemy");
+                } else{
+                	Log.d("Version : ", "Nie to samo, aktualizujemy");
+                	new LoadAllWords().execute();
+                	DatabaseManager.getInstance().updateVersion(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
+                }
+                
+            } else {               
             	System.out.println("ERRRR");
             }
-            Log.d("Version : ", versionArray.toString());
+           // Log.d("Version : ", versionArray.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
