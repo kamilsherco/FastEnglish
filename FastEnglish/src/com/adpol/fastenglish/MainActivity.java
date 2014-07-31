@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		DatabaseManager.init(this);	
-		//DatabaseManager.getInstance().updateVersion(0);
+		//DatabaseManager.getInstance().updateVersion(0); //Wyzerowanie wersji
 		 // Loading products in Background Thread
 		new LoadVersion().execute();
 		//new LoadAllWords().execute();

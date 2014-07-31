@@ -1,5 +1,6 @@
 package com.adpol.fastenglish.database;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,11 +20,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FastEnglish.sqlite";
 
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     
     // the DAO object we use to access the SimpleData table
     private Dao<Word, Integer> wordDao = null;
+    private Dao<Category, Integer> categoryDao = null;
     private Dao<Version, Integer> versionDao = null;
+    private Dao<Statistics, Integer> statisticsDao = null;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,8 +38,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		// TODO Auto-generated method stub
 		 try {
 	            TableUtils.createTable(connectionSource, Word.class); 
+	            TableUtils.createTable(connectionSource, Category.class); 
+	            createNewCategory(1, "Kat 1");
+	            createNewCategory(2, "Kat 2");
 	            TableUtils.createTable(connectionSource, Version.class);
 	            createNewVersion(1,1,1);
+	            TableUtils.createTable(connectionSource, Statistics.class);
 	        } catch (SQLException e) {
 	            Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
 	            throw new RuntimeException(e);
@@ -83,6 +90,28 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return versionDao;
     }
 	
+	public Dao<Category, Integer> getCategoryDao() {
+        if (null == categoryDao) {
+        	try {
+        		categoryDao = getDao(Category.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return categoryDao;
+    }
+	
+	public Dao<Statistics, Integer> getStatisticsDao() {
+        if (null == statisticsDao) {
+        	try {
+        		statisticsDao = getDao(Statistics.class);
+            }catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return statisticsDao;
+	}
+	
 	public void addWordsFromServer(ArrayList<HashMap<String, String>> wordsList){
 		int numberOfWords = DatabaseManager.getInstance().getAllWords().size();
 		for(int i=numberOfWords;i<wordsList.size();i++){
@@ -105,6 +134,24 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		Version version = new Version(id_version, ver, lastWord);
         try {
         	getVersionDao().create(version);
+		} catch (java.sql.SQLException e) {
+			e.printStackTrace();
+		}
+    }
+	
+	private void createNewCategory(int id_category, String name) {		
+		Category category = new Category(id_category, name);
+        try {
+        	getCategoryDao().create(category);
+		} catch (java.sql.SQLException e) {
+			e.printStackTrace();
+		}
+    }
+	
+	private void createNewStatistics(int id_statistics, Date date, int points, int repeats) {		
+		Statistics statistics = new Statistics(id_statistics, date, points, repeats);
+        try {
+        	getStatisticsDao().create(statistics);
 		} catch (java.sql.SQLException e) {
 			e.printStackTrace();
 		}
