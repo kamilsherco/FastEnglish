@@ -30,9 +30,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));
 		//Log.d("Wielkosc bazy wersji: ", Integer.toString(DatabaseManager.getInstance().getAllVersions().get(0).getVersion()));
 		Log.d("Wersja: ", Integer.toString(DatabaseManager.getInstance().getVersionById(1).getVersion()));
+		initialize();
 	}
 
-    void inicialize()
+    void initialize()
     {
 
    
