@@ -51,13 +51,15 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        switch(arg0.getId())
 	        {
 	        case R.id.iReplay:
-	     
+	        	Intent replay = new Intent(this, WordActivity.class);
+	            startActivity(replay);
 	       
 
 	        break;
 	        case R.id.iLearnNew:
 	            
-	        
+	        	Intent lernnew = new Intent(this, WordActivity.class);
+	            startActivity(lernnew);
 
 
 	            break;
