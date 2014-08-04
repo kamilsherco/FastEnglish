@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/lhome"
+  
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -26,28 +26,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btlearnNew" />
-<EditText
-	android:id="@+id/widget37"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:text="30"
-	android:layout_marginTop="5dp"
-	 />
+        android:src="@drawable/btlearnnew" />
+
+
+
+<LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="6">
+          
+  
 <TextView
+
 	android:id="@+id/widget39"
-	android:layout_width="match_parent"
+	android:layout_width="0dp"
+	android:layout_weight="3"
 	android:layout_height="wrap_content"
 	android:text="Liczba nowych s&#322;&#243;w:"
 	android:layout_marginTop="5dp"
 	/>
+    <EditText
+	android:id="@+id/widget37"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="3"
+	android:text="30"
+	android:layout_marginTop="5dp"
+	 />
+
+        </LinearLayout>
 
 <ImageView
-        android:id="@+id/iLearnNew"
+        android:id="@+id/iPolEng"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btPOLENG" />
+        android:src="@drawable/btpoleng" />
 <TextView
 	android:id="@+id/widget42"
 	android:layout_width="wrap_content"
@@ -56,7 +73,7 @@
 	 android:layout_marginTop="5dp"
 	/>
 <ImageView
-        android:id="@+id/iLearnNew"
+        android:id="@+id/iChange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
