@@ -32,19 +32,22 @@ public final class R {
         public static final int ic_launcher=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
+        public static final int action_settings=0x7f080013;
         public static final int iChange=0x7f080007;
+        public static final int iIsAnswerKnownText=0x7f080010;
         public static final int iLearnNew=0x7f080002;
         public static final int iNauka=0x7f08000a;
-        public static final int iNo=0x7f08000f;
+        public static final int iNo=0x7f080012;
         public static final int iPolEng=0x7f080005;
         public static final int iQuiz=0x7f080009;
         public static final int iReplay=0x7f080000;
-        public static final int iShowWord=0x7f08000d;
+        public static final int iShowWord=0x7f08000e;
         public static final int iStat=0x7f08000b;
         public static final int iUstawienia=0x7f08000c;
-        public static final int iYes=0x7f08000e;
+        public static final int iWordText=0x7f08000d;
+        public static final int iYes=0x7f080011;
         public static final int lhome=0x7f080008;
+        public static final int txAnswer=0x7f08000f;
         public static final int widget37=0x7f080004;
         public static final int widget39=0x7f080003;
         public static final int widget40=0x7f080001;
