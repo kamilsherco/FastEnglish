@@ -24,20 +24,23 @@ public final class R {
         public static final int btchange=0x7f020000;
         public static final int btlearnnew=0x7f020001;
         public static final int btnauka=0x7f020002;
-        public static final int btpoleng=0x7f020003;
-        public static final int btquiz=0x7f020004;
-        public static final int btreplay=0x7f020005;
-        public static final int btstat=0x7f020006;
-        public static final int btustaw=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
+        public static final int btno=0x7f020003;
+        public static final int btpoleng=0x7f020004;
+        public static final int btquiz=0x7f020005;
+        public static final int btreplay=0x7f020006;
+        public static final int btshowtranslate=0x7f020007;
+        public static final int btstat=0x7f020008;
+        public static final int btustaw=0x7f020009;
+        public static final int btyes=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
     }
     public static final class id {
-        public static final int action_settings=0x7f080013;
+        public static final int action_settings=0x7f080014;
         public static final int iChange=0x7f080007;
         public static final int iIsAnswerKnownText=0x7f080010;
         public static final int iLearnNew=0x7f080002;
         public static final int iNauka=0x7f08000a;
-        public static final int iNo=0x7f080012;
+        public static final int iNo=0x7f080013;
         public static final int iPolEng=0x7f080005;
         public static final int iQuiz=0x7f080009;
         public static final int iReplay=0x7f080000;
@@ -45,8 +48,9 @@ public final class R {
         public static final int iStat=0x7f08000b;
         public static final int iUstawienia=0x7f08000c;
         public static final int iWordText=0x7f08000d;
-        public static final int iYes=0x7f080011;
+        public static final int iYes=0x7f080012;
         public static final int lhome=0x7f080008;
+        public static final int llayout=0x7f080011;
         public static final int txAnswer=0x7f08000f;
         public static final int widget37=0x7f080004;
         public static final int widget39=0x7f080003;

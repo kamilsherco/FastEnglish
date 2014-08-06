@@ -9,6 +9,7 @@
 
     <TextView
         android:id="@+id/iWordText"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
@@ -16,13 +17,15 @@
 
 <ImageView
         android:id="@+id/iShowWord"
+       
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btlearnnew" />
+        android:src="@drawable/btshowtranslate" />
 
 <TextView
     android:id="@+id/txAnswer"
+    
     android:visibility="gone"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -43,6 +46,7 @@
 
 
 <LinearLayout 
+   	 android:id="@+id/llayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              android:layout_gravity="center"
@@ -59,7 +63,7 @@
         android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="3"   
-        android:src="@drawable/btpoleng" />
+        android:src="@drawable/btno" />
     
     <ImageView
         android:id="@+id/iNo"
@@ -67,7 +71,7 @@
         android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="3"        
-        android:src="@drawable/btpoleng" />
+        android:src="@drawable/btyes" />
 
         </LinearLayout>
 

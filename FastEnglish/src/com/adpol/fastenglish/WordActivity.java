@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class WordActivity extends Activity implements OnClickListener{
@@ -23,6 +24,7 @@ public class WordActivity extends Activity implements OnClickListener{
     private TextView wordText;
     private TextView isAnswerKnownText;
     private TextView answerText;
+   
     
     private List<Word> wordsList;
    
@@ -52,6 +54,8 @@ public class WordActivity extends Activity implements OnClickListener{
 
 	    btNo = (ImageView) findViewById(R.id.iNo);
 	    btNo.setOnClickListener(this);
+	    
+	    
 	    
 	    randomText();
 	}
