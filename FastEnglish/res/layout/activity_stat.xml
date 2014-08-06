@@ -1,8 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:gravity="center"
+    android:orientation="vertical">"
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Łaczny czas spędzony na nauce: " />
+
+    <TextView
+        android:id="@+id/txTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
     
+</LinearLayout>
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Łącznie nauczonych słówek: " />
+
+    <TextView
+        android:id="@+id/txCountWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Łaczna ilość prowtórek: " />
+
+    <TextView
+        android:id="@+id/txCountReplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Znanych słów w powtórkach: " />
+
+    <TextView
+        android:id="@+id/txCountReplayYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Nieznanych słów w powtórkach: " />
+
+    <TextView
+        android:id="@+id/txCountReplayNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Łaczna ilość zagrań w quiz: " />
+
+    <TextView
+        android:id="@+id/txCountQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Łacznie punktów zdobytych w quizie: " />
+
+    <TextView
+        android:id="@+id/txCountQuizPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
+<ImageView
+        android:id="@+id/iReplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/btgraph" />
 
 </LinearLayout>

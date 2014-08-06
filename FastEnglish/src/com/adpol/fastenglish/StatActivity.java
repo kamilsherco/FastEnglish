@@ -10,7 +10,7 @@ public class StatActivity extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_settings);
+		setContentView(R.layout.activity_stat);
 	}
 
 }

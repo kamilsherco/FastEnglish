@@ -3,6 +3,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_marginTop="5dp"
+        android:text="Kategorie do nauki:" />
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox" />
+    <LinearLayout 
+   	
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_gravity="center"
+           
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+          android:layout_weight="3" 
+        android:text="Łącznie : " />
+       <TextView
+        android:id="@+id/tvCountWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+          android:layout_weight="3" 
+        android:text="TextView" />
     
+    </LinearLayout>
+
+<LinearLayout 
+   	 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="6">
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"  
+        android:src="@drawable/btselectall" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_weight="3"  
+        android:layout_height="wrap_content"
+        android:src="@drawable/btclearall" />
+
+    
+    </LinearLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Język" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btpoleng" />
+    
+      <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btcheckupdate" />
 
 </LinearLayout>
