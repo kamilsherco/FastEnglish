@@ -9,31 +9,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:layout_marginTop="5dp"
-        android:text="Kategorie do nauki:" />
+        android:text="Kategorie do nauki:"
+        android:textAppearance="?android:attr/textAppearanceMedium"  />
+
+   
 
     <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
+        android:id="@+id/cbA"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="A" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
+        android:id="@+id/cbB"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="B" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
+        android:id="@+id/cbC"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="C" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
+        android:id="@+id/cbD"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="D" />
     <LinearLayout 
    	
             android:layout_width="match_parent"
@@ -50,7 +53,7 @@
           android:layout_weight="3" 
         android:text="Łącznie : " />
        <TextView
-        android:id="@+id/tvCountWords"
+        android:id="@+id/tvSettingsCountWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
           android:layout_weight="3" 
@@ -67,14 +70,14 @@
             android:orientation="horizontal"
             android:weightSum="6">
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/iSelectAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="3"  
         android:src="@drawable/btselectall" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iClearAll"
         android:layout_width="wrap_content"
         android:layout_weight="3"  
         android:layout_height="wrap_content"
@@ -86,18 +89,21 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Język" />
+          android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:text="Język: " />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/ichangeLanguage"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
         android:src="@drawable/btpoleng" />
     
       <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/icheckUpdate"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:src="@drawable/btcheckupdate" />
 
 </LinearLayout>

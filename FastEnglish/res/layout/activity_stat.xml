@@ -9,7 +9,8 @@
     android:orientation="horizontal"
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
-     android:layout_gravity="center"
+     
+     android:gravity="center"
      android:layout_marginTop="5dp"
      android:weightSum="6"
      >
@@ -33,7 +34,8 @@
     android:orientation="horizontal"
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
-     android:layout_gravity="center"
+   
+      android:gravity="center"
      android:layout_marginTop="5dp"
      android:weightSum="6"
      >
@@ -58,6 +60,7 @@
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
+      
      android:layout_marginTop="5dp"
      android:weightSum="6"
      >
@@ -174,7 +177,7 @@
     
 </LinearLayout>
 <ImageView
-        android:id="@+id/iReplay"
+        android:id="@+id/iGraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

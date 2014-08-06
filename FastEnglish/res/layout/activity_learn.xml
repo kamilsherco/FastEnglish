@@ -13,13 +13,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:src="@drawable/btreplay" />
-<TextView
-	android:id="@+id/widget40"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:text="Znanych s&#322;&#243;w z wybranych kategorii: 666"
-	android:layout_marginTop="5dp"
-	 />
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Znznych słów z wybranych ketegorii: " />
+
+    <TextView
+        android:id="@+id/tvLeanrCountWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
 
 <ImageView
         android:id="@+id/iLearnNew"
@@ -49,7 +66,7 @@
 	android:layout_marginTop="5dp"
 	/>
     <EditText
-	android:id="@+id/widget37"
+	android:id="@+id/edLearnNewWords"
 	android:layout_width="0dp"
 	android:layout_height="wrap_content"
 	android:layout_weight="3"
@@ -66,13 +83,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:src="@drawable/btpoleng" />
-<TextView
-	android:id="@+id/widget42"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="Wybrane kategorie: xxx, yyy, zzz"
-	 android:layout_marginTop="5dp"
-	/>
+<LinearLayout
+    android:orientation="horizontal"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="5dp"
+     android:weightSum="6"
+     >
+     
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" 
+        android:text="Wybrane kategorie: " />
+
+    <TextView
+        android:id="@+id/tvLearnCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" 
+        android:text="TextView" />
+    
+</LinearLayout>
 <ImageView
         android:id="@+id/iChange"
         android:layout_width="match_parent"

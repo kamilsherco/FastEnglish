@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class LearnActivity extends Activity implements OnClickListener   {
 
@@ -16,7 +18,9 @@ public class LearnActivity extends Activity implements OnClickListener   {
     private ImageView learnNew;
     private ImageView PolEng;
     private ImageView change;
-    
+    private TextView countWords;
+    private TextView learnCategories;
+    private EditText countNewWords;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -40,6 +44,11 @@ public class LearnActivity extends Activity implements OnClickListener   {
 
 	        change = (ImageView) findViewById(R.id.iChange);
 	        change.setOnClickListener(this);
+	        
+	        countWords= (TextView) findViewById(R.id.tvLeanrCountWords);
+	        learnCategories= (TextView) findViewById(R.id.tvLearnCategories);
+	        countNewWords = (EditText) findViewById(R.id.edLearnNewWords);
+	        
 
 
 	    }
