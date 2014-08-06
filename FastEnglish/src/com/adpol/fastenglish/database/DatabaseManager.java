@@ -73,7 +73,15 @@ public class DatabaseManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	// update the value of your field(s)
-    	
+    	// update the value of your field(s)    	
+    }
+    
+    public void updateWord(Word word){
+    	try {
+			getHelper().getWordDao().update(word);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}        
     }
 }

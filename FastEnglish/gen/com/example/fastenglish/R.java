@@ -50,7 +50,6 @@ public final class R {
         public static final int iChange=0x7f080008;
         public static final int iClearAll=0x7f08001a;
         public static final int iGraph=0x7f080025;
-        public static final int iIsAnswerKnownText=0x7f080029;
         public static final int iLearnNew=0x7f080003;
         public static final int iNauka=0x7f08000b;
         public static final int iNo=0x7f08002c;
@@ -65,7 +64,6 @@ public final class R {
         public static final int iShowWord=0x7f080027;
         public static final int iStat=0x7f08000c;
         public static final int iUstawienia=0x7f08000d;
-        public static final int iWordText=0x7f080026;
         public static final int iYes=0x7f08002b;
         public static final int ichangeLanguage=0x7f08001c;
         public static final int icheckUpdate=0x7f08001d;
@@ -85,7 +83,9 @@ public final class R {
         public static final int txCountReplayNo=0x7f080022;
         public static final int txCountReplayYes=0x7f080021;
         public static final int txCountWords=0x7f08001f;
+        public static final int txIsAnswerKnownText=0x7f080029;
         public static final int txTime=0x7f08001e;
+        public static final int txWordText=0x7f080026;
         public static final int widget39=0x7f080004;
     }
     public static final class layout {

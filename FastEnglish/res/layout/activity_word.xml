@@ -8,7 +8,7 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/iWordText"
+        android:id="@+id/txWordText"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,11 +33,11 @@
     android:textAppearance="?android:attr/textAppearanceLarge" />
 
 <TextView
-	android:id="@+id/iIsAnswerKnownText"
+	android:id="@+id/txIsAnswerKnownText"
 	android:visibility="gone"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:text="Czy znaleś odpowiedź ?"
+	android:text="Czy znaleś odpowiedź?"
 	android:layout_marginTop="5dp"
 	/>
 
@@ -63,7 +63,7 @@
         android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="3"   
-        android:src="@drawable/btno" />
+        android:src="@drawable/btyes" />
     
     <ImageView
         android:id="@+id/iNo"
@@ -71,7 +71,7 @@
         android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="3"        
-        android:src="@drawable/btyes" />
+        android:src="@drawable/btno" />
 
         </LinearLayout>
 

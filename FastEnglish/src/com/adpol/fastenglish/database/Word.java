@@ -97,6 +97,12 @@ public class Word {
 		this.isLearned = isLearned;
 	}
 	
+	public void correctIncrement(){
+		this.correctRepeats++;
+	}
 	
-
+	public void incorrectIncrement(){
+		this.incorrectRepeats++;
+	}
+	
 }

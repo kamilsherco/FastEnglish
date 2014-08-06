@@ -10,6 +10,7 @@ import com.example.fastenglish.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -18,13 +19,14 @@ import android.widget.TextView;
 
 public class WordActivity extends Activity implements OnClickListener{
 	
+	private int index;
+	
 	private ImageView showWord;
     private ImageView btYes;
     private ImageView btNo;
     private TextView wordText;
     private TextView isAnswerKnownText;
-    private TextView answerText;
-   
+    private TextView answerText;   
     
     private List<Word> wordsList;
    
@@ -40,11 +42,11 @@ public class WordActivity extends Activity implements OnClickListener{
 		
 		wordsList = DatabaseManager.getInstance().getAllWords();		
 		
-		wordText = (TextView) findViewById(R.id.iWordText);
+		wordText = (TextView) findViewById(R.id.txWordText);
 		answerText = (TextView) findViewById(R.id.txAnswer);
 		
 		
-		isAnswerKnownText = (TextView) findViewById(R.id.iIsAnswerKnownText);		
+		isAnswerKnownText = (TextView) findViewById(R.id.txIsAnswerKnownText);		
 		
 		showWord = (ImageView) findViewById(R.id.iShowWord);
 	    showWord.setOnClickListener(this);
@@ -61,9 +63,11 @@ public class WordActivity extends Activity implements OnClickListener{
 	}
 	
 	private void randomText(){
-		int index = new Random().nextInt(wordsList.size());
+		index = new Random().nextInt(wordsList.size());
 		wordText.setText(wordsList.get(index).getEnWord());
 		answerText.setText(wordsList.get(index).getEnWord());
+		Log.d("Poprawnych: ", Integer.toString(wordsList.get(index).getCorrectRepeats()));
+		Log.d("Niepoprawnych: ", Integer.toString(wordsList.get(index).getIncorrectRepeats()));
 	}
 
 	private void setVisibility(int vis){
@@ -71,6 +75,14 @@ public class WordActivity extends Activity implements OnClickListener{
 		answerText.setVisibility(vis);
 		btYes.setVisibility(vis);
 		btNo.setVisibility(vis);
+	}
+	
+	private void clickedAnswer(boolean isKnown){
+		if(isKnown) wordsList.get(index).correctIncrement();
+		else wordsList.get(index).incorrectIncrement();
+		DatabaseManager.getInstance().updateWord(wordsList.get(index));
+		setVisibility(View.INVISIBLE);
+		randomText();
 	}
 
 	    @Override
@@ -83,17 +95,12 @@ public class WordActivity extends Activity implements OnClickListener{
 	        	break;
 	        	
 	        case R.id.iYes:
-	            setVisibility(View.INVISIBLE);
-	            randomText();
+	        	clickedAnswer(true);
 	            break;
 	            
 	        case R.id.iNo:
-	        	setVisibility(View.INVISIBLE);
-	        	randomText();
-	            break;
-	       
-	        	 
-	       
+	        	clickedAnswer(false);
+	            break;   
 
 	        }
 
