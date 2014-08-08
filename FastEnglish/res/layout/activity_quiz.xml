@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/lhome"
+    
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
+   
+   
     android:background="@android:color/black"
     android:orientation="vertical" >
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
@@ -14,42 +14,130 @@
         android:layout_height="wrap_content"
         android:text="Quiz"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    
 
     <TextView
         android:id="@+id/tvQuizWord"
      	android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
-           android:layout_marginTop="5dp"
+         android:layout_marginTop="20dp"
         android:text="słowo do tłumaczenia"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+   
+    <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  >
 
     <ImageView
-        android:id="@+id/iQuizAnswerA"
-        android:layout_width="match_parent"
+       android:id="@+id/iQuizAnswerA"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+          android:layout_marginTop="5dp"
+    android:gravity="center"
+    android:layout_gravity="center"
         android:src="@drawable/btcle" />
 
-    <ImageView
-         android:id="@+id/iQuizAnswerB"
+    <TextView
+      android:id="@+id/iQuizAnswerAtxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-          android:src="@drawable/btcle"  />
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
+   
+     <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/iQuizAnswerC"
-        android:layout_width="match_parent"
+        android:id="@+id/iQuizAnswerB"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btcle"  />
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btcle" />
+
+    <TextView
+        android:id="@+id/iQuizAnswerBtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
+   
+    
+
+
+   
+     <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
-       android:id="@+id/iQuizAnswerD"
-        android:layout_width="match_parent"
+       android:id="@+id/iQuizAnswerC"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btcle"  />
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btcle" />
 
+    <TextView
+         android:id="@+id/iQuizAnswerCtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
+    
+      <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+     android:id="@+id/iQuizAnswerD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btcle" />
+
+    <TextView
+         android:id="@+id/iQuizAnswerDtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
+</LinearLayout>
 </LinearLayout>
