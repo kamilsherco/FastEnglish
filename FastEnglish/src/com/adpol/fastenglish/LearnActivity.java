@@ -1,6 +1,7 @@
 package com.adpol.fastenglish;
 
 
+import com.adpol.fastenglish.database.DatabaseManager;
 import com.example.fastenglish.R;
 
 import android.app.Activity;
@@ -11,8 +12,12 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LearnActivity extends Activity implements OnClickListener   {
+	
+	private final int REPEAT = 0;
+	private final int LEARN = 1;
 
 	private ImageView replay;
     private ImageView learnNew;
@@ -60,16 +65,21 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        switch(arg0.getId())
 	        {
 	        case R.id.iReplay:
-	        	Intent replay = new Intent(this, WordActivity.class);
-	            startActivity(replay);
-	       
+	        	if(DatabaseManager.getInstance().isNothingLearned()){
+	        		Toast.makeText(getBaseContext(), "Nie nauczy³eœ siê jeszcze ¿adnych s³ów. PrzejdŸ najpierw do dzia³u \"Ucz siê nowych.\"", Toast.LENGTH_LONG).show();
+	        	}
+	        	else{
+		        	Intent repeat = new Intent(this, WordActivity.class);
+		        	repeat.putExtra("lastActivity", REPEAT);
+		            startActivity(repeat);
+	        	}
 
 	        break;
-	        case R.id.iLearnNew:
-	            
+	        case R.id.iLearnNew:	            
 	        	Intent lernnew = new Intent(this, WordActivity.class);
+	        	lernnew.putExtra("lastActivity", LEARN);
+	        	lernnew.putExtra("newWords", Integer.parseInt(countNewWords.getText().toString()));
 	            startActivity(lernnew);
-
 
 	            break;
 	        case R.id.iPolEng:

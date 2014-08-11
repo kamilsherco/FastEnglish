@@ -84,4 +84,46 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}        
     }
+    
+    public boolean isNothingLearned(){
+    	int countOf=-1;
+    	try {
+    		countOf = (int) getHelper().getWordDao().queryBuilder().where().eq("isLearned", true).countOf();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	//Log.d("Liczba", Integer.toString(countOf));
+    	if(countOf==0) return true;
+    	return false;
+    }
+    
+    public List<Word> getNewRandomWords(int number){
+    	List<Word> wordsList = null;
+    	int count=-1;
+    	try {
+    		count = (int) getHelper().getWordDao().queryBuilder().where().eq("isLearned", false).countOf();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	if(number >= count){
+    		try {
+				wordsList = getHelper().getWordDao().queryBuilder().where().eq("isLearned", false).query();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		return wordsList;
+    	}
+    	else{
+    		try {
+    			wordsList = getHelper().getWordDao().queryBuilder().orderByRaw("RANDOM()").limit(number).where().eq("isLearned", false).query();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		return wordsList;
+    	}
+    }
 }

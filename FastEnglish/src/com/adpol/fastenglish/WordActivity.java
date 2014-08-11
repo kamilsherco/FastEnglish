@@ -19,6 +19,9 @@ import android.widget.TextView;
 
 public class WordActivity extends Activity implements OnClickListener{
 	
+	private final int REPEAT = 0;
+	private final int LEARN = 1;
+	
 	private int index;
 	
 	private ImageView showWord;
@@ -38,9 +41,15 @@ public class WordActivity extends Activity implements OnClickListener{
 		initialize();
 	}
 	
-	private void initialize(){	
+	private void initialize(){			
+		Bundle bundle = getIntent().getExtras();
 		
-		wordsList = DatabaseManager.getInstance().getAllWords();		
+		int lastActivity = bundle.getInt("lastActivity");
+		int numberOfWords = bundle.getInt("newWords");
+		
+		wordsList = DatabaseManager.getInstance().getNewRandomWords(numberOfWords);
+		
+		//wordsList = DatabaseManager.getInstance().getAllWords();		
 		
 		wordText = (TextView) findViewById(R.id.txWordText);
 		answerText = (TextView) findViewById(R.id.txAnswer);
