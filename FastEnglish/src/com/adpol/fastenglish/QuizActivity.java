@@ -32,8 +32,8 @@ public class QuizActivity extends Activity implements OnClickListener  {
     private int index;
     private int answerPos;
     
-    private ArrayList<Integer> listPos = new ArrayList<Integer>();
-    private ArrayList<Integer> listAnswer = new ArrayList<Integer>();
+    private ArrayList<Integer> listPos ;
+    private ArrayList<Integer> listAnswer ;
     private List<Word> wordsList;
     
   
@@ -45,6 +45,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
+		wordsList = DatabaseManager.getInstance().getAllWords();
 		initialize();
 		
 	}
@@ -52,8 +53,9 @@ public class QuizActivity extends Activity implements OnClickListener  {
 	void initialize()
     {
 
-		wordsList = DatabaseManager.getInstance().getAllWords();
-	
+		
+		listPos = new ArrayList<Integer>();
+		listAnswer = new ArrayList<Integer>();
 		
         answerA = (ImageView) findViewById(R.id.iQuizAnswerA);
         answerA.setOnClickListener(this);
@@ -117,27 +119,57 @@ public class QuizActivity extends Activity implements OnClickListener  {
 		
 	}
 	
-	private void setTextAnswer(int index,int answerPos)
+	private void setTextAnswer(int answerIndex,int answerPos)
 	{
 		
 		switch(answerPos){
 		case 0:
-			answerAtxt.setText(wordsList.get(index).getEnWord());
+			answerAtxt.setText(wordsList.get(answerIndex).getEnWord());
 			break;
 		case 1:
-			answerBtxt.setText(wordsList.get(index).getEnWord());
+			answerBtxt.setText(wordsList.get(answerIndex).getEnWord());
 			break;
 		case 2:
-			answerCtxt.setText(wordsList.get(index).getEnWord());
+			answerCtxt.setText(wordsList.get(answerIndex).getEnWord());
 			break;
 		case 3:
-			answerDtxt.setText(wordsList.get(index).getEnWord());
+			answerDtxt.setText(wordsList.get(answerIndex).getEnWord());
 			break;
 			
 		}
 	
 		
 	}
+	private void clearAnswer()
+	{
+		answerA.setImageResource(R.drawable.btcle);
+		answerB.setImageResource(R.drawable.btcle);
+		answerC.setImageResource(R.drawable.btcle);
+		answerD.setImageResource(R.drawable.btcle);
+		initialize();
+	
+	}
+	
+	private void showCorrectAnswer(int correct)
+	{
+		switch(correct){
+		case 0:
+			answerA.setImageResource(R.drawable.btshowcorrect);
+			break;
+		case 1:
+			answerB.setImageResource(R.drawable.btshowcorrect);
+			break;
+		case 2:
+			answerC.setImageResource(R.drawable.btshowcorrect);
+			break;
+		case 3:
+			answerD.setImageResource(R.drawable.btshowcorrect);
+			break;
+			
+		}
+		
+	}
+	
 	
 	
 
@@ -151,14 +183,36 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	
         	if(answerAtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
-        		answerA.setImageResource(R.drawable.btcorrect);
+        		
+        	answerA.setImageResource(R.drawable.btcorrect);
+      
+        	answerA.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                	clearAnswer();
+                	
+                }
+            }, 500);
         	
         	}
         	else
         	{
         		answerA.setImageResource(R.drawable.btfail);
+        		showCorrectAnswer(answerPos);
+        		answerA.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	clearAnswer();
+                    
+                    }
+                }, 1000);
+        		
         	
         	}
+        	
+        	
        
 
         break;
@@ -166,44 +220,98 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	if(answerBtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
         		answerB.setImageResource(R.drawable.btcorrect);
+        	   	answerB.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	clearAnswer();
+                    	
+                    }
+                }, 500);
         	
         	}
         	else
         	{
         		answerB.setImageResource(R.drawable.btfail);
+        		showCorrectAnswer(answerPos);
+        		answerB.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	clearAnswer();
+                    
+                    }
+                }, 1000);
+        		
         	
         	}
-            
-
+        	
             break;
         case R.id.iQuizAnswerC:
         	if(answerCtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
         		answerC.setImageResource(R.drawable.btcorrect);
+        	   	answerC.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	clearAnswer();
+                    	
+                    }
+                }, 500);
+        		
         	
         	}
         	else
         	{
         		answerC.setImageResource(R.drawable.btfail);
+        		showCorrectAnswer(answerPos);
+        		answerC.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	clearAnswer();
+                    
+                    }
+                }, 1000);
+        		
         	
         	}
         	  
-            
-
+        	
 
             break;
         case R.id.iQuizAnswerD:
         	if(answerDtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
         		answerD.setImageResource(R.drawable.btcorrect);
+        	   	answerD.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	clearAnswer();
+                    	
+                    }
+                }, 500);
+        		
+        		
         	
         	}
         	else
         	{
         		answerD.setImageResource(R.drawable.btfail);
+        		showCorrectAnswer(answerPos);
+        		answerD.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	clearAnswer();
+                    
+                    }
+                }, 1000);
+        		
         	
         	}
-        	
         	
         	break;
         }
