@@ -126,4 +126,15 @@ public class DatabaseManager {
     		return wordsList;
     	}
     }
+    
+    public List<Word> getLearnedWords(){
+    	List<Word> wordsList = null;
+    	try {
+			wordsList = getHelper().getWordDao().queryBuilder().where().eq("isLearned", true).query();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return wordsList;
+    }
 }

@@ -18,10 +18,12 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	
 	private final int REPEAT = 0;
 	private final int LEARN = 1;
+	
+	private boolean engPol = true;
 
 	private ImageView replay;
     private ImageView learnNew;
-    private ImageView PolEng;
+    private ImageView polEng;
     private ImageView change;
     private TextView countWords;
     private TextView learnCategories;
@@ -44,8 +46,8 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        learnNew = (ImageView) findViewById(R.id.iLearnNew);
 	        learnNew.setOnClickListener(this);
 
-	        PolEng = (ImageView) findViewById(R.id.iPolEng);
-	        PolEng.setOnClickListener(this);
+	        polEng = (ImageView) findViewById(R.id.iPolEng);
+	        polEng.setOnClickListener(this);
 
 	        change = (ImageView) findViewById(R.id.iChange);
 	        change.setOnClickListener(this);
@@ -71,6 +73,7 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        	else{
 		        	Intent repeat = new Intent(this, WordActivity.class);
 		        	repeat.putExtra("lastActivity", REPEAT);
+		        	repeat.putExtra("engPol", engPol);
 		            startActivity(repeat);
 	        	}
 
@@ -78,16 +81,17 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        case R.id.iLearnNew:	            
 	        	Intent lernnew = new Intent(this, WordActivity.class);
 	        	lernnew.putExtra("lastActivity", LEARN);
+	        	lernnew.putExtra("engPol", engPol);
 	        	lernnew.putExtra("newWords", Integer.parseInt(countNewWords.getText().toString()));
 	            startActivity(lernnew);
 
 	            break;
 	        case R.id.iPolEng:
-	        	  
-	            
-
-
+	        	if(engPol) polEng.setImageResource(R.drawable.btpoleng);
+	        	else polEng.setImageResource(R.drawable.btengpol);
+	        	engPol = !engPol;
 	            break;
+	            
 	        case R.id.iChange:
 	        	 
 	       

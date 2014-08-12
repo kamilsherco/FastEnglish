@@ -22,6 +22,8 @@ public class WordActivity extends Activity implements OnClickListener{
 	private final int REPEAT = 0;
 	private final int LEARN = 1;
 	
+	private boolean isEngPol;
+	
 	private int index;
 	
 	private ImageView showWord;
@@ -45,9 +47,14 @@ public class WordActivity extends Activity implements OnClickListener{
 		Bundle bundle = getIntent().getExtras();
 		
 		int lastActivity = bundle.getInt("lastActivity");
-		int numberOfWords = bundle.getInt("newWords");
+		isEngPol = bundle.getBoolean("engPol");
 		
-		wordsList = DatabaseManager.getInstance().getNewRandomWords(numberOfWords);
+		if(lastActivity == LEARN){
+			wordsList = DatabaseManager.getInstance().getNewRandomWords(bundle.getInt("newWords"));
+		}
+		else{
+			wordsList = DatabaseManager.getInstance().getLearnedWords();
+		}
 		
 		//wordsList = DatabaseManager.getInstance().getAllWords();		
 		
@@ -71,10 +78,21 @@ public class WordActivity extends Activity implements OnClickListener{
 	    randomText();
 	}
 	
+	private String returnFirstWord(){
+		if(isEngPol) return wordsList.get(index).getEnWord();
+		else return wordsList.get(index).getPlWord();
+	}
+	
+	private String returnSecondWord(){
+		if(isEngPol) return wordsList.get(index).getPlWord();
+		else return wordsList.get(index).getEnWord();
+	}
+	
 	private void randomText(){
 		index = new Random().nextInt(wordsList.size());
-		wordText.setText(wordsList.get(index).getEnWord());
-		answerText.setText(wordsList.get(index).getEnWord());
+		wordText.setText(returnFirstWord());
+		answerText.setText(returnSecondWord());
+		wordsList.get(index).setLearned(true);
 		Log.d("Poprawnych: ", Integer.toString(wordsList.get(index).getCorrectRepeats()));
 		Log.d("Niepoprawnych: ", Integer.toString(wordsList.get(index).getIncorrectRepeats()));
 	}
