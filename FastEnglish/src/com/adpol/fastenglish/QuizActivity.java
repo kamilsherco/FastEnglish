@@ -1,5 +1,6 @@
 package com.adpol.fastenglish;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,7 +11,7 @@ import com.example.fastenglish.R;
 import android.app.Activity;
 
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -29,21 +30,30 @@ public class QuizActivity extends Activity implements OnClickListener  {
     private TextView answerDtxt;
     
     private int index;
+    private int answerPos;
+    
+    private ArrayList<Integer> listPos = new ArrayList<Integer>();
+    private ArrayList<Integer> listAnswer = new ArrayList<Integer>();
     private List<Word> wordsList;
     
+  
+    
+    private int tempPos;
+    private int tempIndex;
     
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
 		initialize();
-		setTextAnswer();
+		
 	}
 	
 	void initialize()
     {
 
 		wordsList = DatabaseManager.getInstance().getAllWords();
+	
 		
         answerA = (ImageView) findViewById(R.id.iQuizAnswerA);
         answerA.setOnClickListener(this);
@@ -65,24 +75,67 @@ public class QuizActivity extends Activity implements OnClickListener  {
         answerDtxt = (TextView) findViewById(R.id.iQuizAnswerDtxt);
         
         
-        randomText(word);
+        randomTextAndPosition(word);
+        answerQue();
         
 
 
     }
 	
-	private void randomText(TextView answer){
+	private void randomTextAndPosition(TextView answer){
 		index = new Random().nextInt(wordsList.size());
-		answer.setText(wordsList.get(index).getEnWord());
+		answerPos=new Random().nextInt(4); 
+		answer.setText(wordsList.get(index).getPlWord());
 		
 	}
 	
-	private void setTextAnswer()
+	private void answerQue()
 	{
-		randomText(answerAtxt);
-		randomText(answerBtxt);
-		randomText(answerCtxt);
-		randomText(answerDtxt);
+		
+
+		setTextAnswer(index,answerPos);
+		
+		listPos.add(answerPos);
+		listAnswer.add(index);
+	
+		while (listPos.size() < 4) {
+
+			tempPos = new Random().nextInt(4);
+			tempIndex =new Random().nextInt(wordsList.size());
+		    if (!listPos.contains(tempPos) && !listAnswer.contains(tempIndex)) {
+		    	  setTextAnswer(tempIndex,tempPos);
+		    	
+		    	listPos.add(tempPos);
+		    	listAnswer.add(tempIndex);
+		    }
+		}
+	
+		
+		
+	    
+		
+		
+	}
+	
+	private void setTextAnswer(int index,int answerPos)
+	{
+		
+		switch(answerPos){
+		case 0:
+			answerAtxt.setText(wordsList.get(index).getEnWord());
+			break;
+		case 1:
+			answerBtxt.setText(wordsList.get(index).getEnWord());
+			break;
+		case 2:
+			answerCtxt.setText(wordsList.get(index).getEnWord());
+			break;
+		case 3:
+			answerDtxt.setText(wordsList.get(index).getEnWord());
+			break;
+			
+		}
+	
 		
 	}
 	
@@ -96,7 +149,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
         {
         case R.id.iQuizAnswerA:
         	
-        	if(answerAtxt.getText().toString().equals(word.getText().toString()))
+        	if(answerAtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
         		answerA.setImageResource(R.drawable.btcorrect);
         	
@@ -110,7 +163,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 
         break;
         case R.id.iQuizAnswerB:
-        	if(answerBtxt.getText().toString().equals(word.getText().toString()))
+        	if(answerBtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
         		answerB.setImageResource(R.drawable.btcorrect);
         	
@@ -124,7 +177,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 
             break;
         case R.id.iQuizAnswerC:
-        	if(answerCtxt.getText().toString().equals(word.getText().toString()))
+        	if(answerCtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
         		answerC.setImageResource(R.drawable.btcorrect);
         	
@@ -140,7 +193,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 
             break;
         case R.id.iQuizAnswerD:
-        	if(answerDtxt.getText().toString().equals(word.getText().toString()))
+        	if(answerDtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
         	{
         		answerD.setImageResource(R.drawable.btcorrect);
         	
