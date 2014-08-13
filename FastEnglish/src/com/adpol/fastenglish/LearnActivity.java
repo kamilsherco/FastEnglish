@@ -82,13 +82,17 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        	}
 
 	        break;
-	        case R.id.iLearnNew:	            
-	        	Intent lernnew = new Intent(this, WordActivity.class);
-	        	lernnew.putExtra("lastActivity", LEARN);
-	        	lernnew.putExtra("engPol", engPol);
-	        	lernnew.putExtra("newWords", Integer.parseInt(countNewWords.getText().toString()));
-	            startActivity(lernnew);
-
+	        case R.id.iLearnNew:	 
+	        	if(DatabaseManager.getInstance().isEverythingLearned()){
+	        		Toast.makeText(getBaseContext(), "Wszystkie s³owa z podanych kategorii zosta³y przez Ciebie wyuczone. Mo¿esz je teraz utrwalaæ w dziale \"Powtarzaj.\"", Toast.LENGTH_LONG).show();
+	        	}
+	        	else{
+		        	Intent lernnew = new Intent(this, WordActivity.class);
+		        	lernnew.putExtra("lastActivity", LEARN);
+		        	lernnew.putExtra("engPol", engPol);
+		        	lernnew.putExtra("newWords", Integer.parseInt(countNewWords.getText().toString()));
+		            startActivity(lernnew);
+	        	}
 	            break;
 	        case R.id.iPolEng:
 	        	if(engPol) polEngtxt.setText("POL->ENG");

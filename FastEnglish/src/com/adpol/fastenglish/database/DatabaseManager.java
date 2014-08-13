@@ -98,6 +98,19 @@ public class DatabaseManager {
     	return false;
     }
     
+    public boolean isEverythingLearned(){
+    	int countOf=-1;
+    	try {
+    		countOf = (int) getHelper().getWordDao().queryBuilder().where().eq("isLearned", false).countOf();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	//Log.d("Liczba", Integer.toString(countOf));
+    	if(countOf==0) return true;
+    	return false;
+    }
+    
     public List<Word> getNewRandomWords(int number){
     	List<Word> wordsList = null;
     	int count=-1;

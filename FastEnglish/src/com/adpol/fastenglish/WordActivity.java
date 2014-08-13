@@ -1,5 +1,7 @@
 package com.adpol.fastenglish;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,13 +18,16 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class WordActivity extends Activity implements OnClickListener{
 	
 	private final int REPEAT = 0;
 	private final int LEARN = 1;
+	private int activityType = REPEAT;
 	
 	private boolean isEngPol;
+	private boolean areWordsLearned = false;
 	
 	private int index;
 	
@@ -34,6 +39,7 @@ public class WordActivity extends Activity implements OnClickListener{
     private TextView answerText;   
     
     private List<Word> wordsList;
+    private List<Word> learnedWordsList;
    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +56,9 @@ public class WordActivity extends Activity implements OnClickListener{
 		isEngPol = bundle.getBoolean("engPol");
 		
 		if(lastActivity == LEARN){
+			activityType = LEARN;
 			wordsList = DatabaseManager.getInstance().getNewRandomWords(bundle.getInt("newWords"));
+			learnedWordsList = new LinkedList<Word>();
 		}
 		else{
 			wordsList = DatabaseManager.getInstance().getLearnedWords();
@@ -108,7 +116,15 @@ public class WordActivity extends Activity implements OnClickListener{
 		if(isKnown) wordsList.get(index).correctIncrement();
 		else wordsList.get(index).incorrectIncrement();
 		DatabaseManager.getInstance().updateWord(wordsList.get(index));
+		if(activityType == LEARN && areWordsLearned == false){
+			learnedWordsList.add(wordsList.remove(index));			
+		}
 		setVisibility(View.INVISIBLE);
+		if(wordsList.size()==0 && areWordsLearned == false){
+			areWordsLearned = true;
+			Toast.makeText(getBaseContext(), "Iloœæ podanych s³ów zosta³a wyuczona. Mo¿esz je teraz powtarzaæ lub wróciæ do poprzedniego widoku i dodaæ nowe s³owa do nauki.", Toast.LENGTH_LONG).show();
+			wordsList = learnedWordsList;
+		}
 		randomText();
 	}
 
