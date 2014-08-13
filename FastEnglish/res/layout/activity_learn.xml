@@ -77,12 +77,31 @@
 
         </LinearLayout>
 
-<ImageView
-        android:id="@+id/iPolEng"
-        android:layout_width="match_parent"
+
+<FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+           android:id="@+id/iPolEng"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btengpol" />
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btcle" />
+
+    <TextView
+        android:id="@+id/tvPolEngtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
 <LinearLayout
     android:orientation="horizontal"
      android:layout_width="match_parent"

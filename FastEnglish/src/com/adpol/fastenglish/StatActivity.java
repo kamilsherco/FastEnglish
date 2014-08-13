@@ -47,8 +47,8 @@ public class StatActivity extends Activity implements OnClickListener  {
 		CountReplayNo= (TextView) findViewById(R.id.txCountReplayNo);
 		CountQuiz= (TextView) findViewById(R.id.txCountQuiz);
 		CountQuizPoints= (TextView) findViewById(R.id.txCountQuizPoints);
-		graph = (ImageView) findViewById(R.id.iGraph);
-		graph.setOnClickListener(this);
+	//	graph = (ImageView) findViewById(R.id.iGraph);
+	//	graph.setOnClickListener(this);
        
         
 
@@ -59,7 +59,7 @@ public class StatActivity extends Activity implements OnClickListener  {
 	        // TODO Auto-generated method stub
 	        switch(arg0.getId())
 	        {
-	        case R.id.iGraph:
+	      //  case R.id.iGraph:
 	        	
 	        }
 	  }

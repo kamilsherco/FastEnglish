@@ -20,11 +20,12 @@ public class SettingsActivity extends Activity implements OnClickListener  {
     private ImageView changeLanguage;
     private ImageView checkUpdate;
     private TextView countWords;
+    private TextView changeLanguagetxt;
     private CheckBox categoryA;
     private CheckBox categoryB;
     private CheckBox categoryC;
     private CheckBox categoryD;
-    
+	private boolean engPol = true;
     
     
 	@Override
@@ -57,7 +58,11 @@ public class SettingsActivity extends Activity implements OnClickListener  {
         categoryB = (CheckBox)findViewById(R.id.cbB);
         categoryC = (CheckBox)findViewById(R.id.cbC);
         categoryD = (CheckBox)findViewById(R.id.cbD);
-       
+        
+        changeLanguagetxt=(TextView) findViewById(R.id.tvchangeLanguagetxt);
+        if(engPol) changeLanguagetxt.setText("POL->ENG");
+    	else changeLanguagetxt.setText("ENG->POL");
+    	engPol = !engPol;
         
 
 
@@ -81,7 +86,9 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 
             break;
         case R.id.ichangeLanguage:
-        	  
+        	if(engPol) changeLanguagetxt.setText("POL->ENG");
+        	else changeLanguagetxt.setText("ENG->POL");
+        	engPol = !engPol;
             
 
 

@@ -9,7 +9,7 @@
     android:orientation="horizontal"
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
-     
+       android:layout_gravity="center"
      android:gravity="center"
      android:layout_marginTop="5dp"
      android:weightSum="6"
@@ -19,6 +19,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
         android:layout_weight="4" 
         android:text="Łaczny czas spędzony na nauce: " />
 
@@ -34,7 +35,7 @@
     android:orientation="horizontal"
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
-   
+     android:layout_gravity="center"
       android:gravity="center"
      android:layout_marginTop="5dp"
      android:weightSum="6"
@@ -44,6 +45,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
         android:layout_weight="4" 
         android:text="Łącznie nauczonych słówek: " />
 
@@ -60,7 +62,7 @@
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
-      
+     android:gravity="center"
      android:layout_marginTop="5dp"
      android:weightSum="6"
      >
@@ -69,6 +71,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
         android:layout_weight="4" 
         android:text="Łaczna ilość prowtórek: " />
 
@@ -86,6 +89,7 @@
     android:layout_height="wrap_content"
      android:layout_gravity="center"
      android:layout_marginTop="5dp"
+       android:gravity="center"
      android:weightSum="6"
      >
      
@@ -93,6 +97,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
         android:layout_weight="4" 
         android:text="Znanych słów w powtórkach: " />
 
@@ -110,6 +115,7 @@
     android:layout_height="wrap_content"
      android:layout_gravity="center"
      android:layout_marginTop="5dp"
+       android:gravity="center"
      android:weightSum="6"
      >
      
@@ -117,6 +123,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
         android:layout_weight="4" 
         android:text="Nieznanych słów w powtórkach: " />
 
@@ -133,6 +140,7 @@
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
+       android:gravity="center"
      android:layout_marginTop="5dp"
      android:weightSum="6"
      >
@@ -141,6 +149,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
         android:layout_weight="4" 
         android:text="Łaczna ilość zagrań w quiz: " />
 
@@ -157,6 +166,7 @@
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
+       android:gravity="center"
      android:layout_marginTop="5dp"
      android:weightSum="6"
      >
@@ -165,6 +175,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_weight="4" 
         android:text="Łacznie punktów zdobytych w quizie: " />
 
@@ -176,11 +187,11 @@
         android:text="TextView" />
     
 </LinearLayout>
-<ImageView
+<!-- <ImageView
         android:id="@+id/iGraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btgraph" />
+        android:src="@drawable/btgraph" /> -->
 
 </LinearLayout>

@@ -92,12 +92,31 @@
           android:textAppearance="?android:attr/textAppearanceMedium" 
         android:text="Język: " />
 
+    
+    
+    <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <ImageView
-        android:id="@+id/ichangeLanguage"
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
+             android:id="@+id/ichangeLanguage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/btpoleng" />
+        android:layout_marginTop="5dp"
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btcle" />
+
+    <TextView
+       android:id="@+id/tvchangeLanguagetxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
     
       <ImageView
         android:id="@+id/icheckUpdate"

@@ -26,6 +26,7 @@ public class LearnActivity extends Activity implements OnClickListener   {
     private ImageView polEng;
     private ImageView change;
     private TextView countWords;
+    private TextView polEngtxt;
     private TextView learnCategories;
     private EditText countNewWords;
 	@Override
@@ -55,7 +56,10 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        countWords= (TextView) findViewById(R.id.tvLeanrCountWords);
 	        learnCategories= (TextView) findViewById(R.id.tvLearnCategories);
 	        countNewWords = (EditText) findViewById(R.id.edLearnNewWords);
-	        
+	        polEngtxt= (TextView) findViewById(R.id.tvPolEngtxt);
+	        if(engPol) polEngtxt.setText("POL->ENG");
+        	else polEngtxt.setText("ENG->POL");
+        	engPol = !engPol;
 
 
 	    }
@@ -87,8 +91,8 @@ public class LearnActivity extends Activity implements OnClickListener   {
 
 	            break;
 	        case R.id.iPolEng:
-	        	if(engPol) polEng.setImageResource(R.drawable.btpoleng);
-	        	else polEng.setImageResource(R.drawable.btengpol);
+	        	if(engPol) polEngtxt.setText("POL->ENG");
+	        	else polEngtxt.setText("ENG->POL");
 	        	engPol = !engPol;
 	            break;
 	            
