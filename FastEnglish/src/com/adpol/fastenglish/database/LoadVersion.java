@@ -9,15 +9,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.adpol.fastenglish.MainActivity;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 public class LoadVersion extends AsyncTask<String, String, String> {
 	
 	/**
      * Before starting background thread Show Progress Dialog
      * */
+	
 	
 	 // Progress Dialog
    // private ProgressDialog pDialog;
@@ -50,6 +57,8 @@ public class LoadVersion extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        AlertDialog alertDialog;
+        
       /*  pDialog = new ProgressDialog(currentContext);
         pDialog.setMessage("Loading products. Please wait...");
         pDialog.setIndeterminate(false);
@@ -100,13 +109,8 @@ public class LoadVersion extends AsyncTask<String, String, String> {
                     // adding HashList to ArrayList
                  versionArray.add(map);
                 }
-                if(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)) == DatabaseManager.getInstance().getVersionById(VERSION_ID).getVersion()){
-                	Log.d("Version : ", "To samo, nie aktualizujemy");
-                } else{
-                	Log.d("Version : ", "Nie to samo, aktualizujemy");
-                	new LoadAllWords().execute();
-                	DatabaseManager.getInstance().updateVersion(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
-                }
+                
+               
                 
             } else {               
             	System.out.println("ERRRR");
@@ -123,6 +127,26 @@ public class LoadVersion extends AsyncTask<String, String, String> {
      * After completing background task Dismiss the progress dialog
      * **/
     protected void onPostExecute(String file_url) {
+    	Log.d("Version Post: ", versionArray.toString());
+    	 if(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)) == DatabaseManager.getInstance().getVersionById(VERSION_ID).getVersion()){
+         	Log.d("Version : ", "To samo, nie aktualizujemy");
+         	if(!Update.isAutomatic()){
+         		Update.toastNoUpdates();
+         	}
+         	//Update.continueUpdate();
+         } else{
+         	Log.d("Version : ", "Nie to samo, aktualizujemy");
+         	if(Update.isAutomatic()){
+         		Update.continueUpdate(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
+         	}
+         	else{
+         		new LoadAllWords().execute();
+         		DatabaseManager.getInstance().updateVersion(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
+         	}
+         	//new LoadAllWords().execute();
+         	//DatabaseManager.getInstance().updateVersion(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
+         }
+    	//Update.continueUpdate();
         // dismiss the dialog after getting all products
        // pDialog.dismiss();
         // updating UI from Background Thread

@@ -3,8 +3,15 @@ package com.adpol.fastenglish;
 
 import com.example.fastenglish.R;
 import com.adpol.fastenglish.database.*;
+
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -25,13 +32,27 @@ public class MainActivity extends Activity implements OnClickListener {
 		DatabaseManager.init(this);	
 		//DatabaseManager.getInstance().updateVersion(0); //Wyzerowanie wersji
 		 // Loading products in Background Thread
-		new LoadVersion().execute();
+		//if(isOnline()) new LoadVersion().execute();
+		initialize();
+
+		Update.update(this, true);
+
 		//new LoadAllWords().execute();
 		Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));
 		//Log.d("Wielkosc bazy wersji: ", Integer.toString(DatabaseManager.getInstance().getAllVersions().get(0).getVersion()));
 		Log.d("Wersja: ", Integer.toString(DatabaseManager.getInstance().getVersionById(1).getVersion()));
-		initialize();
+		
 	}
+	
+	/*public static boolean isOnline() {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}*/
 
     void initialize()
     {
@@ -51,6 +72,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
     }
 
+    
+    
 
     @Override
     public void onClick(View arg0) {

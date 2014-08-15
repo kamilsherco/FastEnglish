@@ -1,5 +1,6 @@
 package com.adpol.fastenglish;
 
+import com.adpol.fastenglish.database.Update;
 import com.example.fastenglish.R;
 
 import android.app.Activity;
@@ -11,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class SettingsActivity extends Activity implements OnClickListener  {
@@ -21,10 +24,12 @@ public class SettingsActivity extends Activity implements OnClickListener  {
     private ImageView checkUpdate;
     private TextView countWords;
     private TextView changeLanguagetxt;
-    private CheckBox categoryA;
-    private CheckBox categoryB;
-    private CheckBox categoryC;
-    private CheckBox categoryD;
+    private CheckBox categorySelect;
+    private int selectorChecbox;
+   
+    private LinearLayout layoutCategories;
+    private ScrollView scrollCategories;
+    private  CheckBox categories;
 	private boolean engPol = true;
     
     
@@ -54,16 +59,27 @@ public class SettingsActivity extends Activity implements OnClickListener  {
         
         countWords= (TextView) findViewById(R.id.tvSettingsCountWords);
         
-        categoryA = (CheckBox)findViewById(R.id.cbA);
-        categoryB = (CheckBox)findViewById(R.id.cbB);
-        categoryC = (CheckBox)findViewById(R.id.cbC);
-        categoryD = (CheckBox)findViewById(R.id.cbD);
+
+      
+        layoutCategories = (LinearLayout) findViewById(R.id.llCategories);
+        scrollCategories =  (ScrollView) findViewById(R.id.svCategories);
+        
+      
         
         changeLanguagetxt=(TextView) findViewById(R.id.tvchangeLanguagetxt);
         if(engPol) changeLanguagetxt.setText("POL->ENG");
     	else changeLanguagetxt.setText("ENG->POL");
     	engPol = !engPol;
-        
+    	
+    	for(int i = 0; i < 20; i++) {
+            categories = new CheckBox(this);
+            categories.setId(i);
+            categories.setText("Kategoria  "+i);
+            layoutCategories.addView(categories);
+           }
+    	
+    	selectorChecbox=2;
+    	categorySelect = (CheckBox)findViewById(selectorChecbox);
 
 
     }
@@ -94,8 +110,8 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 
             break;
         case R.id.icheckUpdate:
-        	 
-       
+        	 Update.update(this, false);
+        	 break;
 
         }
 

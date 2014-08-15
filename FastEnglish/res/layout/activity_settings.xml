@@ -13,31 +13,26 @@
         android:text="Kategorie do nauki:"
         android:textAppearance="?android:attr/textAppearanceMedium"  />
 
+
+   <ScrollView
+        android:id="@+id/svCategories"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" >
+
+        <LinearLayout
+            android:id="@+id/llCategories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
    
 
-    <CheckBox
-        android:id="@+id/cbA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="A" />
+    
+   
+  
+        </LinearLayout>
+    </ScrollView>
 
-    <CheckBox
-        android:id="@+id/cbB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="B" />
-
-    <CheckBox
-        android:id="@+id/cbC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C" />
-
-    <CheckBox
-        android:id="@+id/cbD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="D" />
     <LinearLayout 
    	
             android:layout_width="match_parent"

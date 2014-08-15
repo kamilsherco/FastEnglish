@@ -135,6 +135,7 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
      * After completing background task Dismiss the progress dialog
      * **/
     protected void onPostExecute(String file_url) {
+    	Update.updateCompleted();
         // dismiss the dialog after getting all products
        // pDialog.dismiss();
         // updating UI from Background Thread
