@@ -29,6 +29,9 @@ public class QuizActivity extends Activity implements OnClickListener  {
     private TextView answerBtxt;
     private TextView answerCtxt;
     private TextView answerDtxt;
+    private TextView pointsWin;
+    private TextView pointsView;
+    
     
     private int index;
     private int answerPos;
@@ -43,7 +46,13 @@ public class QuizActivity extends Activity implements OnClickListener  {
     private String selectAnswer;
     private String failAnswer;
     
-  
+    private boolean answerAclicked;
+    private boolean answerBclicked;
+    private boolean answerCclicked;
+    private boolean answerDclicked;
+    private boolean answerClickPermission;
+    
+    private int points;
     
     
     
@@ -59,7 +68,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 	void initialize()
     {
 
-		
+		points=20;
 		listPos = new ArrayList<Integer>();
 		listAnswer = new ArrayList<Integer>();
 		
@@ -82,8 +91,21 @@ public class QuizActivity extends Activity implements OnClickListener  {
         answerCtxt = (TextView) findViewById(R.id.iQuizAnswerCtxt);
         answerDtxt = (TextView) findViewById(R.id.iQuizAnswerDtxt);
         
+        pointsView=(TextView) findViewById(R.id.tvQuizPoints);
+        pointsView.setText("Punkty do zdobycia: "+points);
+        pointsView.setVisibility(View.VISIBLE);
+        
+        pointsWin=(TextView) findViewById(R.id.tvQuizPointsWin);
+        pointsWin.setVisibility(View.INVISIBLE);
+        
         prefs = getSharedPreferences("prefs", 0);
         engPol= prefs.getBoolean("engPol", true);
+        
+        answerAclicked=false;
+		answerBclicked=false;
+		answerCclicked=false;
+		answerDclicked=false;
+		answerClickPermission=true;
         
         randomTextAndPosition(word);
         answerQue();
@@ -189,33 +211,25 @@ public class QuizActivity extends Activity implements OnClickListener  {
 		answerB.setImageResource(R.drawable.btcle);
 		answerC.setImageResource(R.drawable.btcle);
 		answerD.setImageResource(R.drawable.btcle);
+		
 		initialize();
 	
 	}
 	
-	private void showCorrectAnswer(int correct)
+	private void showWinPoints()
 	{
-		switch(correct){
-		case 0:
-			answerA.setImageResource(R.drawable.btshowcorrect);
-			break;
-		case 1:
-			answerB.setImageResource(R.drawable.btshowcorrect);
-			break;
-		case 2:
-			answerC.setImageResource(R.drawable.btshowcorrect);
-			break;
-		case 3:
-			answerD.setImageResource(R.drawable.btshowcorrect);
-			break;
-			
-		}
+		pointsView.setVisibility(View.INVISIBLE);
+    	pointsWin.setText("Zdobyte punkty to : "+points+" !!!");
+    	pointsWin.setVisibility(View.VISIBLE);
 		
 	}
 	
+	private void updatePoints()
+	{
+		points=points-5;
+		pointsView.setText("Punkty do zdobycia: "+points);
+	}
 	
-	
-
 
     @Override
     public void onClick(View arg0) {
@@ -234,25 +248,35 @@ public class QuizActivity extends Activity implements OnClickListener  {
         switch(arg0.getId())
         {
         case R.id.iQuizAnswerA:
-        	
+        	if(!answerAclicked && answerClickPermission)
+        	{
         	if(answerAtxt.getText().toString().equals(selectAnswer))
         	{
         		
         	answerA.setImageResource(R.drawable.btcorrect);
-      
+        	answerAclicked=true;
+        	answerClickPermission=false;
+        	
+        	showWinPoints();
+        	
         	answerA.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
+                	
+                	
                 	clearAnswer();
                 	
                 }
-            }, 500);
+            }, 1500);
         	
         	}
         	else
         	{
         		answerA.setImageResource(R.drawable.btfail);
+        		answerAclicked=true;
+        		updatePoints();
+        		
         		failAnswer=answerAtxt.getText().toString();
         		
         	   	if(engPol)
@@ -276,14 +300,22 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	
         	}
         	
-        	
+        	}
        
 
         break;
         case R.id.iQuizAnswerB:
+        	
+        	if(!answerBclicked && answerClickPermission)
+        	{
         	if(answerBtxt.getText().toString().equals(selectAnswer))
         	{
         		answerB.setImageResource(R.drawable.btcorrect);
+        		answerBclicked=true;
+        		answerClickPermission=false;
+        		
+        		showWinPoints();
+        		
         	   	answerB.postDelayed(new Runnable() {
 
                     @Override
@@ -291,13 +323,14 @@ public class QuizActivity extends Activity implements OnClickListener  {
                     	clearAnswer();
                     	
                     }
-                }, 500);
+                }, 1500);
         	
         	}
         	else
         	{
         		answerB.setImageResource(R.drawable.btfail);
-        		
+        		answerBclicked=true;
+        		updatePoints();
         		failAnswer=answerBtxt.getText().toString();
         		
         	   	if(engPol)
@@ -310,12 +343,20 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	   	}
         	
         	}
+        	}
         	
             break;
         case R.id.iQuizAnswerC:
+        	if(!answerCclicked && answerClickPermission)
+        	{
         	if(answerCtxt.getText().toString().equals(selectAnswer))
         	{
         		answerC.setImageResource(R.drawable.btcorrect);
+        		answerCclicked=true;
+        		answerClickPermission=false;
+        		
+        		showWinPoints();
+        		
         	   	answerC.postDelayed(new Runnable() {
 
                     @Override
@@ -323,16 +364,16 @@ public class QuizActivity extends Activity implements OnClickListener  {
                     	clearAnswer();
                     	
                     }
-                }, 500);
+                }, 1500);
         		
         	
         	}
         	else
         	{
         		answerC.setImageResource(R.drawable.btfail);
-        		
+        		answerCclicked=true;
         		failAnswer=answerCtxt.getText().toString();
-        		
+        		updatePoints();
         	   	if(engPol)
         		{
         		answerCtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(2))).getEnWord());
@@ -344,14 +385,22 @@ public class QuizActivity extends Activity implements OnClickListener  {
         		
         	
         	}
+        	}
         	  
         	
 
             break;
         case R.id.iQuizAnswerD:
+        	if(!answerDclicked && answerClickPermission)
+        	{
         	if(answerDtxt.getText().toString().equals(selectAnswer))
         	{
         		answerD.setImageResource(R.drawable.btcorrect);
+        		answerDclicked=true;
+        		answerClickPermission=false;
+        		
+        		showWinPoints();
+            	
         	   	answerD.postDelayed(new Runnable() {
 
                     @Override
@@ -359,7 +408,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
                     	clearAnswer();
                     	
                     }
-                }, 500);
+                }, 1500);
         		
         		
         	
@@ -367,8 +416,9 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	else
         	{
         		answerD.setImageResource(R.drawable.btfail);
+        		answerDclicked=true;
         		failAnswer=answerDtxt.getText().toString();
-        		
+        		updatePoints();
         	   	if(engPol)
         		{
         		answerDtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(3))).getEnWord());
@@ -380,6 +430,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
         		
         		
         	
+        	}
         	}
         	
         	break;

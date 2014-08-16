@@ -22,7 +22,14 @@
     android:gravity="center"
     android:background="@android:color/darker_gray"
     android:orientation="vertical" >
-
+<TextView
+        android:id="@+id/tvQuizPointsWin"
+     	android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+        android:text="Zdobyte"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
 
     <TextView
@@ -138,6 +145,16 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </FrameLayout>
+<TextView
+        android:id="@+id/tvQuizPoints"
+     	android:layout_width="match_parent"
+        
+        android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+         android:layout_marginLeft="5dp"
+        android:text="Punkty do zdobycia: 25 "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>
+
 </LinearLayout>
