@@ -9,6 +9,7 @@ import com.adpol.fastenglish.database.Word;
 import com.example.fastenglish.R;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 
 import android.os.Bundle;
 
@@ -31,15 +32,20 @@ public class QuizActivity extends Activity implements OnClickListener  {
     
     private int index;
     private int answerPos;
-    
+    private int tempPos;
+    private int tempIndex;
     private ArrayList<Integer> listPos ;
     private ArrayList<Integer> listAnswer ;
     private List<Word> wordsList;
     
+    private SharedPreferences prefs ;
+    private boolean engPol;
+    private String selectAnswer;
+    private String failAnswer;
+    
   
     
-    private int tempPos;
-    private int tempIndex;
+    
     
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -76,6 +82,8 @@ public class QuizActivity extends Activity implements OnClickListener  {
         answerCtxt = (TextView) findViewById(R.id.iQuizAnswerCtxt);
         answerDtxt = (TextView) findViewById(R.id.iQuizAnswerDtxt);
         
+        prefs = getSharedPreferences("prefs", 0);
+        engPol= prefs.getBoolean("engPol", true);
         
         randomTextAndPosition(word);
         answerQue();
@@ -88,6 +96,14 @@ public class QuizActivity extends Activity implements OnClickListener  {
 		index = new Random().nextInt(wordsList.size());
 		answerPos=new Random().nextInt(4); 
 		answer.setText(wordsList.get(index).getPlWord());
+		if(engPol)
+		{
+			answer.setText(wordsList.get(index).getEnWord());
+		}
+		else
+		{
+			answer.setText(wordsList.get(index).getPlWord());
+		}
 		
 	}
 	
@@ -124,16 +140,43 @@ public class QuizActivity extends Activity implements OnClickListener  {
 		
 		switch(answerPos){
 		case 0:
-			answerAtxt.setText(wordsList.get(answerIndex).getEnWord());
+			if(engPol)
+			{
+			answerAtxt.setText(wordsList.get(answerIndex).getPlWord());
+			}else
+			{
+				answerAtxt.setText(wordsList.get(answerIndex).getEnWord());
+			}
 			break;
 		case 1:
-			answerBtxt.setText(wordsList.get(answerIndex).getEnWord());
+			if(engPol)
+			{
+				answerBtxt.setText(wordsList.get(answerIndex).getPlWord());
+			}
+			else
+			{
+				answerBtxt.setText(wordsList.get(answerIndex).getEnWord());
+			}
 			break;
 		case 2:
-			answerCtxt.setText(wordsList.get(answerIndex).getEnWord());
+			if(engPol)
+			{
+				answerCtxt.setText(wordsList.get(answerIndex).getPlWord());
+			}
+			else
+			{
+				answerCtxt.setText(wordsList.get(answerIndex).getEnWord());
+			}
 			break;
 		case 3:
-			answerDtxt.setText(wordsList.get(answerIndex).getEnWord());
+			if(engPol)
+			{
+				answerDtxt.setText(wordsList.get(answerIndex).getPlWord());
+			}
+			else
+			{
+				answerDtxt.setText(wordsList.get(answerIndex).getEnWord());
+			}
 			break;
 			
 		}
@@ -177,11 +220,22 @@ public class QuizActivity extends Activity implements OnClickListener  {
     @Override
     public void onClick(View arg0) {
         // TODO Auto-generated method stub
+    	
+    	if(engPol)
+		{
+    		selectAnswer=wordsList.get(index).getPlWord();
+		}
+    	else
+    	{
+    		selectAnswer=wordsList.get(index).getEnWord();
+    	}
+    	
+    	
         switch(arg0.getId())
         {
         case R.id.iQuizAnswerA:
         	
-        	if(answerAtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
+        	if(answerAtxt.getText().toString().equals(selectAnswer))
         	{
         		
         	answerA.setImageResource(R.drawable.btcorrect);
@@ -199,7 +253,17 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	else
         	{
         		answerA.setImageResource(R.drawable.btfail);
-        		showCorrectAnswer(answerPos);
+        		failAnswer=answerAtxt.getText().toString();
+        		
+        	   	if(engPol)
+        		{
+        		answerAtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(0))).getEnWord());
+        		}
+        	   	else
+        	   	{
+        	   	answerAtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(0))).getPlWord());
+        	   	}
+        	/*	showCorrectAnswer(answerPos);
         		answerA.postDelayed(new Runnable() {
 
                     @Override
@@ -208,7 +272,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
                     
                     }
                 }, 1000);
-        		
+        		*/
         	
         	}
         	
@@ -217,7 +281,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 
         break;
         case R.id.iQuizAnswerB:
-        	if(answerBtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
+        	if(answerBtxt.getText().toString().equals(selectAnswer))
         	{
         		answerB.setImageResource(R.drawable.btcorrect);
         	   	answerB.postDelayed(new Runnable() {
@@ -233,22 +297,23 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	else
         	{
         		answerB.setImageResource(R.drawable.btfail);
-        		showCorrectAnswer(answerPos);
-        		answerB.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                    	clearAnswer();
-                    
-                    }
-                }, 1000);
         		
+        		failAnswer=answerBtxt.getText().toString();
+        		
+        	   	if(engPol)
+        		{
+        		answerBtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(1))).getEnWord());
+        		}
+        	   	else
+        	   	{
+        	   	answerBtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(1))).getPlWord());
+        	   	}
         	
         	}
         	
             break;
         case R.id.iQuizAnswerC:
-        	if(answerCtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
+        	if(answerCtxt.getText().toString().equals(selectAnswer))
         	{
         		answerC.setImageResource(R.drawable.btcorrect);
         	   	answerC.postDelayed(new Runnable() {
@@ -265,15 +330,17 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	else
         	{
         		answerC.setImageResource(R.drawable.btfail);
-        		showCorrectAnswer(answerPos);
-        		answerC.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                    	clearAnswer();
-                    
-                    }
-                }, 1000);
+        		
+        		failAnswer=answerCtxt.getText().toString();
+        		
+        	   	if(engPol)
+        		{
+        		answerCtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(2))).getEnWord());
+        		}
+        	   	else
+        	   	{
+        	   	answerCtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(2))).getPlWord());
+        	   	}
         		
         	
         	}
@@ -282,7 +349,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 
             break;
         case R.id.iQuizAnswerD:
-        	if(answerDtxt.getText().toString().equals(wordsList.get(index).getEnWord()))
+        	if(answerDtxt.getText().toString().equals(selectAnswer))
         	{
         		answerD.setImageResource(R.drawable.btcorrect);
         	   	answerD.postDelayed(new Runnable() {
@@ -300,15 +367,17 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	else
         	{
         		answerD.setImageResource(R.drawable.btfail);
-        		showCorrectAnswer(answerPos);
-        		answerD.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                    	clearAnswer();
-                    
-                    }
-                }, 1000);
+        		failAnswer=answerDtxt.getText().toString();
+        		
+        	   	if(engPol)
+        		{
+        		answerDtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(3))).getEnWord());
+        		}
+        	   	else
+        	   	{
+        	   	answerDtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(3))).getPlWord());
+        	   	}
+        		
         		
         	
         	}

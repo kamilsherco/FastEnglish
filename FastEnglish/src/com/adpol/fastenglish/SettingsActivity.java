@@ -5,6 +5,7 @@ import com.example.fastenglish.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,8 +31,8 @@ public class SettingsActivity extends Activity implements OnClickListener  {
     private LinearLayout layoutCategories;
     private ScrollView scrollCategories;
     private  CheckBox categories;
-	private boolean engPol = true;
-    
+	private boolean engPol ;
+	private SharedPreferences prefs ;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +68,14 @@ public class SettingsActivity extends Activity implements OnClickListener  {
       
         
         changeLanguagetxt=(TextView) findViewById(R.id.tvchangeLanguagetxt);
-        if(engPol) changeLanguagetxt.setText("POL->ENG");
-    	else changeLanguagetxt.setText("ENG->POL");
-    	engPol = !engPol;
+        prefs = getSharedPreferences("prefs", 0);
+        
+        engPol= prefs.getBoolean("engPol", true);
+        
+        
+        if(engPol) changeLanguagetxt.setText("ENG->POL");
+    	else changeLanguagetxt.setText("POL->ENG");
+        engPol=!engPol;
     	
     	for(int i = 0; i < 20; i++) {
             categories = new CheckBox(this);
@@ -102,10 +108,23 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 
             break;
         case R.id.ichangeLanguage:
-        	if(engPol) changeLanguagetxt.setText("POL->ENG");
-        	else changeLanguagetxt.setText("ENG->POL");
-        	engPol = !engPol;
-            
+        	
+        	
+        	if(engPol)
+    		{
+        		changeLanguagetxt.setText("ENG->POL");
+    		 SharedPreferences.Editor editor = prefs.edit();    
+	       	 editor.putBoolean("engPol", true);       
+	       	 editor.commit();
+    		}
+    	else 
+    		{
+    		changeLanguagetxt.setText("POL->ENG");
+    		 SharedPreferences.Editor editor = prefs.edit();    
+	       	 editor.putBoolean("engPol", false);       
+	       	 editor.commit();
+    		}
+    	engPol=!engPol;
 
 
             break;

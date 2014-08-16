@@ -6,6 +6,7 @@ import com.example.fastenglish.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,7 +20,7 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	private final int REPEAT = 0;
 	private final int LEARN = 1;
 	
-	private boolean engPol = true;
+	
 
 	private ImageView replay;
     private ImageView learnNew;
@@ -29,6 +30,9 @@ public class LearnActivity extends Activity implements OnClickListener   {
     private TextView polEngtxt;
     private TextView learnCategories;
     private EditText countNewWords;
+    
+    private SharedPreferences prefs ;
+    private boolean engPol;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -57,9 +61,15 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        learnCategories= (TextView) findViewById(R.id.tvLearnCategories);
 	        countNewWords = (EditText) findViewById(R.id.edLearnNewWords);
 	        polEngtxt= (TextView) findViewById(R.id.tvPolEngtxt);
-	        if(engPol) polEngtxt.setText("POL->ENG");
-        	else polEngtxt.setText("ENG->POL");
-        	engPol = !engPol;
+	        prefs = getSharedPreferences("prefs", 0);
+	        
+	        engPol= prefs.getBoolean("engPol", true);
+	        
+	        
+	        if(engPol) polEngtxt.setText("ENG->POL");
+        	else polEngtxt.setText("POL->ENG");
+	        engPol=!engPol;
+        	
 
 
 	    }
@@ -77,7 +87,7 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        	else{
 		        	Intent repeat = new Intent(this, WordActivity.class);
 		        	repeat.putExtra("lastActivity", REPEAT);
-		        	repeat.putExtra("engPol", engPol);
+		        	//repeat.putExtra("engPol", engPol);
 		            startActivity(repeat);
 	        	}
 
@@ -89,15 +99,32 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        	else{
 		        	Intent lernnew = new Intent(this, WordActivity.class);
 		        	lernnew.putExtra("lastActivity", LEARN);
-		        	lernnew.putExtra("engPol", engPol);
+		        	//lernnew.putExtra("engPol", engPol);
 		        	lernnew.putExtra("newWords", Integer.parseInt(countNewWords.getText().toString()));
 		            startActivity(lernnew);
 	        	}
 	            break;
 	        case R.id.iPolEng:
-	        	if(engPol) polEngtxt.setText("POL->ENG");
-	        	else polEngtxt.setText("ENG->POL");
-	        	engPol = !engPol;
+	        	if(engPol)
+	        		{
+	        		polEngtxt.setText("ENG->POL");
+	        		 SharedPreferences.Editor editor = prefs.edit();    
+	    	       	 editor.putBoolean("engPol", true);       
+	    	       	 editor.commit();
+	        		}
+	        	else 
+	        		{
+	        		polEngtxt.setText("POL->ENG");
+	        		 SharedPreferences.Editor editor = prefs.edit();    
+	    	       	 editor.putBoolean("engPol", false);       
+	    	       	 editor.commit();
+	        		}
+	        	engPol=!engPol;
+	        
+	        	
+	        	
+	          
+	       	
 	            break;
 	            
 	        case R.id.iChange:

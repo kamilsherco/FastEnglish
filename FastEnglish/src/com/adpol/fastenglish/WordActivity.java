@@ -11,6 +11,7 @@ import com.example.fastenglish.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,9 +52,12 @@ public class WordActivity extends Activity implements OnClickListener{
 	
 	private void initialize(){			
 		Bundle bundle = getIntent().getExtras();
-		
 		int lastActivity = bundle.getInt("lastActivity");
-		isEngPol = bundle.getBoolean("engPol");
+	//	isEngPol = bundle.getBoolean("engPol");
+		
+		SharedPreferences prefs = getSharedPreferences("prefs", 0);    
+		isEngPol = prefs.getBoolean("engPol", true);
+		
 		
 		if(lastActivity == LEARN){
 			activityType = LEARN;

@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,7 +25,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	    private ImageView learn;
 	    private ImageView stat;
 	    private ImageView settings;
-	
+	    private SharedPreferences settingsPref;
+	    private boolean isEngPol;
+	    private    boolean firstRun;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,8 +71,32 @@ public class MainActivity extends Activity implements OnClickListener {
 
         settings = (ImageView) findViewById(R.id.iUstawienia);
         settings.setOnClickListener(this);
+        
+        settingsPref = getSharedPreferences("prefs", 0);
+        firstRun = settingsPref.getBoolean("firstRun", true);
+        if ( firstRun )
+        {
+          firstRuner(); 
+              
+        }
+
+        
 
 
+    }
+    
+    void firstRuner()
+    {
+    	 settingsPref.edit().putBoolean("firstRun", false).commit();
+    	 
+    
+    	 SharedPreferences.Editor editor = settingsPref.edit();    
+    	 editor.putBoolean("engPol", true);       
+    	 editor.commit();
+    	 
+    	 
+    	 
+    	
     }
 
     
