@@ -37,8 +37,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		 // Loading products in Background Thread
 		//if(isOnline()) new LoadVersion().execute();
 		initialize();
-
-		Update.update(this, true);
+		if(settingsPref.getBoolean("firstUpdate", true)){
+			Update.firstUpdate(this);
+		}
+		else Update.update(this, true);
 
 		//new LoadAllWords().execute();
 		Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));
@@ -72,7 +74,7 @@ public class MainActivity extends Activity implements OnClickListener {
         settings = (ImageView) findViewById(R.id.iUstawienia);
         settings.setOnClickListener(this);
         
-        settingsPref = getSharedPreferences("prefs", 0);
+        settingsPref = getSharedPreferences("prefs", MODE_PRIVATE);
         firstRun = settingsPref.getBoolean("firstRun", true);
         if ( firstRun )
         {
@@ -91,15 +93,17 @@ public class MainActivity extends Activity implements OnClickListener {
     	 
     
     	 SharedPreferences.Editor editor = settingsPref.edit();    
-    	 editor.putBoolean("engPol", true);       
+    	 editor.putBoolean("engPol", true);      
+    	 //editor.putBoolean("firstUpdate", false);
     	 editor.commit();
-    	 
-    	 
-    	 
-    	
+  	
     }
 
-    
+    public void afterFirstUpdate(){
+    	SharedPreferences.Editor editor = settingsPref.edit();    
+   	 	editor.putBoolean("firstUpdate", false);
+   	 	editor.commit();
+    }
     
 
     @Override
@@ -134,8 +138,5 @@ public class MainActivity extends Activity implements OnClickListener {
         }
 
     }
-
-	
-
 
 }
