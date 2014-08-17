@@ -27,8 +27,15 @@ public class LoadVersion extends AsyncTask<String, String, String> {
 	
 	
 	 // Progress Dialog
-   // private ProgressDialog pDialog;
-    private Context currentContext = null;
+    private ProgressDialog pDialog;
+    private Context currentContext ;
+    
+    
+    public LoadVersion(Context cxt) {
+    	currentContext = cxt;
+    	pDialog = new ProgressDialog(currentContext);
+    }
+    
     
     // Creating JSON Parser object
     JSONParser jParser = new JSONParser();
@@ -59,11 +66,11 @@ public class LoadVersion extends AsyncTask<String, String, String> {
         super.onPreExecute();
         AlertDialog alertDialog;
         
-      /*  pDialog = new ProgressDialog(currentContext);
-        pDialog.setMessage("Loading products. Please wait...");
+     
+        pDialog.setMessage("Wczytywanie. Proszê czekaæ...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
-        pDialog.show();*/
+        pDialog.show();
     }
 
     /**
@@ -140,7 +147,7 @@ public class LoadVersion extends AsyncTask<String, String, String> {
          		Update.continueUpdate(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
          	}
          	else{
-         		new LoadAllWords().execute();
+         		new LoadAllWords(currentContext).execute();
          		DatabaseManager.getInstance().updateVersion(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
          	}
          	//new LoadAllWords().execute();
@@ -148,7 +155,7 @@ public class LoadVersion extends AsyncTask<String, String, String> {
          }
     	//Update.continueUpdate();
         // dismiss the dialog after getting all products
-       // pDialog.dismiss();
+        pDialog.dismiss();
         // updating UI from Background Thread
        /* runOnUiThread(new Runnable() {
             public void run() {

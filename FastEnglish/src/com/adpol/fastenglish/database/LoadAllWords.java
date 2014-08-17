@@ -30,12 +30,12 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
 	/// Progress Dialog
    private ProgressDialog pDialog;
     private Context currentContext;
-   /* 
+    
     public LoadAllWords(Context cxt) {
     	currentContext = cxt;
     	pDialog = new ProgressDialog(currentContext);
     }
-    */
+    
     
     // Creating JSON Parser object
     JSONParser jParser = new JSONParser();
@@ -66,11 +66,11 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-     /*   pDialog = new ProgressDialog(currentContext);
-        pDialog.setMessage("Loading products. Please wait...");
+      
+        pDialog.setMessage("Aktualizowanie s³ów. Proszê czekaæ...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
-        pDialog.show();*/
+        pDialog.show();
     }
 
     /**
@@ -143,7 +143,7 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
     protected void onPostExecute(String file_url) {
     	Update.updateCompleted();
         // dismiss the dialog after getting all products
-     //  pDialog.dismiss();
+      pDialog.dismiss();
         // updating UI from Background Thread
        /* runOnUiThread(new Runnable() {
             public void run() {

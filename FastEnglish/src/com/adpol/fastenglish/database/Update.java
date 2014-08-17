@@ -39,7 +39,7 @@ public class Update {
 		mContext = context;		
 		if(isOnline()){
 			//showDialog();
-			new LoadVersion().execute();
+			new LoadVersion(mContext).execute();
 			//continueUpdate();
 		}
 		else if(!isAuto){
@@ -74,7 +74,7 @@ public class Update {
 
 	        public void onClick(DialogInterface dialog, int which) {
 	        	DatabaseManager.getInstance().updateVersion(version);
-	        	new LoadAllWords().execute();
+	        	new LoadAllWords(mContext).execute();
 	            dialog.dismiss();
 	        }
 
