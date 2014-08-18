@@ -3,6 +3,8 @@ package com.adpol.fastenglish;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.adpol.fastenglish.database.DatabaseManager;
 import com.adpol.fastenglish.database.Word;
@@ -11,7 +13,10 @@ import com.example.fastenglish.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,14 +57,22 @@ public class QuizActivity extends Activity implements OnClickListener  {
     private boolean answerDclicked;
     private boolean answerClickPermission;
     
-    private int points;
-    
-    
+    private float points;
+    private float pointsSum;
+    private Handler mUIHandler;
+    private TimerTask timerTask;
+    private Timer timer;
+    private int countQuiz;
+   
     
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
+		 prefs = getSharedPreferences("prefs", 0);
+		 pointsSum = prefs.getFloat("pointsSum",0.0f);
+		 countQuiz= prefs.getInt("countQuiz",0);
+		 countQuiz++;
 		wordsList = DatabaseManager.getInstance().getAllWords();
 		initialize();
 		
@@ -67,8 +80,9 @@ public class QuizActivity extends Activity implements OnClickListener  {
 	
 	void initialize()
     {
-
+		
 		points=20;
+		
 		listPos = new ArrayList<Integer>();
 		listAnswer = new ArrayList<Integer>();
 		
@@ -98,7 +112,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
         pointsWin=(TextView) findViewById(R.id.tvQuizPointsWin);
         pointsWin.setVisibility(View.INVISIBLE);
         
-        prefs = getSharedPreferences("prefs", 0);
+       
         engPol= prefs.getBoolean("engPol", true);
         
         answerAclicked=false;
@@ -109,8 +123,13 @@ public class QuizActivity extends Activity implements OnClickListener  {
         
         randomTextAndPosition(word);
         answerQue();
+      
+     
+        updatePointsTime();
+     
+       
         
-
+        
 
     }
 	
@@ -218,18 +237,60 @@ public class QuizActivity extends Activity implements OnClickListener  {
 	
 	private void showWinPoints()
 	{
+		
 		pointsView.setVisibility(View.INVISIBLE);
-    	pointsWin.setText("Zdobyte punkty to : "+points+" !!!");
+    	pointsWin.setText("Zdobyte punkty to : "+String.format( "%.2f", points )+" !!!");
+    	pointsSum=pointsSum+points;
+    	
     	pointsWin.setVisibility(View.VISIBLE);
 		
 	}
 	
 	private void updatePoints()
 	{
+		if(points>5)
+		{
 		points=points-5;
-		pointsView.setText("Punkty do zdobycia: "+points);
+		pointsView.setText("Punkty do zdobycia: "+String.format( "%.2f", points ));
+		}
+		
+		
 	}
-	
+	public void updatePointsTime()
+	{
+		 timer = new Timer();
+	        
+	        timerTask = new TimerTask() {
+	         @Override
+	         public void run() {
+	            //refresh your textview
+	        	 if(points>=0.1)
+	     	        	points=(float) (points-0.1);
+	        	 
+	        	 
+	         }
+	        };
+	       
+	        
+	        
+		 
+		
+	        
+	        mUIHandler = new Handler(Looper.getMainLooper());
+	        mUIHandler.post(new Runnable() {
+	        	  
+
+	            @Override
+	            public void run() {
+	            	
+	            	 pointsView.setText("Punkty do zdobycia: " + String.format( "%.2f", points ));
+	                mUIHandler.postDelayed(this, 900);  
+	               
+	            }
+	        });
+	       
+	        timer.schedule(timerTask, 3000, 1000);
+	}
 
     @Override
     public void onClick(View arg0) {
@@ -287,16 +348,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	   	{
         	   	answerAtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(0))).getPlWord());
         	   	}
-        	/*	showCorrectAnswer(answerPos);
-        		answerA.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                    	clearAnswer();
-                    
-                    }
-                }, 1000);
-        		*/
+        	
         	
         	}
         	
@@ -437,5 +489,18 @@ public class QuizActivity extends Activity implements OnClickListener  {
         }
 
     }
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		SharedPreferences.Editor editor = prefs.edit();    
+      	 editor.putFloat("pointsSum",pointsSum );  
+      	 editor.putInt("countQuiz", countQuiz);
+      	 editor.commit();
+		
+	}
+    
+  
 
 }

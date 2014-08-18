@@ -4,6 +4,7 @@ import com.example.fastenglish.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.TextureView;
 import android.view.View;
@@ -21,7 +22,10 @@ public class StatActivity extends Activity implements OnClickListener  {
 	private TextView CountReplayNo;
 	private TextView CountQuiz;
 	private TextView CountQuizPoints;
-	private ImageView graph;
+	//private ImageView graph;
+	private SharedPreferences prefs ;
+	private float pointsSum;
+	private int countQuiz;
 	
 	
 	
@@ -37,7 +41,7 @@ public class StatActivity extends Activity implements OnClickListener  {
 	void initialize()
     {
 
-   
+		prefs = getSharedPreferences("prefs", 0);
        
         
 		time= (TextView) findViewById(R.id.txTime);
@@ -47,6 +51,13 @@ public class StatActivity extends Activity implements OnClickListener  {
 		CountReplayNo= (TextView) findViewById(R.id.txCountReplayNo);
 		CountQuiz= (TextView) findViewById(R.id.txCountQuiz);
 		CountQuizPoints= (TextView) findViewById(R.id.txCountQuizPoints);
+		
+		pointsSum = prefs.getFloat("pointsSum",0.0f);
+		CountQuizPoints.setText(String.format( "%.2f", pointsSum ));
+		
+		countQuiz= prefs.getInt("countQuiz",0);
+		CountQuiz.setText(""+countQuiz);
+		
 	//	graph = (ImageView) findViewById(R.id.iGraph);
 	//	graph.setOnClickListener(this);
        
@@ -62,7 +73,8 @@ public class StatActivity extends Activity implements OnClickListener  {
 	      //  case R.id.iGraph:
 	        	
 	        }
-	  }
+
 	  
 
+	  }
 }

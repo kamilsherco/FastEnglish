@@ -93,7 +93,9 @@ public class MainActivity extends Activity implements OnClickListener {
     	 
     
     	 SharedPreferences.Editor editor = settingsPref.edit();    
-    	 editor.putBoolean("engPol", true);      
+    	 editor.putBoolean("engPol", true);    
+    	
+      	
     	 //editor.putBoolean("firstUpdate", false);
     	 editor.commit();
   	
