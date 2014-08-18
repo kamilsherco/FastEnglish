@@ -290,6 +290,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 	        });
 	       
 	        timer.schedule(timerTask, 3000, 1000);
+	        
 	}
 
     @Override
@@ -327,7 +328,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
                 	
                 	
                 	clearAnswer();
-                	
+                	timer.cancel();
                 }
             }, 1500);
         	
@@ -373,6 +374,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
                     @Override
                     public void run() {
                     	clearAnswer();
+                    	timer.cancel();
                     	
                     }
                 }, 1500);
@@ -414,6 +416,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
                     @Override
                     public void run() {
                     	clearAnswer();
+                    	timer.cancel();
                     	
                     }
                 }, 1500);
@@ -458,6 +461,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
                     @Override
                     public void run() {
                     	clearAnswer();
+                    	timer.cancel();
                     	
                     }
                 }, 1500);
