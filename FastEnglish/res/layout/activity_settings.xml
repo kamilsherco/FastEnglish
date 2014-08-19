@@ -57,30 +57,31 @@
     
     </LinearLayout>
 
-<LinearLayout 
-   	 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:weightSum="6">
+    
+    <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/iSelectAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3"  
-        android:src="@drawable/btselectall" />
+        android:layout_marginTop="5dp"
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btcle" />
 
-    <ImageView
-        android:id="@+id/iClearAll"
-        android:layout_width="wrap_content"
-        android:layout_weight="3"  
+    <TextView
+       android:id="@+id/iSelectAlltxt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/btclearall" />
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    
-    </LinearLayout>
+</FrameLayout>
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"

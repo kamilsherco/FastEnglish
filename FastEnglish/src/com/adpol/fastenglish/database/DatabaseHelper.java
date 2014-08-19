@@ -39,8 +39,29 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		 try {
 	            TableUtils.createTable(connectionSource, Word.class); 
 	            TableUtils.createTable(connectionSource, Category.class); 
-	            createNewCategory(1, "Kat 1");
-	            createNewCategory(2, "Kat 2");
+	            
+	            createNewCategory(0, "Podstawy");
+	            createNewCategory(1, "Kolory");
+	            createNewCategory(2, "Liczby");
+	            createNewCategory(3, "Jedzenie");
+	            createNewCategory(4, "Warzywa");
+	            createNewCategory(5, "Owoce");
+	            createNewCategory(6, "Zwierz"+"\u0119"+"ta");
+	            createNewCategory(7, "Ptaki");
+	            createNewCategory(8, "Rodzina");
+	            createNewCategory(9, "Uczucia");
+	            createNewCategory(10, "Cechy charakteru");
+	            createNewCategory(11, "Cia"+"\u0142"+"o");
+	            createNewCategory(12, "Zdrowie");
+	            createNewCategory(13, "Pogoda");
+	            createNewCategory(14, "Biznes");
+	            createNewCategory(15, "Praca");
+	            createNewCategory(16, "Pañstwa");
+	            createNewCategory(17, "Transport");
+	            createNewCategory(18, "Podró¿e");
+	            createNewCategory(19, "Inne");
+	            
+	            
 	            TableUtils.createTable(connectionSource, Version.class);
 	            createNewVersion(1,1,1);
 	            TableUtils.createTable(connectionSource, Statistics.class);

@@ -284,12 +284,12 @@ public class QuizActivity extends Activity implements OnClickListener  {
 	            public void run() {
 	            	
 	            	 pointsView.setText("Punkty do zdobycia: " + String.format( "%.2f", points ));
-	                mUIHandler.postDelayed(this, 900);  
+	                mUIHandler.postDelayed(this, 450);  
 	               
 	            }
 	        });
 	       
-	        timer.schedule(timerTask, 3000, 1000);
+	        timer.schedule(timerTask, 1500, 500);
 	        
 	}
 

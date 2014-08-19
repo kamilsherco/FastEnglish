@@ -42,6 +42,16 @@ public class DatabaseManager {
         return wordsList;
     }
     
+    public List<Category> getAllCategory() {
+        List<Category> categoryList = null;
+        try {
+        	categoryList = getHelper().getCategoryDao().queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categoryList;
+    }
+    
     public List<Version> getAllVersions() {
         List<Version> versionsList = null;
         try {
