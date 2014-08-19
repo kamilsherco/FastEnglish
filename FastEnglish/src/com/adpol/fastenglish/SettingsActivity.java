@@ -27,12 +27,13 @@ import android.widget.TextView;
 public class SettingsActivity extends Activity implements OnClickListener  {
 	
 	private ImageView selectAll;
+	private ImageView clearAll;
     private ImageView changeLanguage;
     private ImageView checkUpdate;
     private TextView countWords;
     private TextView changeLanguagetxt;
     private TextView selectAlltxt;
-  
+    private ScrollView scrollCategories;
     private LinearLayout layoutCategories;
     
     private  CheckBox categories;
@@ -40,7 +41,7 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 	private boolean engPol;
 	private static SharedPreferences prefs;
 	private List<Category> categoryList;
-	private boolean selectAllcheck=true;
+	private boolean selectAllcheck;
 	public static ArrayList<CheckBox> checkArray;
     
 	@Override
@@ -57,7 +58,8 @@ public class SettingsActivity extends Activity implements OnClickListener  {
    
         selectAll = (ImageView) findViewById(R.id.iSelectAll);
         selectAll.setOnClickListener(this);
-        
+        clearAll = (ImageView) findViewById(R.id.iClearAll);
+        clearAll.setOnClickListener(this);
      
 
         changeLanguage = (ImageView) findViewById(R.id.ichangeLanguage);
@@ -69,10 +71,10 @@ public class SettingsActivity extends Activity implements OnClickListener  {
         countWords= (TextView) findViewById(R.id.tvSettingsCountWords);
         
         layoutCategories = (LinearLayout) findViewById(R.id.llCategories);
-       
+        scrollCategories = (ScrollView) findViewById(R.id.svCategories);
+        scrollCategories.setScrollbarFadingEnabled(false);
         
-      
-        selectAlltxt=(TextView) findViewById(R.id.iSelectAlltxt);
+    
         changeLanguagetxt=(TextView) findViewById(R.id.tvchangeLanguagetxt);
         prefs = getSharedPreferences("prefs", 0);
         
@@ -99,7 +101,7 @@ public class SettingsActivity extends Activity implements OnClickListener  {
             categories = new CheckBox(this);
             categories.setId(categoryList.get(i).getId_category());
             categories.setText(categoryList.get(i).getName());
-            categories.setChecked(prefs.getBoolean("Status_" + i, true));
+            categories.setChecked(prefs.getBoolean(Integer.toString(i), true));
             layoutCategories.addView(categories);
             checkArray.add(categories);
             
@@ -107,9 +109,7 @@ public class SettingsActivity extends Activity implements OnClickListener  {
            }
 		saveArray();
 		
-		if(selectAllcheck) selectAlltxt.setText("Odznacz wszystkie");
-    	else selectAlltxt.setText("Zaznacz wszystkie");
-       selectAllcheck=!selectAllcheck;
+	
     	
 	}
 	
@@ -122,8 +122,8 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 
 	    for(int i=0;i<checkArray.size();i++)  
 	    {
-	    	editor.remove( "Status_" + i);
-	    	editor.putBoolean("Status_" + i, checkArray.get(i).isChecked());  
+	    	editor.remove( Integer.toString(i));
+	    	editor.putBoolean(Integer.toString(i), checkArray.get(i).isChecked());  
 	    	if(!checkArray.get(i).isChecked())
 	    	{
 	    		editor.putBoolean("selectAll", true);  	
@@ -144,31 +144,26 @@ public class SettingsActivity extends Activity implements OnClickListener  {
         {
         case R.id.iSelectAll:
         	
-        	
-        	if(selectAllcheck) 
-        		{
-        		selectAlltxt.setText("Odznacz wszystkie");
         		for(int i=0; i<checkArray.size(); i++)
         		{
         		    if (!checkArray.get(i).isChecked())  
         		       checkArray.get(i).setChecked(true);
-        		}
-        		}
-        	else
-        	{
-        		selectAlltxt.setText("Zaznacz wszystkie");
-        		for(int i=0; i<checkArray.size(); i++)
-        		{
-        		    if (checkArray.get(i).isChecked()) 
-        		       checkArray.get(i).setChecked(false);
-        		}
         		
-        		
-        	}
-           selectAllcheck=!selectAllcheck;
+        		}
        
 
         break;
+        
+        case R.id.iClearAll:
+        	
+        	for(int i=0; i<checkArray.size(); i++)
+    		{
+    		    if (checkArray.get(i).isChecked()) 
+    		       checkArray.get(i).setChecked(false);
+    		
+    		}
+        	
+        	break;
       
         case R.id.ichangeLanguage:
         	

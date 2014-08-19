@@ -48,6 +48,7 @@ public final class R {
         public static final int action_settings=0x7f080032;
         public static final int edLearnNewWords=0x7f080005;
         public static final int iChange=0x7f08000a;
+        public static final int iClearAll=0x7f080020;
         public static final int iLearnNew=0x7f080003;
         public static final int iNauka=0x7f08000d;
         public static final int iNo=0x7f080031;
@@ -63,7 +64,6 @@ public final class R {
         public static final int iQuizAnswerDtxt=0x7f08001a;
         public static final int iReplay=0x7f080000;
         public static final int iSelectAll=0x7f08001f;
-        public static final int iSelectAlltxt=0x7f080020;
         public static final int iShowWord=0x7f08002c;
         public static final int iStat=0x7f08000e;
         public static final int iUstawienia=0x7f08000f;
