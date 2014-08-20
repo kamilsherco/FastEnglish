@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:background="@android:color/black"
+    android:background="@drawable/bckground2"
     android:orientation="vertical" >
 
     <TextView
@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:layout_marginTop="5dp"
-        android:text="Kategorie do nauki:"
+        android:text="@string/kategorie_do_nauki_"
         android:textAppearance="?android:attr/textAppearanceMedium"  />
 
 
@@ -74,7 +74,7 @@ android:weightSum="6">
         android:layout_height="wrap_content"
         android:layout_weight="3"
 		android:src="@drawable/btselectall"
-         />
+       />
      <ImageView
          android:id="@+id/iClearAll"
 		android:layout_width="wrap_content"

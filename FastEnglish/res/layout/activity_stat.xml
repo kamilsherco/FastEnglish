@@ -4,7 +4,7 @@
     android:layout_gravity="center"
     android:layout_height="match_parent"
     android:gravity="center"
-     android:background="@android:color/black"
+     android:background="@drawable/bckground2"
     android:orientation="vertical">"
 <LinearLayout
     android:orientation="horizontal"

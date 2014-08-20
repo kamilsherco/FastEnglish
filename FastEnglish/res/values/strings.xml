@@ -4,5 +4,6 @@
     <string name="app_name">FastEnglish</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="kategorie_do_nauki_">Kategorie do nauki:</string>
 
 </resources>
