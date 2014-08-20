@@ -28,6 +28,7 @@ public final class R {
         public static final int btcle=0x7f020004;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public static final int btclearall=0x7f020005;
         public static final int btcorrect=0x7f020006;
         public static final int btengpol=0x7f020007;
@@ -51,6 +52,8 @@ public final class R {
 =======
 =======
 >>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
+=======
+>>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
         public static final int btclear=0x7f020005;
         public static final int btclearall=0x7f020006;
         public static final int btcorrect=0x7f020007;
@@ -68,6 +71,9 @@ public final class R {
         public static final int ic_launcher=0x7f020013;
         public static final int logofe=0x7f020014;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
+=======
 >>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
 =======
 >>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
