@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -27,7 +28,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	    private ImageView settings;
 	    private SharedPreferences settingsPref;
 	    private boolean isEngPol;
-	    private    boolean firstRun;
+	    private boolean firstRun;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -114,9 +115,13 @@ public class MainActivity extends Activity implements OnClickListener {
         switch(arg0.getId())
         {
         case R.id.iQuiz:
-     
-        Intent quiz = new Intent(this, QuizActivity.class);
-        startActivity(quiz);
+        	if(DatabaseManager.getInstance().isNothingLearned()){
+        		Toast.makeText(getBaseContext(), "Nie nauczy³eœ siê jeszcze ¿adnych s³ów. PrzejdŸ najpierw do dzia³u \"Nauka\".", Toast.LENGTH_LONG).show();
+        	}
+        	else{
+		        Intent quiz = new Intent(this, QuizActivity.class);
+		        startActivity(quiz);
+        	}
 
         break;
         case R.id.iNauka:

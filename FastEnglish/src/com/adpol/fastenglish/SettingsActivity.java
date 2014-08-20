@@ -96,11 +96,16 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 		
        
        checkArray = new ArrayList<CheckBox>();
-      
+      StringBuilder textTemp;
 		for(int i = 0; i < prefs.getInt("SizeChbx", 20); i++) {
             categories = new CheckBox(this);
-            categories.setId(categoryList.get(i).getId_category());
-            categories.setText(categoryList.get(i).getName());
+            categories.setId(categoryList.get(i).getId_category());  
+            textTemp = new StringBuilder("");
+            textTemp.append(categoryList.get(i).getName());
+            textTemp.append(" ("+DatabaseManager.getInstance().countLearnedWordsFromCategory(i));
+            textTemp.append("/"+DatabaseManager.getInstance().countAllWordsFromCategory(i));
+            textTemp.append(")");
+            categories.setText(textTemp.toString());
             categories.setChecked(prefs.getBoolean(Integer.toString(i), true));
             layoutCategories.addView(categories);
             checkArray.add(categories);

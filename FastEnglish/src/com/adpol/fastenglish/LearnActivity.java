@@ -94,7 +94,7 @@ public class LearnActivity extends Activity implements OnClickListener   {
 	        break;
 	        case R.id.iLearnNew:	 
 	        	if(DatabaseManager.getInstance().isEverythingLearned()){
-	        		Toast.makeText(getBaseContext(), "Wszystkie s³owa z podanych kategorii zosta³y przez Ciebie wyuczone. Mo¿esz je teraz utrwalaæ w dziale \"Powtarzaj.\"", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(getBaseContext(), "Wszystkie s³owa z podanych kategorii zosta³y przez Ciebie wyuczone. Mo¿esz je teraz utrwalaæ w dziale \"Powtarzaj\".", Toast.LENGTH_LONG).show();
 	        	}
 	        	else{
 		        	Intent lernnew = new Intent(this, WordActivity.class);

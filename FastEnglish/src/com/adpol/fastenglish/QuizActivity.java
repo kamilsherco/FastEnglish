@@ -73,7 +73,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
 		 pointsSum = prefs.getFloat("pointsSum",0.0f);
 		 countQuiz= prefs.getInt("countQuiz",0);
 		 countQuiz++;
-		wordsList = DatabaseManager.getInstance().getAllWords();
+		wordsList = DatabaseManager.getInstance().getLearnedWordsFromCategories();
 		initialize();
 		
 	}

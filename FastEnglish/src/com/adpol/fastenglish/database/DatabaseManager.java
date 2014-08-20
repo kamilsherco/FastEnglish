@@ -1,17 +1,21 @@
 package com.adpol.fastenglish.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.j256.ormlite.stmt.UpdateBuilder;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 public class DatabaseManager {
 	
 	private final int VERSION_ID = 1;
 
     static private DatabaseManager instance;
+    static private Context context;
 
     static public void init(Context ctx) {
         if (null==instance) {
@@ -25,6 +29,7 @@ public class DatabaseManager {
 
     private DatabaseHelper helper;
     private DatabaseManager(Context ctx) {
+    	this.context = ctx;
         helper = new DatabaseHelper(ctx);
     }
 
@@ -96,20 +101,29 @@ public class DatabaseManager {
     }
     
     public boolean isNothingLearned(){
-    	int countOf=-1;
-    	try {
+    	List<Word> wordsList = getAllWordsFromCategories();
+    	
+    	for(int i=0;i<wordsList.size();i++){
+    		if(wordsList.get(i).isLearned()) return false;
+    	}    	
+    	/*try {
     		countOf = (int) getHelper().getWordDao().queryBuilder().where().eq("isLearned", true).countOf();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	//Log.d("Liczba", Integer.toString(countOf));
-    	if(countOf==0) return true;
-    	return false;
+    	if(countOf==0) return true;*/
+    	return true;
     }
     
     public boolean isEverythingLearned(){
-    	int countOf=-1;
+    	List<Word> wordsList = getAllWordsFromCategories();
+    	
+    	for(int i=0;i<wordsList.size();i++){
+    		if(!wordsList.get(i).isLearned()) return false;
+    	}    	
+    	/*int countOf=-1;
     	try {
     		countOf = (int) getHelper().getWordDao().queryBuilder().where().eq("isLearned", false).countOf();
 		} catch (SQLException e) {
@@ -117,12 +131,19 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
     	//Log.d("Liczba", Integer.toString(countOf));
-    	if(countOf==0) return true;
-    	return false;
+    	if(countOf==0) return true;*/
+    	return true;
     }
     
     public List<Word> getNewRandomWords(int number){
-    	List<Word> wordsList = null;
+    	List<Word> wordsList = getUnlearnedWordsFromCategories();
+    	
+    	if(number >= wordsList.size()) return wordsList;
+    	
+    	Collections.shuffle(wordsList);
+    	
+    	return wordsList.subList(0, number);
+    	/*List<Word> wordsList = null;
     	int count=-1;
     	try {
     		count = (int) getHelper().getWordDao().queryBuilder().where().eq("isLearned", false).countOf();
@@ -147,7 +168,7 @@ public class DatabaseManager {
 				e.printStackTrace();
 			}
     		return wordsList;
-    	}
+    	}*/
     }
     
     public List<Word> getLearnedWords(){
@@ -159,5 +180,87 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
     	return wordsList;
+    }
+    
+    // pobiera nauczone s³owa z danych kategorii
+    public List<Word> getLearnedWordsFromCategories(){
+    	List<Word> wordsList = new ArrayList<Word>();
+    	
+    	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
+    	int catCount = settingsPref.getInt("SizeChbx", 20);
+    	for(int i=0;i<catCount;i++){
+    		if(settingsPref.getBoolean(Integer.toString(i), true)){
+    			try {
+					wordsList.addAll(getHelper().getWordDao().queryBuilder().where().eq("id_category", i).and().eq("isLearned", true).query());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	}    	
+		return wordsList;    	
+    }
+    
+    public List<Word> getUnlearnedWordsFromCategories(){
+    	List<Word> wordsList = new ArrayList<Word>();
+    	
+    	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
+    	int catCount = settingsPref.getInt("SizeChbx", 20);
+    	for(int i=0;i<catCount;i++){
+    		if(settingsPref.getBoolean(Integer.toString(i), true)){
+    			try {
+					wordsList.addAll(getHelper().getWordDao().queryBuilder().where().eq("id_category", i).and().eq("isLearned", false).query());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	}    	
+		return wordsList;    	
+    }
+    
+    // pobiera wszystkie s³owa z danych kategorii
+    public List<Word> getAllWordsFromCategories(){
+    	List<Word> wordsList = new ArrayList<Word>();
+    	
+    	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
+    	int catCount = settingsPref.getInt("SizeChbx", 20);
+    	for(int i=0;i<catCount;i++){
+    		if(settingsPref.getBoolean(Integer.toString(i), true)){
+    			try {
+					wordsList.addAll(getHelper().getWordDao().queryBuilder().where().eq("id_category", i).query());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	}    	
+		return wordsList;    	
+    }
+    
+    public int countAllWordsFromCategory(int categoryId){
+    	int count=-1;
+
+    	try {
+			count = (int) getHelper().getWordDao().queryBuilder().where().eq("id_category", categoryId).countOf();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return count;
+    }
+    
+    public int countLearnedWordsFromCategory(int categoryId){
+    	int count=-1;
+
+    	try {
+			count = (int) getHelper().getWordDao().queryBuilder().where().eq("id_category", categoryId).and().eq("isLearned", true).countOf();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return count;
     }
 }

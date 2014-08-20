@@ -3,6 +3,7 @@ package com.adpol.fastenglish;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import com.adpol.fastenglish.database.DatabaseManager;
@@ -13,6 +14,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class WordActivity extends Activity implements OnClickListener{
+public class WordActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener{
 	
 	private final int REPEAT = 0;
 	private final int LEARN = 1;
@@ -41,6 +43,8 @@ public class WordActivity extends Activity implements OnClickListener{
     
     private List<Word> wordsList;
     private List<Word> learnedWordsList;
+    
+    private TextToSpeech textToSpeech;
    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,7 @@ public class WordActivity extends Activity implements OnClickListener{
 			learnedWordsList = new LinkedList<Word>();
 		}
 		else{
-			wordsList = DatabaseManager.getInstance().getLearnedWords();
+			wordsList = DatabaseManager.getInstance().getLearnedWordsFromCategories();
 		}
 		
 		//wordsList = DatabaseManager.getInstance().getAllWords();		
@@ -85,7 +89,7 @@ public class WordActivity extends Activity implements OnClickListener{
 	    btNo = (ImageView) findViewById(R.id.iNo);
 	    btNo.setOnClickListener(this);
 	    
-	    
+	    textToSpeech = new TextToSpeech(this, this);
 	    
 	    randomText();
 	}
@@ -100,6 +104,11 @@ public class WordActivity extends Activity implements OnClickListener{
 		else return wordsList.get(index).getEnWord();
 	}
 	
+	private String returnEnglishWord(){
+		if(isEngPol) return returnFirstWord();
+		else return returnSecondWord();
+	}
+	
 	private void randomText(){
 		index = new Random().nextInt(wordsList.size());
 		wordText.setText(returnFirstWord());
@@ -107,6 +116,7 @@ public class WordActivity extends Activity implements OnClickListener{
 		wordsList.get(index).setLearned(true);
 		Log.d("Poprawnych: ", Integer.toString(wordsList.get(index).getCorrectRepeats()));
 		Log.d("Niepoprawnych: ", Integer.toString(wordsList.get(index).getIncorrectRepeats()));
+		convertTextToSpeech();
 	}
 
 	private void setVisibility(int vis){
@@ -152,5 +162,28 @@ public class WordActivity extends Activity implements OnClickListener{
 	        }
 
 }
+
+		@Override
+		public void onInit(int status) {
+			if (status == TextToSpeech.SUCCESS) {
+				int result = textToSpeech.setLanguage(Locale.UK);
+				if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+					Log.e("error", "This Language is not supported");
+				} else {
+					convertTextToSpeech();
+				}
+			} else {
+				Log.e("error", "Initilization Failed!");
+			}			
+		}
+		
+		private void convertTextToSpeech() {
+		
+			String text = returnEnglishWord();
+			if (null == text || "".equals(text)) {
+				text = "Please give some input.";
+			}
+			textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+		}
 
 }

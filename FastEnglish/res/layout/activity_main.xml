@@ -4,36 +4,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:gravity="center"
    
     android:orientation="vertical"
     android:background="@drawable/bacground" >
 
+  
+    <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/iQuiz"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btquiz" />
+    	android:gravity="center"
+    	android:layout_gravity="center"
+        android:src="@drawable/btclear" />
+
+    <TextView
+        android:id="@+id/tvPolEngtxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Quiz"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+    
+
+    
+    
+      <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/iNauka"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btnauka" />
+    	android:gravity="center"
+    	android:layout_gravity="center"
+        android:src="@drawable/btclear" />
+
+    <TextView
+        android:id="@+id/tvPolEngtxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Nauka"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
+   
+    
+    <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/iStat"
-        android:layout_width="match_parent"
+           android:id="@+id/iStat"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btstat" />
+    	android:gravity="center"
+    	android:layout_gravity="center"
+        android:src="@drawable/btclear"/>
+
+    <TextView
+        android:id="@+id/tvPolEngtxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Statystyki"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
+   
+    <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/iUstawienia"
-        android:layout_width="match_parent"
+          android:id="@+id/iUstawienia"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btustaw" />
+    	android:gravity="center"
+    	android:layout_gravity="center"
+        android:src="@drawable/btclear"/>
+
+    <TextView
+        android:id="@+id/tvPolEngtxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Ustawienia"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+    
+    
 
 </LinearLayout>
