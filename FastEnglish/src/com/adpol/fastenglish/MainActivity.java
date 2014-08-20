@@ -15,12 +15,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity implements OnClickListener, OnTouchListener {
 
 	 	private ImageView quiz;
 	    private ImageView learn;
@@ -66,14 +68,19 @@ public class MainActivity extends Activity implements OnClickListener {
    
         quiz = (ImageView) findViewById(R.id.iQuiz);
         quiz.setOnClickListener(this);
+        quiz.setOnTouchListener(this);
         learn = (ImageView) findViewById(R.id.iNauka);
         learn.setOnClickListener(this);
+        learn.setOnTouchListener(this);
+        
 
         stat = (ImageView) findViewById(R.id.iStat);
         stat.setOnClickListener(this);
+        stat.setOnTouchListener(this);
 
         settings = (ImageView) findViewById(R.id.iUstawienia);
         settings.setOnClickListener(this);
+        settings.setOnTouchListener(this);
         
         settingsPref = getSharedPreferences("prefs", MODE_PRIVATE);
         firstRun = settingsPref.getBoolean("firstRun", true);
@@ -145,5 +152,48 @@ public class MainActivity extends Activity implements OnClickListener {
         }
 
     }
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		
+		 switch(v.getId())
+	        {
+	        case R.id.iQuiz:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		quiz.setImageResource(R.drawable.btclearsel);
+                else
+                	quiz.setImageResource(R.drawable.btclear);	
+                
+
+	        break;
+	        case R.id.iNauka:
+	            
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		learn.setImageResource(R.drawable.btclearsel);
+                else
+                	learn.setImageResource(R.drawable.btclear);	
+
+	            break;
+	        case R.id.iStat:
+	        	  
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		stat.setImageResource(R.drawable.btclearsel);
+                else
+                	stat.setImageResource(R.drawable.btclear);	
+
+
+	            break;
+	        case R.id.iUstawienia:
+	        	  
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		settings.setImageResource(R.drawable.btclearsel);
+                else
+                	settings.setImageResource(R.drawable.btclear);	
+
+	        }
+		
+		return false;
+	}
 
 }

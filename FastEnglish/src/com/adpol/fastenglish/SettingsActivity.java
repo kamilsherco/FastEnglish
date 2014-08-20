@@ -13,8 +13,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.EditText;
@@ -24,7 +26,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class SettingsActivity extends Activity implements OnClickListener  {
+public class SettingsActivity extends Activity implements OnClickListener, OnTouchListener  {
 	
 	private ImageView selectAll;
 	private ImageView clearAll;
@@ -58,15 +60,19 @@ public class SettingsActivity extends Activity implements OnClickListener  {
    
         selectAll = (ImageView) findViewById(R.id.iSelectAll);
         selectAll.setOnClickListener(this);
+        selectAll.setOnTouchListener(this);
         clearAll = (ImageView) findViewById(R.id.iClearAll);
         clearAll.setOnClickListener(this);
+        clearAll.setOnTouchListener(this);
      
 
         changeLanguage = (ImageView) findViewById(R.id.ichangeLanguage);
         changeLanguage.setOnClickListener(this);
+        changeLanguage.setOnTouchListener(this);
 
         checkUpdate = (ImageView) findViewById(R.id.icheckUpdate);
         checkUpdate.setOnClickListener(this);
+        checkUpdate.setOnTouchListener(this);
         
         countWords= (TextView) findViewById(R.id.tvSettingsCountWords);
         
@@ -205,6 +211,51 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 		super.onDestroy();
 		saveArray();
 		
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		  switch(v.getId())
+	        {
+	        case R.id.iSelectAll:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		selectAll.setImageResource(R.drawable.btclearsel);
+                else
+                	selectAll.setImageResource(R.drawable.btclear);
+	       
+
+	        break;
+	        
+	        case R.id.iClearAll:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		clearAll.setImageResource(R.drawable.btclearsel);
+                else
+                	clearAll.setImageResource(R.drawable.btclear);
+	      
+	        	  break;
+	        	  
+	        case R.id.ichangeLanguage:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		changeLanguage.setImageResource(R.drawable.btclearsel);
+                else
+                	changeLanguage.setImageResource(R.drawable.btclear);
+	        	
+	        	
+
+
+	            break;
+	        case R.id.icheckUpdate:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		checkUpdate.setImageResource(R.drawable.btclearsel);
+                else
+                	checkUpdate.setImageResource(R.drawable.btclear);
+	        	 
+	        	 break;
+
+	        }
+		
+		return false;
 	}
 
 }

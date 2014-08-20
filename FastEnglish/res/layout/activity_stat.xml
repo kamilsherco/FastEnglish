@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   
+   
+
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Statystyki"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <LinearLayout 
     android:layout_width="match_parent"
     android:layout_gravity="center"
     android:layout_height="match_parent"
     android:gravity="center"
-     android:background="@drawable/bckground2"
-    android:orientation="vertical">"
+     android:background="@drawable/background"
+    android:orientation="vertical">
+    
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
        android:layout_gravity="center"
      android:gravity="center"
@@ -20,21 +40,23 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_marginLeft="10dp"
-        android:layout_weight="4" 
-        android:text="Łaczny czas spędzony na nauce: " />
+        android:layout_marginLeft="10dp"
+        android:layout_weight="5" 
+        android:text="Czas spędzony na nauce: " 
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <TextView
         android:id="@+id/txTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="2" 
-        android:text="TextView" />
+        android:layout_weight="1" 
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     
 </LinearLayout>
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+      android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
       android:gravity="center"
@@ -48,19 +70,21 @@
         android:layout_height="wrap_content"
          android:layout_marginLeft="10dp"
         android:layout_weight="4" 
-        android:text="Łącznie nauczonych słówek: " />
+        android:text="Nauczonych słówek: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/txCountWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2" 
-        android:text="TextView" />
+        android:text="TextView" 
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
     
 </LinearLayout>
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
      android:gravity="center"
@@ -74,19 +98,21 @@
         android:layout_height="wrap_content"
          android:layout_marginLeft="10dp"
         android:layout_weight="4" 
-        android:text="Łaczna ilość prowtórek: " />
+        android:text="Ilość prowtórek: "
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <TextView
         android:id="@+id/txCountReplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2" 
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     
 </LinearLayout>
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+      android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
      android:layout_marginTop="5dp"
@@ -100,19 +126,21 @@
         android:layout_height="wrap_content"
          android:layout_marginLeft="10dp"
         android:layout_weight="4" 
-        android:text="Znanych słów w powtórkach: " />
+        android:text="Znanych słów w powtórkach: " 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <TextView
         android:id="@+id/txCountReplayYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2" 
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
     
 </LinearLayout>
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
      android:layout_marginTop="5dp"
@@ -126,19 +154,21 @@
         android:layout_height="wrap_content"
          android:layout_marginLeft="10dp"
         android:layout_weight="4" 
-        android:text="Nieznanych słów w powtórkach: " />
+        android:text="Nieznanych słów w powtórkach: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/txCountReplayNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2" 
-        android:text="TextView" />
+        android:text="TextView" 
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
     
 </LinearLayout>
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
        android:gravity="center"
@@ -152,19 +182,21 @@
         android:layout_height="wrap_content"
          android:layout_marginLeft="10dp"
         android:layout_weight="4" 
-        android:text="Łaczna ilość zagrań w quiz: " />
+        android:text="Ilość zagrań w quiz: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/txCountQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2" 
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     
 </LinearLayout>
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+      android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
        android:gravity="center"
@@ -178,14 +210,16 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_weight="4" 
-        android:text="Łacznie punktów zdobytych w quizie: " />
+        android:text="Liczba zdobytych punktów: " 
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <TextView
         android:id="@+id/txCountQuizPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2" 
-        android:text="TextView" />
+        android:text="TextView" 
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
     
 </LinearLayout>
 <!-- <ImageView
@@ -195,4 +229,5 @@
         android:layout_marginTop="5dp"
         android:src="@drawable/btgraph" /> -->
 
+</LinearLayout>
 </LinearLayout>

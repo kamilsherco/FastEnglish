@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bckground2"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/background"
     android:orientation="vertical" >
 
     <TextView
@@ -36,7 +38,7 @@
 
     <LinearLayout 
    	
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
              android:layout_gravity="center"
            
@@ -48,13 +50,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
           android:layout_weight="3" 
-        android:text="Łącznie : " />
+        android:text="Łącznie słów : "
+        android:textColor="#ffffff"
+        />
        <TextView
         android:id="@+id/tvSettingsCountWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
           android:layout_weight="3" 
-        android:text="TextView" />
+        android:text="TextView" 
+       android:textColor="#ffffff" />
     
     </LinearLayout>
 
@@ -68,20 +73,58 @@ android:layout_marginTop="5dp"
 android:weightSum="6">
    
 
+  
+    
+     <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="3">
+
     <ImageView
-        android:id="@+id/iSelectAll"
+          android:id="@+id/iSelectAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-		android:src="@drawable/btselectall"
-       />
-     <ImageView
-         android:id="@+id/iClearAll"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_weight="3"
-       
-        android:src="@drawable/btclearall" />
+        android:layout_marginTop="5dp"
+      
+        android:src="@drawable/btclear" />
+
+    <TextView
+       android:id="@+id/iSelectAlltxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#ffffff" 
+        android:text="Wybierz wszystkie"
+        />
+
+</FrameLayout>
+    
+     <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="3">
+
+    <ImageView
+             android:id="@+id/iClearAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+      
+        android:src="@drawable/btclear" />
+
+    <TextView
+        android:id="@+id/iClearAlltxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#ffffff" 
+        android:text="Odznacz wszystkie"
+        />
+
+</FrameLayout>
+     
 
     </LinearLayout>
 
@@ -106,7 +149,7 @@ android:weightSum="6">
         android:layout_marginTop="5dp"
     android:gravity="center"
     android:layout_gravity="center"
-        android:src="@drawable/btcle" />
+        android:src="@drawable/btclear" />
 
     <TextView
        android:id="@+id/tvchangeLanguagetxt"
@@ -119,11 +162,30 @@ android:weightSum="6">
 
 </FrameLayout>
     
-      <ImageView
-        android:id="@+id/icheckUpdate"
-        android:layout_width="match_parent"
+      
+      
+      <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/icheckUpdate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btcheckupdate" />
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btclear" />
+
+    <TextView
+       android:id="@+id/icheckUpdatetxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Sprawdź aktualizację"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
 
 </LinearLayout>

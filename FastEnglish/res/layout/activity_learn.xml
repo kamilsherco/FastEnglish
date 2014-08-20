@@ -4,18 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-android:background="@drawable/bckground2"
+    android:gravity="center"
+android:background="@drawable/background"
     android:orientation="vertical" >
 
-<ImageView
-        android:id="@+id/iReplay"
-        android:layout_width="match_parent"
+
+ <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+       android:id="@+id/iReplay"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btreplay" />
+    	android:gravity="center"
+    	android:layout_gravity="center"
+        android:src="@drawable/btclear" />
+
+    <TextView
+        
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Powtarzaj"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
+
 <LinearLayout
     android:orientation="horizontal"
-     android:layout_width="match_parent"
+     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
      android:layout_gravity="center"
      android:layout_marginTop="5dp"
@@ -27,28 +47,49 @@ android:background="@drawable/bckground2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="4" 
-        android:text="Znznych słów z wybranych ketegorii: " />
+        android:text="Znznych słów z wybranych ketegorii: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/tvLeanrCountWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2" 
-        android:text="TextView" />
+        android:text="TextView" 
+    android:textAppearance="?android:attr/textAppearanceSmall"  />
     
 </LinearLayout>
 
-<ImageView
-        android:id="@+id/iLearnNew"
-        android:layout_width="match_parent"
+
+
+<FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+      	android:id="@+id/iLearnNew"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btlearnnew" />
+    	android:gravity="center"
+    	android:layout_gravity="center"
+        android:src="@drawable/btclear" />
+
+    <TextView
+        
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Ucz się nowych"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
 
 
 
 <LinearLayout 
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
              android:layout_gravity="center"
              android:layout_marginTop="5dp"
@@ -64,6 +105,7 @@ android:background="@drawable/bckground2"
 	android:layout_height="wrap_content"
 	android:text="Liczba nowych s&#322;&#243;w:"
 	android:layout_marginTop="5dp"
+	android:textAppearance="?android:attr/textAppearanceMedium"
 	/>
     <EditText
 	android:id="@+id/edLearnNewWords"
@@ -89,7 +131,9 @@ android:background="@drawable/bckground2"
         android:layout_marginTop="5dp"
     android:gravity="center"
     android:layout_gravity="center"
-        android:src="@drawable/btcle" />
+        android:src="@drawable/btclear" />
+    
+    
 
     <TextView
         android:id="@+id/tvPolEngtxt"
@@ -111,25 +155,34 @@ android:background="@drawable/bckground2"
      android:weightSum="6"
      >
      
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="4" 
-        android:text="Wybrane kategorie: " />
-
-    <TextView
-        android:id="@+id/tvLearnCategories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="2" 
-        android:text="TextView" />
+  
     
 </LinearLayout>
-<ImageView
-        android:id="@+id/iChange"
-        android:layout_width="match_parent"
+
+
+<FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+         android:id="@+id/iChange"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:src="@drawable/btchange" />
+    android:gravity="center"
+    android:layout_gravity="center"
+        android:src="@drawable/btclear" />
+    
+    
+
+    <TextView
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Ustawienia"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</FrameLayout>
 </LinearLayout>
