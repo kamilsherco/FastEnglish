@@ -2,6 +2,7 @@ package com.adpol.fastenglish;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,12 +19,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class QuizActivity extends Activity implements OnClickListener  {
+public class QuizActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener {
 
 	private ImageView answerA;
     private ImageView answerB;
@@ -63,6 +66,8 @@ public class QuizActivity extends Activity implements OnClickListener  {
     private TimerTask timerTask;
     private Timer timer;
     private int countQuiz;
+    
+    private TextToSpeech textToSpeech;
    
     
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +133,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
         updatePointsTime();
      
        
-        
+        textToSpeech = new TextToSpeech(this, this);
         
 
     }
@@ -305,6 +310,7 @@ public class QuizActivity extends Activity implements OnClickListener  {
     	{
     		selectAnswer=wordsList.get(index).getEnWord();
     	}
+    	
     	
     	
         switch(arg0.getId())
@@ -491,8 +497,17 @@ public class QuizActivity extends Activity implements OnClickListener  {
         	
         	break;
         }
-
+        
     }
+    
+    private void convertTextToSpeech(String text) {
+		
+		//String text = selectAnswer;
+		if (null == text || "".equals(text)) {
+			text = " ";
+		}
+		textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	}
 
 	@Override
 	protected void onDestroy() {
@@ -503,6 +518,20 @@ public class QuizActivity extends Activity implements OnClickListener  {
       	 editor.putInt("countQuiz", countQuiz);
       	 editor.commit();
 		
+	}
+
+	@Override
+	public void onInit(int status) {
+		if (status == TextToSpeech.SUCCESS) {
+			int result = textToSpeech.setLanguage(Locale.UK);
+			if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+				Log.e("error", "This Language is not supported");
+			} else {
+				//convertTextToSpeech();
+			}
+		} else {
+			Log.e("error", "Initilization Failed!");
+		}					
 	}
     
   

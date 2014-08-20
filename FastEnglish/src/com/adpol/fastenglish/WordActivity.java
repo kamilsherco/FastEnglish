@@ -116,7 +116,6 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 		wordsList.get(index).setLearned(true);
 		Log.d("Poprawnych: ", Integer.toString(wordsList.get(index).getCorrectRepeats()));
 		Log.d("Niepoprawnych: ", Integer.toString(wordsList.get(index).getIncorrectRepeats()));
-		convertTextToSpeech();
 	}
 
 	private void setVisibility(int vis){
@@ -149,6 +148,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	        {
 	        case R.id.iShowWord:
 	        	setVisibility(View.VISIBLE); 
+	        	convertTextToSpeech();
 	        	break;
 	        	
 	        case R.id.iYes:
@@ -170,7 +170,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 				if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
 					Log.e("error", "This Language is not supported");
 				} else {
-					convertTextToSpeech();
+					//convertTextToSpeech();
 				}
 			} else {
 				Log.e("error", "Initilization Failed!");

@@ -115,8 +115,8 @@ public class MainActivity extends Activity implements OnClickListener {
         switch(arg0.getId())
         {
         case R.id.iQuiz:
-        	if(DatabaseManager.getInstance().isNothingLearned()){
-        		Toast.makeText(getBaseContext(), "Nie nauczy³eœ siê jeszcze ¿adnych s³ów. PrzejdŸ najpierw do dzia³u \"Nauka\".", Toast.LENGTH_LONG).show();
+        	if(DatabaseManager.getInstance().countLearnedWordsFromCategories() < 4){
+        		Toast.makeText(getBaseContext(), "Musisz nauczyæ siê przynajmniej czterech s³ów aby zagraæ w quiz.", Toast.LENGTH_LONG).show();
         	}
         	else{
 		        Intent quiz = new Intent(this, QuizActivity.class);
