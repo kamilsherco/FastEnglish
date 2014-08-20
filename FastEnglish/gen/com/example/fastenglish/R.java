@@ -26,37 +26,6 @@ public final class R {
         public static final int btchange=0x7f020002;
         public static final int btcheckupdate=0x7f020003;
         public static final int btcle=0x7f020004;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        public static final int btclearall=0x7f020005;
-        public static final int btcorrect=0x7f020006;
-        public static final int btengpol=0x7f020007;
-        public static final int btfail=0x7f020008;
-        public static final int btgraph=0x7f020009;
-        public static final int btlearnnew=0x7f02000a;
-        public static final int btnauka=0x7f02000b;
-        public static final int btno=0x7f02000c;
-        public static final int btpoleng=0x7f02000d;
-        public static final int btquiz=0x7f02000e;
-        public static final int btreplay=0x7f02000f;
-        public static final int btselectall=0x7f020010;
-        public static final int btshowcorrect=0x7f020011;
-        public static final int btshowtranslate=0x7f020012;
-        public static final int btstat=0x7f020013;
-        public static final int btustaw=0x7f020014;
-        public static final int btyes=0x7f020015;
-        public static final int canvas=0x7f020016;
-        public static final int ic_launcher=0x7f020017;
-        public static final int logofe=0x7f020018;
-=======
-=======
->>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
-=======
->>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
->>>>>>> 9974331f5b5838f8030afbee4928a36528c3fbe9
         public static final int btclear=0x7f020005;
         public static final int btclearall=0x7f020006;
         public static final int btcorrect=0x7f020007;
@@ -73,16 +42,6 @@ public final class R {
         public static final int canvas=0x7f020012;
         public static final int ic_launcher=0x7f020013;
         public static final int logofe=0x7f020014;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
-=======
->>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
-=======
->>>>>>> 6c77e8ab38a61cae30b3c2bb8c241447150c0161
->>>>>>> 9974331f5b5838f8030afbee4928a36528c3fbe9
     }
     public static final class id {
         public static final int action_settings=0x7f080032;

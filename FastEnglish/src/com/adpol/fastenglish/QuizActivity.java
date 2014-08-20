@@ -125,7 +125,9 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		answerCclicked=false;
 		answerDclicked=false;
 		answerClickPermission=true;
-        
+		
+		textToSpeech = new TextToSpeech(this, this);
+		
         randomTextAndPosition(word);
         answerQue();
       
@@ -133,7 +135,8 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         updatePointsTime();
      
        
-        textToSpeech = new TextToSpeech(this, this);
+        
+       
         
 
     }
@@ -145,6 +148,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		if(engPol)
 		{
 			answer.setText(wordsList.get(index).getEnWord());
+			 convertTextToSpeech(wordsList.get(index).getEnWord());
 		}
 		else
 		{
