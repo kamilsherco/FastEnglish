@@ -232,5 +232,13 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 			
 			return false;
 		}
+		
+		@Override
+		protected void onDestroy() {
+			// TODO Auto-generated method stub
+			textToSpeech.shutdown();
+			super.onDestroy();
+			
+		}
 
 }

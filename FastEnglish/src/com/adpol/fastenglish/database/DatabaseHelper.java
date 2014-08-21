@@ -42,24 +42,24 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	            
 	            createNewCategory(0, "Podstawy");
 	            createNewCategory(1, "Kolory");
-	            createNewCategory(2, "Liczby");
-	            createNewCategory(3, "Jedzenie");
-	            createNewCategory(4, "Warzywa");
-	            createNewCategory(5, "Owoce");
-	            createNewCategory(6, "Zwierz"+"\u0119"+"ta");
-	            createNewCategory(7, "Ptaki");
-	            createNewCategory(8, "Rodzina");
-	            createNewCategory(9, "Uczucia");
-	            createNewCategory(10, "Cechy charakteru");
-	            createNewCategory(11, "Cia"+"\u0142"+"o");
-	            createNewCategory(12, "Zdrowie");
-	            createNewCategory(13, "Pogoda");
-	            createNewCategory(14, "Biznes");
-	            createNewCategory(15, "Praca");
-	            createNewCategory(16, "Pañstwa");
-	            createNewCategory(17, "Transport");
-	            createNewCategory(18, "Podró¿e");
-	            createNewCategory(19, "Inne");
+	            createNewCategory(2, "¯ywnoœæ");
+	            createNewCategory(3, "Zwierzêta");
+	            createNewCategory(4, "Roœliny");
+	            createNewCategory(5, "Rodzina");
+	            createNewCategory(6, "Uczucia");
+	            //createNewCategory(6, "Zwierz"+"\u0119"+"ta");
+	            createNewCategory(7, "Cechy charakteru");
+	            createNewCategory(8, "Cia³o");
+	            createNewCategory(9, "Zdrowie");
+	            createNewCategory(10, "Pogoda");
+	            //createNewCategory(11, "Cia"+"\u0142"+"o");
+	            createNewCategory(11, "Praca i biznes");
+	            createNewCategory(12, "Pañstwo i spo³eczeñstwo");
+	            createNewCategory(13, "Transport");
+	            createNewCategory(14, "Turystyka");
+	            createNewCategory(15, "Nauka i technika");
+	            createNewCategory(16, "Zakupy i us³ugi");
+	            createNewCategory(17, "Inne");
 	            
 	            
 	            TableUtils.createTable(connectionSource, Version.class);

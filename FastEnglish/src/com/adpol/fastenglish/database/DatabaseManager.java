@@ -187,7 +187,7 @@ public class DatabaseManager {
     	List<Word> wordsList = new ArrayList<Word>();
     	
     	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
-    	int catCount = settingsPref.getInt("SizeChbx", 20);
+    	int catCount = settingsPref.getInt("SizeChbx", 18);
     	for(int i=0;i<catCount;i++){
     		if(settingsPref.getBoolean(Integer.toString(i), true)){
     			try {
@@ -205,7 +205,7 @@ public class DatabaseManager {
     	List<Word> wordsList = new ArrayList<Word>();
     	
     	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
-    	int catCount = settingsPref.getInt("SizeChbx", 20);
+    	int catCount = settingsPref.getInt("SizeChbx", 18);
     	for(int i=0;i<catCount;i++){
     		if(settingsPref.getBoolean(Integer.toString(i), true)){
     			try {
@@ -224,7 +224,7 @@ public class DatabaseManager {
     	List<Word> wordsList = new ArrayList<Word>();
     	
     	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
-    	int catCount = settingsPref.getInt("SizeChbx", 20);
+    	int catCount = settingsPref.getInt("SizeChbx", 18);
     	for(int i=0;i<catCount;i++){
     		if(settingsPref.getBoolean(Integer.toString(i), true)){
     			try {

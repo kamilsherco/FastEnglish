@@ -69,7 +69,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
     private Timer timer;
     private int countQuiz;
     
-    private TextToSpeech textToSpeech;
+    private TextToSpeech textToSpeech = null;
    
     
 	protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +132,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		answerDclicked=false;
 		answerClickPermission=true;
 		
+		if(textToSpeech != null) textToSpeech.shutdown();
 		textToSpeech = new TextToSpeech(this, this);
 		
         randomTextAndPosition(word);
@@ -530,6 +531,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
+		textToSpeech.shutdown();
 		super.onDestroy();
 		SharedPreferences.Editor editor = prefs.edit();    
       	 editor.putFloat("pointsSum",pointsSum );  

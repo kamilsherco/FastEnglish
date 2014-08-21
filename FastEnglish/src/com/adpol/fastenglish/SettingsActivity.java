@@ -103,7 +103,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
        
        checkArray = new ArrayList<CheckBox>();
       StringBuilder textTemp;
-		for(int i = 0; i < prefs.getInt("SizeChbx", 20); i++) {
+		for(int i = 0; i < prefs.getInt("SizeChbx", 18); i++) {
             categories = new CheckBox(this);
             categories.setId(categoryList.get(i).getId_category());  
             textTemp = new StringBuilder("");
