@@ -21,12 +21,14 @@ import android.os.Looper;
 
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class QuizActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener {
+public class QuizActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener, OnTouchListener {
 
 	private ImageView answerA;
     private ImageView answerB;
@@ -93,15 +95,19 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		
         answerA = (ImageView) findViewById(R.id.iQuizAnswerA);
         answerA.setOnClickListener(this);
+        answerA.setOnTouchListener(this);
        
         answerB = (ImageView) findViewById(R.id.iQuizAnswerB);
         answerB.setOnClickListener(this);
-
+        answerB.setOnTouchListener(this);
+        
         answerC = (ImageView) findViewById(R.id.iQuizAnswerC);
         answerC.setOnClickListener(this);
-
+        answerC.setOnTouchListener(this);
+        
         answerD = (ImageView) findViewById(R.id.iQuizAnswerD);
         answerD.setOnClickListener(this);
+        answerD.setOnTouchListener(this);
         
         word = (TextView) findViewById(R.id.tvQuizWord);
         
@@ -135,7 +141,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         updatePointsTime();
      
        
-        
+       
        
         
 
@@ -148,7 +154,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		if(engPol)
 		{
 			answer.setText(wordsList.get(index).getEnWord());
-			 convertTextToSpeech(wordsList.get(index).getEnWord());
+			 
 		}
 		else
 		{
@@ -235,10 +241,10 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	}
 	private void clearAnswer()
 	{
-		answerA.setImageResource(R.drawable.btcle);
-		answerB.setImageResource(R.drawable.btcle);
-		answerC.setImageResource(R.drawable.btcle);
-		answerD.setImageResource(R.drawable.btcle);
+		answerA.setImageResource(R.drawable.btshowtranslate);
+		answerB.setImageResource(R.drawable.btshowtranslate);
+		answerC.setImageResource(R.drawable.btshowtranslate);
+		answerD.setImageResource(R.drawable.btshowtranslate);
 		
 		initialize();
 	
@@ -293,12 +299,12 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	            public void run() {
 	            	
 	            	 pointsView.setText("Punkty do zdobycia: " + String.format( "%.2f", points ));
-	                mUIHandler.postDelayed(this, 450);  
+	                mUIHandler.postDelayed(this, 200);  
 	               
 	            }
 	        });
 	       
-	        timer.schedule(timerTask, 1500, 500);
+	        timer.schedule(timerTask, 500, 300);
 	        
 	}
 
@@ -326,6 +332,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	{
         		
         	answerA.setImageResource(R.drawable.btcorrect);
+        	convertTextToSpeech(wordsList.get(index).getEnWord());
         	answerAclicked=true;
         	answerClickPermission=false;
         	
@@ -354,6 +361,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerAtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(0))).getEnWord());
+        		 convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(0))).getEnWord());
         		}
         	   	else
         	   	{
@@ -374,6 +382,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	if(answerBtxt.getText().toString().equals(selectAnswer))
         	{
         		answerB.setImageResource(R.drawable.btcorrect);
+        		convertTextToSpeech(wordsList.get(index).getEnWord());
         		answerBclicked=true;
         		answerClickPermission=false;
         		
@@ -400,6 +409,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerBtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(1))).getEnWord());
+        		convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(1))).getEnWord());
         		}
         	   	else
         	   	{
@@ -416,6 +426,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	if(answerCtxt.getText().toString().equals(selectAnswer))
         	{
         		answerC.setImageResource(R.drawable.btcorrect);
+        		convertTextToSpeech(wordsList.get(index).getEnWord());
         		answerCclicked=true;
         		answerClickPermission=false;
         		
@@ -442,6 +453,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerCtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(2))).getEnWord());
+        		convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(2))).getEnWord());
         		}
         	   	else
         	   	{
@@ -461,6 +473,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	if(answerDtxt.getText().toString().equals(selectAnswer))
         	{
         		answerD.setImageResource(R.drawable.btcorrect);
+        		convertTextToSpeech(wordsList.get(index).getEnWord());
         		answerDclicked=true;
         		answerClickPermission=false;
         		
@@ -488,6 +501,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerDtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(3))).getEnWord());
+        		convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(3))).getEnWord());
         		}
         	   	else
         	   	{
@@ -536,6 +550,49 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		} else {
 			Log.e("error", "Initilization Failed!");
 		}					
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		
+		
+		 switch(v.getId())
+	        {
+	        case R.id.iQuizAnswerA:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		answerA.setImageResource(R.drawable.btshowtranslatesel);
+                else
+                	answerA.setImageResource(R.drawable.btshowtranslate);
+	       
+
+	        break;
+	        case R.id.iQuizAnswerB:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		answerB.setImageResource(R.drawable.btshowtranslatesel);
+                else
+                	answerB.setImageResource(R.drawable.btshowtranslate);
+	        
+	        	
+	            break;
+	        case R.id.iQuizAnswerC:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		answerC.setImageResource(R.drawable.btshowtranslatesel);
+                else
+                	answerC.setImageResource(R.drawable.btshowtranslate);
+	        	  
+	        	
+
+	            break;
+	        case R.id.iQuizAnswerD:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		answerD.setImageResource(R.drawable.btshowtranslatesel);
+                else
+                	answerD.setImageResource(R.drawable.btshowtranslate);
+	        	
+	        	break;
+	        }
+		return false;
 	}
     
   

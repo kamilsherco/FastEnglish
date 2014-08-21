@@ -43,7 +43,7 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 		if(settingsPref.getBoolean("firstUpdate", true)){
 			Update.firstUpdate(this);
 		}
-		else Update.update(this, true);
+	//	else Update.update(this, true);
 
 		//new LoadAllWords().execute();
 		Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));

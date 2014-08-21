@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   
-   
-
-    android:orientation="vertical" >
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:text="Quiz"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    <LinearLayout
+  
     
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -54,7 +41,7 @@
           android:layout_marginTop="5dp"
     android:gravity="center"
     android:layout_gravity="center"
-        android:src="@drawable/btcle" />
+        android:src="@drawable/btshowtranslate" />
 
     <TextView
       android:id="@+id/iQuizAnswerAtxt"
@@ -79,7 +66,7 @@
         android:layout_marginTop="5dp"
     android:gravity="center"
     android:layout_gravity="center"
-        android:src="@drawable/btcle" />
+        android:src="@drawable/btshowtranslate" />
 
     <TextView
         android:id="@+id/iQuizAnswerBtxt"
@@ -108,7 +95,7 @@
         android:layout_marginTop="5dp"
     android:gravity="center"
     android:layout_gravity="center"
-        android:src="@drawable/btcle" />
+       android:src="@drawable/btshowtranslate"  />
 
     <TextView
          android:id="@+id/iQuizAnswerCtxt"
@@ -133,7 +120,7 @@
         android:layout_marginTop="5dp"
     android:gravity="center"
     android:layout_gravity="center"
-        android:src="@drawable/btcle" />
+        android:src="@drawable/btshowtranslate"  />
 
     <TextView
          android:id="@+id/iQuizAnswerDtxt"
@@ -145,16 +132,40 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </FrameLayout>
-<TextView
-        android:id="@+id/tvQuizPoints"
-     	android:layout_width="match_parent"
-        
+
+
+
+
+
+<FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+       
+     >
+
+    <ImageView
+     android:id="@+id/botton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_marginTop="20dp"
-         android:layout_marginLeft="5dp"
-        android:text="Punkty do zdobycia: 25 "
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="5dp"
+   android:gravity="bottom"
+        android:src="@drawable/botton"  />
+
+    <TextView
+         android:id="@+id/tvQuizPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+   android:gravity="bottom"
+        android:layout_gravity="center"
+        android:text="Punkty do zdobycia: 20 "
+        android:textAppearance="?android:attr/textAppearanceLarge"  />
+
+</FrameLayout>
+  
+ 
+
 
 </LinearLayout>
 
-</LinearLayout>
+
+

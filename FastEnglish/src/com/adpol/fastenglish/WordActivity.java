@@ -16,14 +16,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class WordActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener{
+public class WordActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener,OnTouchListener{
 	
 	private final int REPEAT = 0;
 	private final int LEARN = 1;
@@ -39,7 +41,9 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
     private ImageView btNo;
     private TextView wordText;
     private TextView isAnswerKnownText;
-    private TextView answerText;   
+    private TextView answerText; 
+    private TextView btYestxt;
+    private TextView btNotxt; 
     
     private List<Word> wordsList;
     private List<Word> learnedWordsList;
@@ -82,12 +86,17 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 		
 		showWord = (ImageView) findViewById(R.id.iShowWord);
 	    showWord.setOnClickListener(this);
+	    showWord.setOnTouchListener(this);
 	        
 	    btYes = (ImageView) findViewById(R.id.iYes);
 	    btYes.setOnClickListener(this);
+	    btYes.setOnTouchListener(this);
+	    btYestxt=(TextView) findViewById(R.id.iYestxt);
 
 	    btNo = (ImageView) findViewById(R.id.iNo);
 	    btNo.setOnClickListener(this);
+	    btNo.setOnTouchListener(this);
+	    btNotxt=(TextView) findViewById(R.id.iNotxt);
 	    
 	    textToSpeech = new TextToSpeech(this, this);
 	    
@@ -123,6 +132,8 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 		answerText.setVisibility(vis);
 		btYes.setVisibility(vis);
 		btNo.setVisibility(vis);
+		btYestxt.setVisibility(vis);
+		btNotxt.setVisibility(vis);
 	}
 	
 	private void clickedAnswer(boolean isKnown){
@@ -184,6 +195,42 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 				text = "Please give some input.";
 			}
 			textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+		}
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			// TODO Auto-generated method stub
+			
+			switch(v.getId())
+	        {
+	        case R.id.iShowWord:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		showWord.setImageResource(R.drawable.btshowtranslatesel);
+                else
+                	showWord.setImageResource(R.drawable.btshowtranslate);
+	        	
+	        	break;
+	        	
+	        case R.id.iYes:
+	        	
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		btYes.setImageResource(R.drawable.btyessel);
+                else
+                	btYes.setImageResource(R.drawable.btyes);
+	        	
+	            break;
+	            
+	        case R.id.iNo:
+	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	        		btNo.setImageResource(R.drawable.btnosel);
+                else
+                	btNo.setImageResource(R.drawable.btno);
+	        	
+	            break;   
+
+	        }
+			
+			return false;
 		}
 
 }

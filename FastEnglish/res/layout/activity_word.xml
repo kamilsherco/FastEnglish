@@ -15,13 +15,34 @@
         android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-<ImageView
-        android:id="@+id/iShowWord"
-       
+
+
+ <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+         android:id="@+id/iShowWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        
+        android:layout_marginTop="5dp"
+      
+          android:src="@drawable/btshowtranslate" />
+
+    <TextView
+       android:id="@+id/iShowWordtxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/btshowtranslate" />
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Pokaż tumaczenie"
+        />
+
+</FrameLayout>
 
 <TextView
     android:id="@+id/txAnswer"
@@ -37,6 +58,7 @@
 	android:visibility="gone"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
+	android:textColor="#ffffff" 
 	android:text="Czy znaleś odpowiedź?"
 	android:layout_marginTop="5dp"
 	/>
@@ -45,34 +67,76 @@
 
 
 
-<LinearLayout 
-   	 android:id="@+id/llayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:weightSum="6">
-          
+
+        
+ <LinearLayout
+android:id="@+id/llayout"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_gravity="center"
+android:layout_marginTop="5dp"
+ android:orientation="horizontal"
+android:weightSum="6">
+   
+
   
-
     
-    <ImageView
-        android:id="@+id/iYes"
-        android:visibility="gone"
-        android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_weight="3"   
-        android:src="@drawable/btyes" />
-    
-    <ImageView
-        android:id="@+id/iNo"
-        android:visibility="gone"
-        android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_weight="3"        
-        android:src="@drawable/btno" />
+     <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="3">
 
-        </LinearLayout>
+    <ImageView
+          android:id="@+id/iYes"
+          android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+          android:src="@drawable/btyes"  />
+
+    <TextView
+       android:id="@+id/iYestxt"
+       android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tak"
+        />
+
+</FrameLayout>
+    
+     <FrameLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="3">
+
+    <ImageView
+             android:id="@+id/iNo"
+             android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+      
+         android:src="@drawable/btno" />
+
+    <TextView
+        android:id="@+id/iNotxt"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nie"
+        />
+
+</FrameLayout>
+     
+
+    </LinearLayout>
+
 
 </LinearLayout>
