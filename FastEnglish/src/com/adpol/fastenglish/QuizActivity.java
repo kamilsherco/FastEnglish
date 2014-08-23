@@ -71,6 +71,8 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
     private Timer timer;
     private int countQuiz;
     
+    private boolean isStarted = false;
+    
     private TextToSpeech textToSpeech = null;
    
     
@@ -138,9 +140,11 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		answerDclicked=false;
 		answerClickPermission=true;
 		
-		if(textToSpeech != null) textToSpeech.shutdown();
-		textToSpeech = new TextToSpeech(this, this);
-		
+		if(!isStarted){
+			//if(textToSpeech != null) textToSpeech.shutdown();
+			textToSpeech = new TextToSpeech(this, this);
+			isStarted=true;
+		}
         randomTextAndPosition(word);
         answerQue();
       

@@ -269,4 +269,10 @@ public class DatabaseManager {
     	    	
     	return wordsList.size();
     }
+    
+    public int countAllWordsFromCategories(){
+    	List<Word> wordsList = getAllWordsFromCategories();
+    	    	
+    	return wordsList.size();
+    }
 }

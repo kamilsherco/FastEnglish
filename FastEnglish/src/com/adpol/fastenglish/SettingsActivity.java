@@ -19,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.CheckBox;
 import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -75,7 +76,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
         checkUpdate.setOnTouchListener(this);
         
         countWords= (TextView) findViewById(R.id.tvSettingsCountWords);
-        
+                
         layoutCategories = (LinearLayout) findViewById(R.id.llCategories);
         scrollCategories = (ScrollView) findViewById(R.id.svCategories);
         scrollCategories.setScrollbarFadingEnabled(false);
@@ -92,7 +93,11 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
         engPol=!engPol;
         selectAllcheck=prefs.getBoolean("selectAll", false);
         createCategoriesCheckBox();
-
+        
+       /* countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()) + "/" 
+        		+ Integer.toString(DatabaseManager.getInstance().countAllWordsFromCategories()));
+        
+*/
 
     }
 	
@@ -105,6 +110,12 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
       StringBuilder textTemp;
 		for(int i = 0; i < prefs.getInt("SizeChbx", 18); i++) {
             categories = new CheckBox(this);
+            categories.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                	updateCountText();
+                }
+            });     
             categories.setId(categoryList.get(i).getId_category());  
             textTemp = new StringBuilder("");
             textTemp.append(categoryList.get(i).getName());
@@ -141,8 +152,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	    	}
 	    	
 	    }
-	    
-	    
 
 	    return editor.commit();     
 	}
@@ -150,6 +159,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	
     @Override
     public void onClick(View arg0) {
+    	
         // TODO Auto-generated method stub
         switch(arg0.getId())
         {
@@ -202,6 +212,8 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
         	 break;
 
         }
+        
+        
 
 }
     
@@ -240,8 +252,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	        		changeLanguage.setImageResource(R.drawable.btclearsel);
                 else
                 	changeLanguage.setImageResource(R.drawable.btclear);
-	        	
-	        	
 
 
 	            break;
@@ -254,8 +264,16 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	        	 break;
 
 	        }
+		  
+		  
 		
 		return false;
+	}
+	
+	private void updateCountText(){
+		//saveArray();
+	      countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()) + "/" 
+	        		+ Integer.toString(DatabaseManager.getInstance().countAllWordsFromCategories()));
 	}
 
 }
