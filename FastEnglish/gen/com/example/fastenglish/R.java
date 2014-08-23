@@ -22,7 +22,7 @@ public final class R {
     }
     public static final class drawable {
         public static final int background=0x7f020000;
-        public static final int botton=0x7f020001;
+        public static final int bottom=0x7f020001;
         public static final int btclear=0x7f020002;
         public static final int btclearsel=0x7f020003;
         public static final int btcorrect=0x7f020004;
@@ -36,10 +36,12 @@ public final class R {
         public static final int canvas=0x7f02000c;
         public static final int ic_launcher=0x7f02000d;
         public static final int logofe=0x7f02000e;
+        public static final int sound=0x7f02000f;
+        public static final int sound_mute=0x7f020010;
+        public static final int soundsel=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f080038;
-        public static final int botton=0x7f080018;
+        public static final int action_settings=0x7f080039;
         public static final int edLearnNewWords=0x7f080005;
         public static final int iChange=0x7f080008;
         public static final int iClearAll=0x7f080020;
@@ -63,6 +65,8 @@ public final class R {
         public static final int iSelectAlltxt=0x7f08001f;
         public static final int iShowWord=0x7f08002f;
         public static final int iShowWordtxt=0x7f080030;
+        public static final int iSound=0x7f080019;
+        public static final int iSoundWord=0x7f080038;
         public static final int iStat=0x7f08000c;
         public static final int iUstawienia=0x7f08000d;
         public static final int iYes=0x7f080034;
@@ -79,7 +83,7 @@ public final class R {
         public static final int textView3=0x7f080022;
         public static final int tvLeanrCountWords=0x7f080002;
         public static final int tvPolEngtxt=0x7f080007;
-        public static final int tvQuizPoints=0x7f080019;
+        public static final int tvQuizPoints=0x7f080018;
         public static final int tvQuizPointsWin=0x7f08000e;
         public static final int tvQuizWord=0x7f08000f;
         public static final int tvSettingsCountWords=0x7f08001d;

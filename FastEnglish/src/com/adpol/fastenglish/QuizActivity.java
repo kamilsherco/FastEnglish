@@ -34,6 +34,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
     private ImageView answerB;
     private ImageView answerC;
     private ImageView answerD;
+    private ImageView soundImage;
     private TextView word;
     private TextView answerAtxt;
     private TextView answerBtxt;
@@ -61,6 +62,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
     private boolean answerCclicked;
     private boolean answerDclicked;
     private boolean answerClickPermission;
+    private boolean sound;
     
     private float points;
     private float pointsSum;
@@ -109,6 +111,10 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         answerD.setOnClickListener(this);
         answerD.setOnTouchListener(this);
         
+        soundImage=(ImageView) findViewById(R.id.iSound);
+        soundImage.setOnClickListener(this);
+        soundImage.setOnTouchListener(this);
+        
         word = (TextView) findViewById(R.id.tvQuizWord);
         
         answerAtxt = (TextView) findViewById(R.id.iQuizAnswerAtxt);
@@ -141,7 +147,12 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
      
         updatePointsTime();
      
-       
+        sound= prefs.getBoolean("sound", true);
+        
+        
+        if(sound) soundImage.setImageResource(R.drawable.sound);
+    	else soundImage.setImageResource(R.drawable.sound_mute);
+        sound=!sound;
        
        
         
@@ -333,7 +344,11 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	{
         		
         	answerA.setImageResource(R.drawable.btcorrect);
+        	
+        	if(prefs.getBoolean("sound", true))
         	convertTextToSpeech(wordsList.get(index).getEnWord());
+        	
+        	
         	answerAclicked=true;
         	answerClickPermission=false;
         	
@@ -346,7 +361,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
                 	
                 	
                 	clearAnswer();
-                	timer.cancel();
+                	
                 }
             }, 1500);
         	
@@ -362,7 +377,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerAtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(0))).getEnWord());
-        		 convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(0))).getEnWord());
+        	
         		}
         	   	else
         	   	{
@@ -383,7 +398,10 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	if(answerBtxt.getText().toString().equals(selectAnswer))
         	{
         		answerB.setImageResource(R.drawable.btcorrect);
-        		convertTextToSpeech(wordsList.get(index).getEnWord());
+
+        		if(prefs.getBoolean("sound", true))
+                	convertTextToSpeech(wordsList.get(index).getEnWord());
+        		
         		answerBclicked=true;
         		answerClickPermission=false;
         		
@@ -410,7 +428,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerBtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(1))).getEnWord());
-        		convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(1))).getEnWord());
+        		
         		}
         	   	else
         	   	{
@@ -427,7 +445,10 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	if(answerCtxt.getText().toString().equals(selectAnswer))
         	{
         		answerC.setImageResource(R.drawable.btcorrect);
-        		convertTextToSpeech(wordsList.get(index).getEnWord());
+        		
+        		if(prefs.getBoolean("sound", true))
+                	convertTextToSpeech(wordsList.get(index).getEnWord());
+        		
         		answerCclicked=true;
         		answerClickPermission=false;
         		
@@ -454,7 +475,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerCtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(2))).getEnWord());
-        		convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(2))).getEnWord());
+        		
         		}
         	   	else
         	   	{
@@ -474,7 +495,10 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	if(answerDtxt.getText().toString().equals(selectAnswer))
         	{
         		answerD.setImageResource(R.drawable.btcorrect);
-        		convertTextToSpeech(wordsList.get(index).getEnWord());
+        		
+        		if(prefs.getBoolean("sound", true))
+                	convertTextToSpeech(wordsList.get(index).getEnWord());
+        		
         		answerDclicked=true;
         		answerClickPermission=false;
         		
@@ -502,7 +526,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	   	if(engPol)
         		{
         		answerDtxt.setText(failAnswer+" - "+wordsList.get(listAnswer.get(listPos.indexOf(3))).getEnWord());
-        		convertTextToSpeech(wordsList.get(listAnswer.get(listPos.indexOf(3))).getEnWord());
+        		
         		}
         	   	else
         	   	{
@@ -514,6 +538,24 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
         	}
         	}
         	
+        	break;
+        	
+        case R.id.iSound:
+        	 if(sound)
+        		 {
+        		 soundImage.setImageResource(R.drawable.sound);
+        		 SharedPreferences.Editor editor = prefs.edit();    
+    	       	 editor.putBoolean("sound", true);       
+    	       	 editor.commit();
+        		 }
+         	else 
+         		{
+         		soundImage.setImageResource(R.drawable.sound_mute);
+         		 SharedPreferences.Editor editor = prefs.edit();    
+    	       	 editor.putBoolean("sound", false);       
+    	       	 editor.commit();
+         		}
+             sound=!sound;
         	break;
         }
         
@@ -565,7 +607,12 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
 	        		answerA.setImageResource(R.drawable.btshowtranslatesel);
                 else
+                {
+                	if(!answerAclicked)
                 	answerA.setImageResource(R.drawable.btshowtranslate);
+                	else
+                	answerA.setImageResource(R.drawable.btfail);	
+                }
 	       
 
 	        break;
@@ -573,7 +620,12 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
 	        		answerB.setImageResource(R.drawable.btshowtranslatesel);
                 else
+                {
+                	if(!answerBclicked)
                 	answerB.setImageResource(R.drawable.btshowtranslate);
+                	else
+                	answerB.setImageResource(R.drawable.btfail);	
+                }
 	        
 	        	
 	            break;
@@ -581,8 +633,12 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
 	        		answerC.setImageResource(R.drawable.btshowtranslatesel);
                 else
-                	answerC.setImageResource(R.drawable.btshowtranslate);
-	        	  
+                {
+                	if(!answerCclicked)
+                    	answerC.setImageResource(R.drawable.btshowtranslate);
+                    	else
+                    	answerC.setImageResource(R.drawable.btfail);
+                }
 	        	
 
 	            break;
@@ -590,10 +646,29 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	        	if(event.getAction() == MotionEvent.ACTION_DOWN)
 	        		answerD.setImageResource(R.drawable.btshowtranslatesel);
                 else
-                	answerD.setImageResource(R.drawable.btshowtranslate);
+                {
+                	if(!answerDclicked)
+                    	answerD.setImageResource(R.drawable.btshowtranslate);
+                    	else
+                    	answerD.setImageResource(R.drawable.btfail);
+                }
 	        	
 	        	break;
-	        }
+	        
+		 
+	 case R.id.iSound:
+     	if(event.getAction() == MotionEvent.ACTION_DOWN)
+     		soundImage.setImageResource(R.drawable.sound);
+         else
+         {
+         	
+        		soundImage.setImageResource(R.drawable.soundsel);
+           
+             
+         }
+     	
+     	break;
+     }
 		return false;
 	}
     

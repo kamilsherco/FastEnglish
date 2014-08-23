@@ -39,6 +39,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	private ImageView showWord;
     private ImageView btYes;
     private ImageView btNo;
+    private ImageView soundImage;
     private TextView wordText;
     private TextView isAnswerKnownText;
     private TextView answerText; 
@@ -49,7 +50,8 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
     private List<Word> learnedWordsList;
     
     private TextToSpeech textToSpeech;
-   
+   private boolean sound;
+   private SharedPreferences prefs ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -63,7 +65,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 		int lastActivity = bundle.getInt("lastActivity");
 	//	isEngPol = bundle.getBoolean("engPol");
 		
-		SharedPreferences prefs = getSharedPreferences("prefs", 0);    
+		prefs = getSharedPreferences("prefs", 0);    
 		isEngPol = prefs.getBoolean("engPol", true);
 		
 		
@@ -91,6 +93,11 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	    btYes = (ImageView) findViewById(R.id.iYes);
 	    btYes.setOnClickListener(this);
 	    btYes.setOnTouchListener(this);
+	    
+	    soundImage=(ImageView) findViewById(R.id.iSoundWord);
+	    soundImage.setOnClickListener(this);
+	    soundImage.setOnTouchListener(this);
+	    
 	    btYestxt=(TextView) findViewById(R.id.iYestxt);
 
 	    btNo = (ImageView) findViewById(R.id.iNo);
@@ -101,6 +108,13 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	    textToSpeech = new TextToSpeech(this, this);
 	    
 	    randomText();
+	    
+	    sound= prefs.getBoolean("sound", true);
+        
+        
+        if(sound) soundImage.setImageResource(R.drawable.sound);
+    	else soundImage.setImageResource(R.drawable.sound_mute);
+        sound=!sound;
 	}
 	
 	private String returnFirstWord(){
@@ -168,7 +182,25 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	            
 	        case R.id.iNo:
 	        	clickedAnswer(false);
-	            break;   
+	            break;
+	            
+	        case R.id.iSoundWord:
+	        	 if(sound)
+	        		 {
+	        		 soundImage.setImageResource(R.drawable.sound);
+	        		 SharedPreferences.Editor editor = prefs.edit();    
+	    	       	 editor.putBoolean("sound", true);       
+	    	       	 editor.commit();
+	        		 }
+	         	else 
+	         		{
+	         		soundImage.setImageResource(R.drawable.sound_mute);
+	         		 SharedPreferences.Editor editor = prefs.edit();    
+	    	       	 editor.putBoolean("sound", false);       
+	    	       	 editor.commit();
+	         		}
+	             sound=!sound;
+	        	break;
 
 	        }
 
@@ -226,7 +258,20 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
                 else
                 	btNo.setImageResource(R.drawable.btno);
 	        	
-	            break;   
+	            break; 
+	            
+	   	 case R.id.iSoundWord:
+	      	if(event.getAction() == MotionEvent.ACTION_DOWN)
+	      		soundImage.setImageResource(R.drawable.sound);
+	          else
+	          {
+	          	
+	         		soundImage.setImageResource(R.drawable.soundsel);
+	            
+	              
+	          }
+	      	
+	      	break;
 
 	        }
 			
