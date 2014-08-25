@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<LinearLayout
     android:id="@+id/lhome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -51,7 +55,7 @@
         android:src="@drawable/btclear" />
 
     <TextView
-        android:id="@+id/tvPolEngtxt"
+      android:id="@+id/iNaukatxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -77,7 +81,7 @@
         android:src="@drawable/btclear"/>
 
     <TextView
-        android:id="@+id/tvPolEngtxt"
+         android:id="@+id/iStattxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -102,7 +106,7 @@
         android:src="@drawable/btclear"/>
 
     <TextView
-        android:id="@+id/tvPolEngtxt"
+         android:id="@+id/iUstawieniatxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -111,8 +115,20 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </FrameLayout>
-
+ 
+    
+ 
     
     
 
 </LinearLayout>
+<LinearLayout 
+     android:id="@+id/lAddsMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+    </LinearLayout >
+</RelativeLayout>

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+     >
+     
+  
+    
+<LinearLayout 
   
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-android:background="@drawable/background"
+	
     android:orientation="vertical" >
 
 
@@ -23,7 +31,7 @@ android:background="@drawable/background"
         android:src="@drawable/btclear" />
 
     <TextView
-        
+          android:id="@+id/iReplaytxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -76,7 +84,7 @@ android:background="@drawable/background"
         android:src="@drawable/btclear" />
 
     <TextView
-        
+        android:id="@+id/iLearnNewtxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -146,18 +154,7 @@ android:background="@drawable/background"
 
 </FrameLayout>
 
-<LinearLayout
-    android:orientation="horizontal"
-     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-     android:layout_gravity="center"
-     android:layout_marginTop="5dp"
-     android:weightSum="6"
-     >
-     
-  
-    
-</LinearLayout>
+
 
 
 <FrameLayout 
@@ -186,3 +183,14 @@ android:background="@drawable/background"
 
 </FrameLayout>
 </LinearLayout>
+   <LinearLayout 
+     	android:id="@+id/lAddsLearn"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+     	android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+    </LinearLayout>
+
+</RelativeLayout>

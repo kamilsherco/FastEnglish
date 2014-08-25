@@ -2,16 +2,18 @@ package com.adpol.fastenglish;
 
 
 import com.example.fastenglish.R;
+import com.google.android.gms.ads.AdRequest;
+
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdSize;
+
 import com.adpol.fastenglish.database.*;
 
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener, OnTouchListener {
@@ -31,6 +34,12 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 	    private SharedPreferences settingsPref;
 	    private boolean isEngPol;
 	    private boolean firstRun;
+	    private AdView adView;
+	    private static final String AD_UNIT_ID = "ca-app-pub-1169622431309142/7079354317";
+	    private LinearLayout layoutAds;
+
+
+	    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,8 +98,21 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
           firstRuner(); 
               
         }
-
         
+        adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId(AD_UNIT_ID);
+        
+        layoutAds = (LinearLayout) findViewById(R.id.lAddsMain);
+        layoutAds.addView(adView);
+        
+        AdRequest adRequest = new AdRequest.Builder()
+        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+        .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+        .build();
+        
+        adView.loadAd(adRequest);
+
 
 
     }
@@ -195,5 +217,32 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 		
 		return false;
 	}
+	
+	 @Override
+	  public void onResume() {
+	    super.onResume();
+	    if (adView != null) {
+	      adView.resume();
+	    }
+	  }
+
+	  @Override
+	  public void onPause() {
+	    if (adView != null) {
+	      adView.pause();
+	    }
+	    super.onPause();
+	  }
+
+	  /** Called before the activity is destroyed. */
+	  @Override
+	  public void onDestroy() {
+	    // Destroy the AdView.
+	    if (adView != null) {
+	      adView.destroy();
+	    }
+	    super.onDestroy();
+	  }
+
 
 }

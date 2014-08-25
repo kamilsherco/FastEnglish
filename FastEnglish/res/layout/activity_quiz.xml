@@ -2,7 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/canvas" >
+     android:background="@drawable/canvas">
+     
+     <LinearLayout 
+     	android:id="@+id/lAddsQuiz"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+     	android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+    </LinearLayout>
+    
 <LinearLayout
     
   
@@ -37,6 +48,7 @@
 
    
     <FrameLayout 
+        android:id="@+id/frameA"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
   >
@@ -45,7 +57,7 @@
        android:id="@+id/iQuizAnswerA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-          android:layout_marginTop="5dp"
+      
     android:gravity="center"
     android:layout_gravity="center"
         android:src="@drawable/btshowtranslate" />
@@ -63,14 +75,15 @@
 
    
      <FrameLayout 
+           android:id="@+id/frameB"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/iQuizAnswerB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+       
     android:gravity="center"
     android:layout_gravity="center"
         android:src="@drawable/btshowtranslate" />
@@ -92,14 +105,16 @@
 
    
      <FrameLayout 
+           android:id="@+id/frameC"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+     android:layout_height="wrap_content"
+    >
 
     <ImageView
        android:id="@+id/iQuizAnswerC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+  
     android:gravity="center"
     android:layout_gravity="center"
        android:src="@drawable/btshowtranslate"  />
@@ -117,15 +132,16 @@
 
     
       <FrameLayout 
+       android:id="@+id/frameD"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+ android:layout_height="wrap_content"
+   >
 
     <ImageView
      android:id="@+id/iQuizAnswerD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+       
     android:gravity="center"
     android:layout_gravity="center"
         android:src="@drawable/btshowtranslate" 
@@ -148,7 +164,7 @@
    <FrameLayout
       
      android:layout_width="match_parent"
-    android:layout_height="33dp"
+    android:layout_height="34dp"
      android:background="@drawable/bottom"
      android:layout_alignParentBottom="true"
       

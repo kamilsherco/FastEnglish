@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -20,7 +24,8 @@
         android:id="@+id/svCategories"
         android:layout_width="match_parent"
         android:layout_height="200dp" 
-        android:fadeScrollbars="false">
+        android:fadeScrollbars="false"
+      >
 
         <LinearLayout
             android:id="@+id/llCategories"
@@ -140,13 +145,13 @@ android:weightSum="6">
     
     <FrameLayout 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+      android:layout_height="70dp">
 
     <ImageView
              android:id="@+id/ichangeLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+    
     android:gravity="center"
     android:layout_gravity="center"
         android:src="@drawable/btclear" />
@@ -166,13 +171,13 @@ android:weightSum="6">
       
       <FrameLayout 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="70dp">
 
     <ImageView
             android:id="@+id/icheckUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        
     android:gravity="center"
     android:layout_gravity="center"
         android:src="@drawable/btclear" />
@@ -189,3 +194,13 @@ android:weightSum="6">
 </FrameLayout>
 
 </LinearLayout>
+<LinearLayout 
+     android:id="@+id/lAddsSettings"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+    </LinearLayout >
+</RelativeLayout>

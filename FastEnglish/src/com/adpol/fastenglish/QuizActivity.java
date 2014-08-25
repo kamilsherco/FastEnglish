@@ -10,9 +10,14 @@ import java.util.TimerTask;
 import com.adpol.fastenglish.database.DatabaseManager;
 import com.adpol.fastenglish.database.Word;
 import com.example.fastenglish.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 
 
 import android.os.Bundle;
@@ -25,8 +30,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuizActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener, OnTouchListener {
 
@@ -42,7 +50,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
     private TextView answerDtxt;
     private TextView pointsWin;
     private TextView pointsView;
-    
+   
     
     private int index;
     private int answerPos;
@@ -75,6 +83,9 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
     
     private TextToSpeech textToSpeech = null;
    
+    private AdView adView;
+    private static final String AD_UNIT_ID = "ca-app-pub-1169622431309142/7079354317";
+    private LinearLayout layoutAds;
     
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -87,6 +98,20 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		wordsList = DatabaseManager.getInstance().getLearnedWordsFromCategories();
 		initialize();
 		
+		
+			adView = new AdView(this);
+			adView.setAdSize(AdSize.BANNER);
+			adView.setAdUnitId(AD_UNIT_ID);
+			layoutAds = (LinearLayout) findViewById(R.id.lAddsQuiz);
+	        layoutAds.addView(adView);
+	        
+	        AdRequest adRequest = new AdRequest.Builder()
+	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+	        .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+	        .build();
+	        
+	        adView.loadAd(adRequest);
+		
 	}
 	
 	void initialize()
@@ -96,6 +121,9 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		
 		listPos = new ArrayList<Integer>();
 		listAnswer = new ArrayList<Integer>();
+		
+		
+		
 		
         answerA = (ImageView) findViewById(R.id.iQuizAnswerA);
         answerA.setOnClickListener(this);
@@ -573,10 +601,30 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		}
 		textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 	}
+    @Override
+	  public void onResume() {
+	    super.onResume();
+	    if (adView != null) {
+	      adView.resume();
+	    }
+	  }
+
+	  @Override
+	  public void onPause() {
+	    if (adView != null) {
+	      adView.pause();
+	    }
+	    super.onPause();
+	  }
+ 
 
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
+		 // Destroy the AdView.
+	    if (adView != null) {
+	      adView.destroy();
+	    }
 		textToSpeech.shutdown();
 		super.onDestroy();
 		SharedPreferences.Editor editor = prefs.edit();    
@@ -585,7 +633,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
       	 editor.commit();
 		
 	}
-
+	
 	@Override
 	public void onInit(int status) {
 		if (status == TextToSpeech.SUCCESS) {

@@ -5,12 +5,22 @@
     android:layout_height="match_parent"
     android:background="@drawable/canvas" >
     
+     <LinearLayout 
+     	android:id="@+id/lAddsWord"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+     	android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+    </LinearLayout>
+    
 <LinearLayout 
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-     android:background="@drawable/canvas"
+     
     android:orientation="vertical" >
 
     <TextView
