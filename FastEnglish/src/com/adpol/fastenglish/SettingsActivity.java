@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -114,7 +115,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
         
         AdRequest adRequest = new AdRequest.Builder()
         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+        .addTestDevice("82D12EC501ECC605BD4AA767407BD13C")
         .build();
         
         adView.loadAd(adRequest);
@@ -148,7 +149,23 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
             
             
            }
+		
 		saveArray();
+		
+		for(int i = 0; i < prefs.getInt("SizeChbx", 18); i++){
+			checkArray.get(i).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		
+
+		       @Override
+		       public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+		    	   Log.d("Check: ","zmiana");
+		    	   saveArray();
+		    	   countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()) + "/" 
+		           		+ Integer.toString(DatabaseManager.getInstance().countAllWordsFromCategories()));
+		       }
+		   });     
+		}
+		
 		
 	
     	

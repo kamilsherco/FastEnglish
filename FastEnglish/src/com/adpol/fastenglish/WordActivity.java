@@ -53,12 +53,12 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
     private List<Word> learnedWordsList;
     
     private TextToSpeech textToSpeech;
-   private boolean sound;
-   private SharedPreferences prefs ;
+    private boolean sound;
+    private SharedPreferences prefs ;
    
-   private AdView adView;
-   private static final String AD_UNIT_ID = "ca-app-pub-1169622431309142/7079354317";
-   private LinearLayout layoutAds;
+	private AdView adView;
+	private static final String AD_UNIT_ID = "ca-app-pub-1169622431309142/7079354317";
+	private LinearLayout layoutAds;
    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	        
 	        AdRequest adRequest = new AdRequest.Builder()
 	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	        .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+	        .addTestDevice("82D12EC501ECC605BD4AA767407BD13C")
 	        .build();
 	        
 	        adView.loadAd(adRequest);
@@ -248,7 +248,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 			if (null == text || "".equals(text)) {
 				text = "Please give some input.";
 			}
-			textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+			if(prefs.getBoolean("sound", true)) textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 		}
 
 		@Override

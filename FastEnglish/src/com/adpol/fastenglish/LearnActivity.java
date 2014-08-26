@@ -95,7 +95,7 @@ public class LearnActivity extends Activity implements OnClickListener , OnTouch
 	        
 	        AdRequest adRequest = new AdRequest.Builder()
 	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	        .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+	        .addTestDevice("82D12EC501ECC605BD4AA767407BD13C")
 	        .build();
 	        
 	        adView.loadAd(adRequest);
