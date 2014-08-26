@@ -78,7 +78,7 @@ public class StatActivity extends Activity implements OnClickListener  {
         
         AdRequest adRequest = new AdRequest.Builder()
         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+        .addTestDevice(MainActivity.testDevice)
         .build();
         
         adView.loadAd(adRequest);

@@ -50,10 +50,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	private List<Category> categoryList;
 	private boolean selectAllcheck;
 	public static ArrayList<CheckBox> checkArray;
-	
-	private AdView adView;
-	private static final String AD_UNIT_ID = "ca-app-pub-1169622431309142/7079354317";
-	private LinearLayout layoutAds;
+
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,19 +103,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
         		+ Integer.toString(DatabaseManager.getInstance().countAllWordsFromCategories()));
         
 */
-        adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId(AD_UNIT_ID);
         
-        layoutAds = (LinearLayout) findViewById(R.id.lAddsSettings);
-        layoutAds.addView(adView);
-        
-        AdRequest adRequest = new AdRequest.Builder()
-        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice("82D12EC501ECC605BD4AA767407BD13C")
-        .build();
-        
-        adView.loadAd(adRequest);
     }
 	
 	
@@ -309,16 +294,12 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	 @Override
 	  public void onResume() {
 	    super.onResume();
-	    if (adView != null) {
-	      adView.resume();
-	    }
+	
 	  }
 
 	  @Override
 	  public void onPause() {
-	    if (adView != null) {
-	      adView.pause();
-	    }
+	 
 	    super.onPause();
 	  }
 
@@ -326,9 +307,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	  @Override
 	  public void onDestroy() {
 	    // Destroy the AdView.
-	    if (adView != null) {
-	      adView.destroy();
-	    }
+	  
 	    super.onDestroy();
 	    saveArray();
 	  }

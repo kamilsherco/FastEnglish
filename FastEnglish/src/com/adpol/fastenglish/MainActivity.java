@@ -37,6 +37,7 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 	    private AdView adView;
 	    private static final String AD_UNIT_ID = "ca-app-pub-1169622431309142/7079354317";
 	    private LinearLayout layoutAds;
+	    public static String testDevice="9CC4C7BDED0E7DD70138F325A04ADEA1";
 
 
 	    
@@ -108,7 +109,7 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
         
         AdRequest adRequest = new AdRequest.Builder()
         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice("82D12EC501ECC605BD4AA767407BD13C")
+        .addTestDevice(testDevice)
         .build();
         
         adView.loadAd(adRequest);
