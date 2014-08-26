@@ -182,6 +182,17 @@ public class DatabaseManager {
     	return wordsList;
     }
     
+    public int countLearnedWords(){
+    	int count = 0;
+    	try {
+			count = (int) getHelper().getWordDao().queryBuilder().where().eq("isLearned", true).countOf();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return count;
+    }
+    
     // pobiera nauczone s³owa z danych kategorii
     public List<Word> getLearnedWordsFromCategories(){
     	List<Word> wordsList = new ArrayList<Word>();
@@ -274,5 +285,33 @@ public class DatabaseManager {
     	List<Word> wordsList = getAllWordsFromCategories();
     	    	
     	return wordsList.size();
+    }
+    
+    public int countRepeats(){
+    	int count = 0;
+    	List<Word> wordsList = getLearnedWords();
+    	for(int i=0;i<wordsList.size();i++){
+    		count += wordsList.get(i).getCorrectRepeats();
+    		count += wordsList.get(i).getIncorrectRepeats();
+    	}
+    	return count;
+    }
+    
+    public int countCorrectRepeats(){
+    	int count = 0;
+    	List<Word> wordsList = getLearnedWords();
+    	for(int i=0;i<wordsList.size();i++){
+    		count += wordsList.get(i).getCorrectRepeats();
+    	}
+    	return count;
+    }
+    
+    public int countIncorrectRepeats(){
+    	int count = 0;
+    	List<Word> wordsList = getLearnedWords();
+    	for(int i=0;i<wordsList.size();i++){
+    		count += wordsList.get(i).getIncorrectRepeats();
+    	}
+    	return count;
     }
 }

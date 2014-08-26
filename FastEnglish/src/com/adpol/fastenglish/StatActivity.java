@@ -1,5 +1,6 @@
 package com.adpol.fastenglish;
 
+import com.adpol.fastenglish.database.DatabaseManager;
 import com.example.fastenglish.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -66,6 +67,11 @@ public class StatActivity extends Activity implements OnClickListener  {
 		
 		countQuiz= prefs.getInt("countQuiz",0);
 		CountQuiz.setText(""+countQuiz);
+		
+		CountWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWords()));
+		CountReplay.setText(Integer.toString(DatabaseManager.getInstance().countRepeats()));
+		CountReplayYes.setText(Integer.toString(DatabaseManager.getInstance().countCorrectRepeats()));
+		CountReplayNo.setText(Integer.toString(DatabaseManager.getInstance().countIncorrectRepeats()));
 		
 	//	graph = (ImageView) findViewById(R.id.iGraph);
 	//	graph.setOnClickListener(this);
