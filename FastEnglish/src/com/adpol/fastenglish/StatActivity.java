@@ -20,14 +20,12 @@ import android.widget.TextView;
 
 public class StatActivity extends Activity implements OnClickListener  {
 	
-	private TextView time;
 	private TextView CountWords;
 	private TextView CountReplay;
 	private TextView CountReplayYes;
 	private TextView CountReplayNo;
 	private TextView CountQuiz;
 	private TextView CountQuizPoints;
-	//private ImageView graph;
 	private SharedPreferences prefs ;
 	private float pointsSum;
 	private int countQuiz;
@@ -54,7 +52,6 @@ public class StatActivity extends Activity implements OnClickListener  {
 		prefs = getSharedPreferences("prefs", 0);
        
         
-		time= (TextView) findViewById(R.id.txTime);
 		CountWords= (TextView) findViewById(R.id.txCountWords);
 		CountReplay= (TextView) findViewById(R.id.txCountReplay);
 		CountReplayYes= (TextView) findViewById(R.id.txCountReplayYes);

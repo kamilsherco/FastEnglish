@@ -74,6 +74,8 @@ public class LearnActivity extends Activity implements OnClickListener , OnTouch
 	        change.setOnTouchListener(this);
 	        
 	        countWords= (TextView) findViewById(R.id.tvLeanrCountWords);
+	        
+	        countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()));
 	    
 	        countNewWords = (EditText) findViewById(R.id.edLearnNewWords);
 	        countNewWords.setSelection(countNewWords.length());
@@ -106,6 +108,7 @@ public class LearnActivity extends Activity implements OnClickListener , OnTouch
 	 @Override
 	  public void onResume() {
 	    super.onResume();
+	    countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()));
 	    if (adView != null) {
 	      adView.resume();
 	    }

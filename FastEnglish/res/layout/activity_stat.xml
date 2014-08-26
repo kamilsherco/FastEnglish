@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
          android:layout_marginLeft="10dp"
         android:layout_weight="4" 
-        android:text="Ilość prowtórek: "
+        android:text="Ilość powtórek: "
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <TextView
