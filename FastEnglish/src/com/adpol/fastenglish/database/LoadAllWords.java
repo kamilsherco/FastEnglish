@@ -90,8 +90,7 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
             int success = json.getInt(TAG_SUCCESS);
 
             if (success == 1) {
-                // products found
-                // Getting Array of Products
+               
                 words = json.getJSONArray(TAG_WORDS);
 
                 // looping through All Products
@@ -142,23 +141,9 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
      * **/
     protected void onPostExecute(String file_url) {
     	Update.updateCompleted();
-        // dismiss the dialog after getting all products
+        
       pDialog.dismiss();
-        // updating UI from Background Thread
-       /* runOnUiThread(new Runnable() {
-            public void run() {
-                /**
-                 * Updating parsed JSON data into ListView
-                 * */
-              /*  ListAdapter adapter = new SimpleAdapter(
-                        AllProductsActivity.this, productsList,
-                        R.layout.list_item, new String[] { TAG_PID,
-                                TAG_NAME},
-                        new int[] { R.id.pid, R.id.name });
-                // updating listview
-                setListAdapter(adapter);
-            }
-        });*/
+        
 
     }
 

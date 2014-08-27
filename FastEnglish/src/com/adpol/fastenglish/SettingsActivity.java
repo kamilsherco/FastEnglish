@@ -6,14 +6,13 @@ import java.util.List;
 import com.adpol.fastenglish.database.Category;
 import com.adpol.fastenglish.database.DatabaseManager;
 import com.adpol.fastenglish.database.Update;
-import com.adpol.fastenglish.database.Word;
-import com.example.fastenglish.R;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 
+import com.example.fastenglish.R;
+
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,12 +21,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.CheckBox;
-import android.widget.Checkable;
+
 import android.widget.CompoundButton;
-import android.widget.EditText;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -39,7 +38,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
     private ImageView checkUpdate;
     private TextView countWords;
     private TextView changeLanguagetxt;
-    private TextView selectAlltxt;
+  
     private ScrollView scrollCategories;
     private LinearLayout layoutCategories;
     
@@ -48,13 +47,12 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	private boolean engPol;
 	private static SharedPreferences prefs;
 	private List<Category> categoryList;
-	private boolean selectAllcheck;
 	public static ArrayList<CheckBox> checkArray;
 
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		initialize();
@@ -96,14 +94,10 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
         if(engPol) changeLanguagetxt.setText("ENG->POL");
     	else changeLanguagetxt.setText("POL->ENG");
         engPol=!engPol;
-        selectAllcheck=prefs.getBoolean("selectAll", false);
+       
         createCategoriesCheckBox();
         
-       /* countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()) + "/" 
-        		+ Integer.toString(DatabaseManager.getInstance().countAllWordsFromCategories()));
-        
-*/
-        
+     
     }
 	
 	
@@ -181,7 +175,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
     @Override
     public void onClick(View arg0) {
     	
-        // TODO Auto-generated method stub
         switch(arg0.getId())
         {
         case R.id.iSelectAll:
@@ -239,9 +232,10 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 }
    
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
+	
 		  switch(v.getId())
 	        {
 	        case R.id.iSelectAll:

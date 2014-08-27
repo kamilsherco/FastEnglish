@@ -629,6 +629,7 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f060018;
         public static final int hello_world=0x7f06001c;
         public static final int kategorie_do_nauki_=0x7f06001d;
+        public static final int poka_t_umaczenie=0x7f06001e;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

@@ -14,10 +14,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
-import android.app.ActionBar.LayoutParams;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
+
 
 
 import android.os.Bundle;
@@ -30,11 +31,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.FrameLayout;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class QuizActivity extends Activity implements OnClickListener, TextToSpeech.OnInitListener, OnTouchListener {
 
@@ -648,6 +649,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		}					
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub

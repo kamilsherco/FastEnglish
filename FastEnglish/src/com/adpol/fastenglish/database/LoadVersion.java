@@ -9,15 +9,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.adpol.fastenglish.MainActivity;
-
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Looper;
+
 import android.util.Log;
-import android.widget.Toast;
+
 
 public class LoadVersion extends AsyncTask<String, String, String> {
 	
@@ -64,7 +61,7 @@ public class LoadVersion extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        AlertDialog alertDialog;
+    
         
      
         pDialog.setMessage("Wczytywanie. Proszê czekaæ...");
@@ -140,7 +137,7 @@ public class LoadVersion extends AsyncTask<String, String, String> {
          	if(!Update.isAutomatic()){
          		Update.toastNoUpdates();
          	}
-         	//Update.continueUpdate();
+         
          } else{
          	Log.d("Version : ", "Nie to samo, aktualizujemy");
          	if(Update.isAutomatic()){
@@ -150,28 +147,11 @@ public class LoadVersion extends AsyncTask<String, String, String> {
          		new LoadAllWords(currentContext).execute();
          		DatabaseManager.getInstance().updateVersion(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
          	}
-         	//new LoadAllWords().execute();
-         	//DatabaseManager.getInstance().updateVersion(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
-         }
-    	//Update.continueUpdate();
-        // dismiss the dialog after getting all products
-        pDialog.dismiss();
-        // updating UI from Background Thread
-       /* runOnUiThread(new Runnable() {
-            public void run() {
-                /**
-                 * Updating parsed JSON data into ListView
-                 * */
-              /*  ListAdapter adapter = new SimpleAdapter(
-                        AllProductsActivity.this, productsList,
-                        R.layout.list_item, new String[] { TAG_PID,
-                                TAG_NAME},
-                        new int[] { R.id.pid, R.id.name });
-                // updating listview
-                setListAdapter(adapter);
-            }
-        });*/
 
+         }
+    	
+        pDialog.dismiss();
+     
     }
 
 

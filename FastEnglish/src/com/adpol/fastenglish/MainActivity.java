@@ -12,11 +12,12 @@ import com.adpol.fastenglish.database.*;
 
 import android.os.Bundle;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,7 +33,7 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 	    private ImageView stat;
 	    private ImageView settings;
 	    private SharedPreferences settingsPref;
-	    private boolean isEngPol;
+	
 	    private boolean firstRun;
 	    private AdView adView;
 	    private static final String AD_UNIT_ID = "ca-app-pub-1169622431309142/7079354317";
@@ -46,31 +47,19 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		DatabaseManager.init(this);	
-		//DatabaseManager.getInstance().updateVersion(0); //Wyzerowanie wersji
-		 // Loading products in Background Thread
-		//if(isOnline()) new LoadVersion().execute();
+		
 		initialize();
 		if(settingsPref.getBoolean("firstUpdate", true)){
 			Update.firstUpdate(this);
 		}
-	//	else Update.update(this, true);
+	
+		//Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));
 
-		//new LoadAllWords().execute();
-		Log.d("Wielkosc bazy s³ów: ", Integer.toString(DatabaseManager.getInstance().getAllWords().size()));
-		//Log.d("Wielkosc bazy wersji: ", Integer.toString(DatabaseManager.getInstance().getAllVersions().get(0).getVersion()));
-		Log.d("Wersja: ", Integer.toString(DatabaseManager.getInstance().getVersionById(1).getVersion()));
+	///	Log.d("Wersja: ", Integer.toString(DatabaseManager.getInstance().getVersionById(1).getVersion()));
 		
 	}
 	
-	/*public static boolean isOnline() {
-	    ConnectivityManager cm =
-	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
-	}*/
+
 
     void initialize()
     {
@@ -176,6 +165,7 @@ public class MainActivity extends Activity implements OnClickListener, OnTouchLi
 
     }
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub

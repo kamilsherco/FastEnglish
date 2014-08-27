@@ -1,6 +1,6 @@
 package com.adpol.fastenglish;
 
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -13,8 +13,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -62,7 +63,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_word);
 		initialize();
@@ -85,7 +86,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	private void initialize(){			
 		Bundle bundle = getIntent().getExtras();
 		int lastActivity = bundle.getInt("lastActivity");
-	//	isEngPol = bundle.getBoolean("engPol");
+	
 		
 		prefs = getSharedPreferences("prefs", 0);    
 		isEngPol = prefs.getBoolean("engPol", true);
@@ -100,7 +101,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 			wordsList = DatabaseManager.getInstance().getLearnedWordsFromCategories();
 		}
 		
-		//wordsList = DatabaseManager.getInstance().getAllWords();		
+				
 		
 		wordText = (TextView) findViewById(R.id.txWordText);
 		answerText = (TextView) findViewById(R.id.txAnswer);
@@ -190,7 +191,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 
 	    @Override
 	    public void onClick(View arg0) {
-	        // TODO Auto-generated method stub
+	       
 	        switch(arg0.getId())
 	        {
 	        case R.id.iShowWord:
@@ -251,9 +252,10 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 			if(prefs.getBoolean("sound", true)) textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 		}
 
+		@SuppressLint("ClickableViewAccessibility")
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			// TODO Auto-generated method stub
+		
 			
 			switch(v.getId())
 	        {
@@ -316,7 +318,7 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 		  }
 		@Override
 		protected void onDestroy() {
-			// TODO Auto-generated method stub
+			
 			  if (adView != null) {
 			      adView.destroy();
 			    }

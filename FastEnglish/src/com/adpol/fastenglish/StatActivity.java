@@ -7,18 +7,15 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
 import android.app.Activity;
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.TextureView;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageView;
+
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class StatActivity extends Activity implements OnClickListener  {
+public class StatActivity extends Activity   {
 	
 	private TextView CountWords;
 	private TextView CountReplay;
@@ -38,7 +35,7 @@ public class StatActivity extends Activity implements OnClickListener  {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stat);
 		initialize();
@@ -70,8 +67,7 @@ public class StatActivity extends Activity implements OnClickListener  {
 		CountReplayYes.setText(Integer.toString(DatabaseManager.getInstance().countCorrectRepeats()));
 		CountReplayNo.setText(Integer.toString(DatabaseManager.getInstance().countIncorrectRepeats()));
 		
-	//	graph = (ImageView) findViewById(R.id.iGraph);
-	//	graph.setOnClickListener(this);
+
 		adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId(AD_UNIT_ID);
@@ -89,18 +85,10 @@ public class StatActivity extends Activity implements OnClickListener  {
 
 
     }
-	  @Override
-	    public void onClick(View arg0) {
-	        // TODO Auto-generated method stub
-	        switch(arg0.getId())
-	        {
-	      //  case R.id.iGraph:
-	        	
-	        }
-
+	 
 	  
 
-	  }
+
 	  @Override
 	  public void onResume() {
 	    super.onResume();
