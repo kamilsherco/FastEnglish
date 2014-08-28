@@ -3,6 +3,7 @@ package com.adpol.fastenglish.database;
 
 
 import com.adpol.fastenglish.MainActivity;
+import com.adpol.fastenglish.SettingsActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -56,6 +57,7 @@ public class Update {
 	}
 	
 	static void updateCompleted(){
+		SettingsActivity.all=DatabaseManager.getInstance().countAllWordsFromCategories();
 		Toast.makeText(mContext, "Aktualizacja zakoñczona", Toast.LENGTH_LONG).show();
 	}
 	

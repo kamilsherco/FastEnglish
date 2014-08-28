@@ -9,10 +9,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.adpol.fastenglish.SettingsActivity;
 import com.adpol.fastenglish.database.JSONParser;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -63,14 +66,17 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
 
     }
     
+ 
+    
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
       
         pDialog.setMessage("Aktualizowanie s³ów. Proszê czekaæ...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(false);
+        pDialog.setIndeterminate(true);
+        pDialog.setCancelable(true);
         pDialog.show();
+        pDialog.incrementProgressBy(50);
     }
 
     /**
@@ -140,10 +146,12 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
      * After completing background task Dismiss the progress dialog
      * **/
     protected void onPostExecute(String file_url) {
+    	  pDialog.dismiss();
     	Update.updateCompleted();
         
-      pDialog.dismiss();
-        
+    
+    
+     
 
     }
 

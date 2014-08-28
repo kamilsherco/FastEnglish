@@ -65,8 +65,8 @@ public class LoadVersion extends AsyncTask<String, String, String> {
         
      
         pDialog.setMessage("Wczytywanie. Proszê czekaæ...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(false);
+        pDialog.setIndeterminate(true);
+        pDialog.setCancelable(true);
         pDialog.show();
     }
 

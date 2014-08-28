@@ -13,8 +13,11 @@ import com.example.fastenglish.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,8 +50,11 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	private boolean engPol;
 	private static SharedPreferences prefs;
 	private List<Category> categoryList;
+	private Handler mUIHandler;
 	public static ArrayList<CheckBox> checkArray;
-
+	
+	public static int all;
+	public static int lernt;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +102,20 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
         engPol=!engPol;
        
         createCategoriesCheckBox();
+        updateCountText();
         
+        mUIHandler = new Handler(Looper.getMainLooper());
+        mUIHandler.post(new Runnable() {
+        	  
+
+            @Override
+            public void run() {
+            	
+            	countWords.setText(lernt+"/"+all);
+                mUIHandler.postDelayed(this, 200);  
+               
+            }
+        });
      
     }
 	
@@ -109,12 +128,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
       StringBuilder textTemp;
 		for(int i = 0; i < prefs.getInt("SizeChbx", 18); i++) {
             categories = new CheckBox(this);
-            categories.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                	updateCountText();
-                }
-            });     
             categories.setId(categoryList.get(i).getId_category());  
             textTemp = new StringBuilder("");
             textTemp.append(categoryList.get(i).getName());
@@ -139,10 +152,13 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 		       public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 		    	   Log.d("Check: ","zmiana");
 		    	   saveArray();
-		    	   countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()) + "/" 
-		           		+ Integer.toString(DatabaseManager.getInstance().countAllWordsFromCategories()));
+		    	  
+			         lernt=DatabaseManager.getInstance().countLearnedWordsFromCategories();
+					 all=DatabaseManager.getInstance().countAllWordsFromCategories();
 		       }
-		   });     
+			});
+		    	   
+		     
 		}
 		
 		
@@ -223,6 +239,9 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
             break;
         case R.id.icheckUpdate:
         	 Update.update(this, false);
+        	 
+        
+        	
         	 break;
 
         }
@@ -280,15 +299,17 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	
 	private void updateCountText(){
 		//saveArray();
-	      countWords.setText(Integer.toString(DatabaseManager.getInstance().countLearnedWordsFromCategories()) + "/" 
-	        		+ Integer.toString(DatabaseManager.getInstance().countAllWordsFromCategories()));
+		
+	        
+	 lernt= DatabaseManager.getInstance().countLearnedWordsFromCategories();
+	 all=DatabaseManager.getInstance().countAllWordsFromCategories();
 	}
 
 	
 	 @Override
 	  public void onResume() {
 	    super.onResume();
-	
+	 
 	  }
 
 	  @Override
@@ -305,4 +326,5 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 	    super.onDestroy();
 	    saveArray();
 	  }
+	  
 }
