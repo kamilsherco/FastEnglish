@@ -3,10 +3,12 @@ package com.adpol.fastenglish;
 
 import com.adpol.fastenglish.database.DatabaseManager;
 import com.example.fastenglish.R;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -93,16 +95,12 @@ public class LearnActivity extends Activity implements OnClickListener , OnTouch
 			adView.setAdSize(AdSize.BANNER);
 			adView.setAdUnitId(AD_UNIT_ID);
 			layoutAds = (LinearLayout) findViewById(R.id.lAddsLearn);
+			
 	        layoutAds.addView(adView);
 	        
-	        AdRequest adRequest = new AdRequest.Builder()
-	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	        .addTestDevice(MainActivity.testDevice)
-	        .build();
+	        AdRequest adRequest = new AdRequest.Builder().build();
 	        
 	        adView.loadAd(adRequest);
-        	
-
 
 	    }
 	 @Override
@@ -195,6 +193,7 @@ public class LearnActivity extends Activity implements OnClickListener , OnTouch
 
 }
 
+		@SuppressLint("ClickableViewAccessibility")
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 			// TODO Auto-generated method stub

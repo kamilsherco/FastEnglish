@@ -75,10 +75,8 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 	        layoutAds = (LinearLayout) findViewById(R.id.lAddsWord);
 	        layoutAds.addView(adView);
 	        
-	        AdRequest adRequest = new AdRequest.Builder()
-	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	        .addTestDevice(MainActivity.testDevice)
-	        .build();
+	        AdRequest adRequest = new AdRequest.Builder().build();
+	        
 	        
 	        adView.loadAd(adRequest);
 	}

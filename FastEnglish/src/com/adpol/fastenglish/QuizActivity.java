@@ -106,10 +106,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 			layoutAds = (LinearLayout) findViewById(R.id.lAddsQuiz);
 	        layoutAds.addView(adView);
 	        
-	        AdRequest adRequest = new AdRequest.Builder()
-	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	        .addTestDevice(MainActivity.testDevice)
-	        .build();
+	        AdRequest adRequest = new AdRequest.Builder().build();
 	        
 	        adView.loadAd(adRequest);
 		
@@ -343,7 +340,7 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 	            @Override
 	            public void run() {
 	            	
-	            	 pointsView.setText("Punkty do zdobycia: " + String.format( "%.2f", points ));
+	            	pointsView.setText("Punkty do zdobycia: " + String.format( "%.2f", points ));
 	                mUIHandler.postDelayed(this, 200);  
 	               
 	            }

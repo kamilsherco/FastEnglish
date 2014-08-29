@@ -75,10 +75,7 @@ public class StatActivity extends Activity   {
         layoutAds = (LinearLayout) findViewById(R.id.lAddsStat);
         layoutAds.addView(adView);
         
-        AdRequest adRequest = new AdRequest.Builder()
-        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice(MainActivity.testDevice)
-        .build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         
         adView.loadAd(adRequest);
         
