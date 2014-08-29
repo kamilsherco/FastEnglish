@@ -2,19 +2,16 @@ package com.adpol.fastenglish.database;
 
 
 
-import com.adpol.fastenglish.MainActivity;
-import com.adpol.fastenglish.SettingsActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Looper;
 import android.widget.Toast;
+
+import com.adpol.fastenglish.MainActivity;
+import com.adpol.fastenglish.SettingsActivity;
 
 public class Update {
 	

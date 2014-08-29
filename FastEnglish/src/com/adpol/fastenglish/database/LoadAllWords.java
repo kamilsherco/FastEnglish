@@ -9,15 +9,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.adpol.fastenglish.SettingsActivity;
-import com.adpol.fastenglish.database.JSONParser;
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 
 
@@ -133,7 +127,7 @@ public class LoadAllWords extends AsyncTask<String, String, String> {
                
             	System.out.println("ERRRR");
             }
-            Log.d("All Words: ", wordsList.toString());
+            //Log.d("All Words: ", wordsList.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

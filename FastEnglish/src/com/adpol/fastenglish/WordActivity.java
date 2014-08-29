@@ -19,7 +19,6 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -158,8 +157,8 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 		wordText.setText(returnFirstWord());
 		answerText.setText(returnSecondWord());
 		wordsList.get(index).setLearned(true);
-		Log.d("Poprawnych: ", Integer.toString(wordsList.get(index).getCorrectRepeats()));
-		Log.d("Niepoprawnych: ", Integer.toString(wordsList.get(index).getIncorrectRepeats()));
+		//Log.d("Poprawnych: ", Integer.toString(wordsList.get(index).getCorrectRepeats()));
+		//Log.d("Niepoprawnych: ", Integer.toString(wordsList.get(index).getIncorrectRepeats()));
 	}
 
 	private void setVisibility(int vis){
@@ -232,12 +231,12 @@ public class WordActivity extends Activity implements OnClickListener, TextToSpe
 			if (status == TextToSpeech.SUCCESS) {
 				int result = textToSpeech.setLanguage(Locale.UK);
 				if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-					Log.e("error", "This Language is not supported");
+					//Log.e("error", "This Language is not supported");
 				} else {
 					//convertTextToSpeech();
 				}
 			} else {
-				Log.e("error", "Initilization Failed!");
+				//Log.e("error", "Initilization Failed!");
 			}			
 		}
 		

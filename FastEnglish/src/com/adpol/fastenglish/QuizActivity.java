@@ -26,7 +26,6 @@ import android.os.Handler;
 import android.os.Looper;
 
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -637,12 +636,12 @@ public class QuizActivity extends Activity implements OnClickListener, TextToSpe
 		if (status == TextToSpeech.SUCCESS) {
 			int result = textToSpeech.setLanguage(Locale.UK);
 			if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-				Log.e("error", "This Language is not supported");
+			//	Log.e("error", "This Language is not supported");
 			} else {
 				//convertTextToSpeech();
 			}
 		} else {
-			Log.e("error", "Initilization Failed!");
+			//Log.e("error", "Initilization Failed!");
 		}					
 	}
 

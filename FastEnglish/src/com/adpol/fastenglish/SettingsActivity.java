@@ -13,12 +13,10 @@ import com.example.fastenglish.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -150,7 +148,7 @@ public class SettingsActivity extends Activity implements OnClickListener, OnTou
 
 		       @Override
 		       public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-		    	   Log.d("Check: ","zmiana");
+		    	  // Log.d("Check: ","zmiana");
 		    	   saveArray();
 		    	  
 			         lernt=DatabaseManager.getInstance().countLearnedWordsFromCategories();

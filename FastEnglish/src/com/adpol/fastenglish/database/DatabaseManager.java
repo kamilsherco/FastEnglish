@@ -29,7 +29,7 @@ public class DatabaseManager {
 
     private DatabaseHelper helper;
     private DatabaseManager(Context ctx) {
-    	this.context = ctx;
+    	context = ctx;
         helper = new DatabaseHelper(ctx);
     }
 
@@ -276,15 +276,43 @@ public class DatabaseManager {
     }
     
     public int countLearnedWordsFromCategories(){
-    	List<Word> wordsList = getLearnedWordsFromCategories();
+    	//List<Word> wordsList = getLearnedWordsFromCategories();
     	    	
-    	return wordsList.size();
+    	//return wordsList.size();
+    	int count = 0;
+    	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
+    	int catCount = settingsPref.getInt("SizeChbx", 18);
+    	for(int i=0;i<catCount;i++){
+    		if(settingsPref.getBoolean(Integer.toString(i), true)){
+    			try {
+					count += getHelper().getWordDao().queryBuilder().where().eq("id_category", i).and().eq("isLearned", true).countOf();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	}    	
+		return count;
     }
     
     public int countAllWordsFromCategories(){
-    	List<Word> wordsList = getAllWordsFromCategories();
+    	//List<Word> wordsList = getAllWordsFromCategories();
     	    	
-    	return wordsList.size();
+    	//return wordsList.size();
+    	int count = 0;
+    	SharedPreferences settingsPref = context.getSharedPreferences("prefs", 0);
+    	int catCount = settingsPref.getInt("SizeChbx", 18);
+    	for(int i=0;i<catCount;i++){
+    		if(settingsPref.getBoolean(Integer.toString(i), true)){
+    			try {
+    				count += getHelper().getWordDao().queryBuilder().where().eq("id_category", i).countOf();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	}    	
+		return count;    
     }
     
     public int countRepeats(){

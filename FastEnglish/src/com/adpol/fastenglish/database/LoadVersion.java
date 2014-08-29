@@ -13,7 +13,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import android.util.Log;
 
 
 public class LoadVersion extends AsyncTask<String, String, String> {
@@ -131,15 +130,15 @@ public class LoadVersion extends AsyncTask<String, String, String> {
      * After completing background task Dismiss the progress dialog
      * **/
     protected void onPostExecute(String file_url) {
-    	Log.d("Version Post: ", versionArray.toString());
+    	//Log.d("Version Post: ", versionArray.toString());
     	 if(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)) == DatabaseManager.getInstance().getVersionById(VERSION_ID).getVersion()){
-         	Log.d("Version : ", "To samo, nie aktualizujemy");
+         	//Log.d("Version : ", "To samo, nie aktualizujemy");
          	if(!Update.isAutomatic()){
          		Update.toastNoUpdates();
          	}
          
          } else{
-         	Log.d("Version : ", "Nie to samo, aktualizujemy");
+         	//Log.d("Version : ", "Nie to samo, aktualizujemy");
          	if(Update.isAutomatic()){
          		Update.continueUpdate(Integer.parseInt(versionArray.get(0).get(TAG_ID_VERSION)));
          	}
